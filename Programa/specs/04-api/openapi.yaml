@@ -1,0 +1,709 @@
+openapi: 3.1.0
+info:
+  title: ABC Facturación Electrónica - API del nodo local
+  version: 0.1.0-fase1
+  summary: Binding HTTP (adaptador) de los puertos de entrada del monolito.
+  license:
+    name: Uso académico (UNAS, FIIS) - sin licencia de distribución
+    identifier: LicenseRef-Uso-Academico
+  description: |
+    **Entregable 3 (Fase 1, SPEC-FIRST).** En Windows y Android nativos, el contrato real es el
+    **puerto de entrada** (caso de uso, ver `puertos.md`). Esta API HTTP es solo un adaptador,
+    usado por los dispositivos Android para sincronizar con el nodo Windows y, a futuro, por los microservicios.
+
+    Convenciones:
+    - `x-puerto-entrada`: interfaz y método Kotlin del caso de uso.
+    - `x-caso-uso`: ID en `01-casos-de-uso.md`. `x-reglas`: IDs en `reglas-de-validacion.md`.
+    - Todos los códigos son de los **catálogos SUNAT** (Anexo 8). Los códigos propios de proveedores
+      (por ejemplo, Nubefact `tipo_de_comprobante` 1-4, `sunat_transaction`, `tipo_de_igv`) existen solo en el
+      adaptador de salida (REG-150, ADR-004).
+    - Errores: `application/problem+json` (RFC 9457), con `violaciones[].regla = REG-XXX`.
+    - **Idempotencia** (REG-160): toda operación que crea algo acepta `Idempotency-Key`. Si se repite
+      la misma clave con el mismo cuerpo, se responde lo mismo (200, con `Idempotent-Replayed: true`) sin
+      consumir otro correlativo. Si se repite la clave con otro cuerpo, se responde 409 `IDEMPOTENCIA_CONFLICTO`.
+    - Las operaciones asíncronas (baja, resumen, importación, reenvío) responden 202 con `Location` y un ticket.
+servers:
+  - url: https://nodo-local.abc.lan/api/v1
+    description: Nodo Windows del local (red local o VPN). El host es un ejemplo.
+security:
+  - bearerAuth: []
+tags:
+  - name: Emisión
+    description: Factura (01) y boleta (03), consulta y descarga de XML/CDR (CU-01, CU-02).
+  - name: Notas
+    description: Notas de crédito (07) y débito (08) sobre un documento afectado (CU-03, CU-04).
+  - name: Integración SUNAT/OSE
+    description: Envíos, reintentos, baja y resumen diario asíncronos con ticket; sincronización offline (CU-05, CU-06, CU-12).
+  - name: Series
+    description: Series y correlativos por establecimiento, y series de contingencia por dispositivo (CU-07).
+  - name: Catálogos
+    description: Catálogos SUNAT del Anexo 8 (fuente no oficial; CU-08). Son públicos y de solo lectura.
+  - name: Identidad
+    description: Validación de RUC y consulta del padrón (CU-09).
+  - name: Migración
+    description: Importación de las fichas del legado con cuarentena y conciliación (CU-10).
+  - name: Registros
+    description: Registros 14.1, 8.1 y 12.1 por período (CU-11).
+  - name: Inventario
+    description: Productos y homologación de los provisionales del legado (CU-13).
+paths:
+  /comprobantes:
+    post:
+      operationId: emitirComprobante
+      tags: [Emisión]
+      summary: Emitir factura (01) o boleta (03)
+      description: Asigna el correlativo, valida las reglas, genera el UBL, firma y encola el envío al OSE. Con `?borrador=true` solo guarda un borrador.
+      x-puerto-entrada: EmitirComprobanteUseCase.emitir
+      x-caso-uso: CU-01
+      x-reglas: [REG-003, REG-004, REG-010, REG-021, REG-030, REG-031, REG-034, REG-035, REG-050, REG-057, REG-066, REG-080, REG-090, REG-160]
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - name: borrador
+          in: query
+          schema: { type: boolean, default: false }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '../02-dominio-y-contratos/schemas/comprobante.schema.yaml' }
+      responses:
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '201':
+          description: Comprobante emitido (estado EMITIDO o ENVIADO).
+          headers:
+            Location: { schema: { type: string } }
+          content:
+            application/json:
+              schema: { $ref: '../02-dominio-y-contratos/schemas/comprobante.schema.yaml' }
+        '200': { $ref: '#/components/responses/ReplayIdempotente' }
+        '400': { $ref: '#/components/responses/SolicitudInvalida' }
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '409': { $ref: '#/components/responses/Conflicto' }
+        '422': { $ref: '#/components/responses/ReglaIncumplida' }
+        '503': { $ref: '#/components/responses/ProveedorNoDisponible' }
+    get:
+      operationId: buscarComprobantes
+      tags: [Emisión]
+      summary: Buscar comprobantes (consolidado de todos los locales)
+      x-puerto-entrada: ConsultarComprobanteUseCase.buscar
+      x-caso-uso: CU-02
+      parameters:
+        - { name: tipo, in: query, schema: { $ref: '../02-dominio-y-contratos/schemas/catalogos.schema.yaml#/$defs/Cat01' } }
+        - { name: serie, in: query, schema: { $ref: '../02-dominio-y-contratos/schemas/common.schema.yaml#/$defs/Serie' } }
+        - { name: correlativo, in: query, schema: { type: integer } }
+        - { name: desde, in: query, schema: { type: string, format: date } }
+        - { name: hasta, in: query, schema: { type: string, format: date } }
+        - { name: estado, in: query, schema: { type: string } }
+        - { name: establecimiento, in: query, schema: { type: string } }
+        - { name: pagina, in: query, schema: { type: integer, minimum: 1, default: 1 } }
+      responses:
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '200':
+          description: Página de comprobantes.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '../02-dominio-y-contratos/schemas/comprobante.schema.yaml' }
+                  total: { type: integer }
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+  /comprobantes/{id}:
+    get:
+      operationId: consultarComprobante
+      tags: [Emisión]
+      summary: Consultar un comprobante o nota (incluye su estado SUNAT)
+      x-puerto-entrada: ConsultarComprobanteUseCase.consultar
+      x-caso-uso: CU-02
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '200':
+          description: Comprobante o nota.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - { $ref: '../02-dominio-y-contratos/schemas/comprobante.schema.yaml' }
+                  - { $ref: '../02-dominio-y-contratos/schemas/nota.schema.yaml' }
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+  /comprobantes/{id}/xml:
+    get:
+      operationId: descargarXml
+      tags: [Emisión]
+      summary: Descargar el XML UBL firmado
+      x-puerto-entrada: ConsultarComprobanteUseCase.obtenerXml
+      x-caso-uso: CU-02
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '200':
+          description: XML UBL 2.1 firmado.
+          content:
+            application/xml:
+              schema: { type: string }
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+        '409': { $ref: '#/components/responses/Conflicto' }
+  /comprobantes/{id}/cdr:
+    get:
+      operationId: descargarCdr
+      tags: [Emisión]
+      summary: Descargar el CDR (constancia de recepción)
+      x-puerto-entrada: ConsultarComprobanteUseCase.obtenerCdr
+      x-caso-uso: CU-02
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '200':
+          description: CDR en ZIP, tal como lo devolvió el OSE o SUNAT.
+          content:
+            application/zip:
+              schema: { type: string, contentMediaType: application/zip }
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+        '409':
+          description: Aún no hay CDR (estado EMITIDO o ENVIADO).
+          content:
+            application/problem+json:
+              schema: { $ref: '../02-dominio-y-contratos/schemas/problema.schema.yaml' }
+  /comprobantes/{id}/envios:
+    post:
+      operationId: reenviarComprobante
+      tags: [Integración SUNAT/OSE]
+      summary: Reintentar el envío al OSE o a SUNAT (idempotente)
+      x-puerto-entrada: ReintentarEnvioUseCase.reintentar
+      x-caso-uso: CU-12
+      x-reglas: [REG-110, REG-160]
+      parameters:
+        - $ref: '#/components/parameters/Id'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '202': { $ref: '#/components/responses/Aceptado' }
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+        '409': { $ref: '#/components/responses/Conflicto' }
+  /notas-credito:
+    post:
+      operationId: emitirNotaCredito
+      tags: [Notas]
+      summary: Emitir una nota de crédito (07)
+      x-puerto-entrada: EmitirNotaUseCase.emitirCredito
+      x-caso-uso: CU-03
+      x-reglas: [REG-007, REG-018, REG-032, REG-070, REG-071, REG-072, REG-073, REG-074, REG-160]
+      parameters: [{ $ref: '#/components/parameters/IdempotencyKey' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '../02-dominio-y-contratos/schemas/nota.schema.yaml' }
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '201':
+          description: Nota emitida.
+          content:
+            application/json:
+              schema: { $ref: '../02-dominio-y-contratos/schemas/nota.schema.yaml' }
+        '200': { $ref: '#/components/responses/ReplayIdempotente' }
+        '400': { $ref: '#/components/responses/SolicitudInvalida' }
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+        '409': { $ref: '#/components/responses/Conflicto' }
+        '422': { $ref: '#/components/responses/ReglaIncumplida' }
+  /notas-debito:
+    post:
+      operationId: emitirNotaDebito
+      tags: [Notas]
+      summary: Emitir una nota de débito (08)
+      x-puerto-entrada: EmitirNotaUseCase.emitirDebito
+      x-caso-uso: CU-04
+      x-reglas: [REG-007, REG-019, REG-032, REG-070, REG-071, REG-072, REG-074, REG-160]
+      parameters: [{ $ref: '#/components/parameters/IdempotencyKey' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '../02-dominio-y-contratos/schemas/nota.schema.yaml' }
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '201':
+          description: Nota emitida.
+          content:
+            application/json:
+              schema: { $ref: '../02-dominio-y-contratos/schemas/nota.schema.yaml' }
+        '200': { $ref: '#/components/responses/ReplayIdempotente' }
+        '400': { $ref: '#/components/responses/SolicitudInvalida' }
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+        '409': { $ref: '#/components/responses/Conflicto' }
+        '422': { $ref: '#/components/responses/ReglaIncumplida' }
+  /comunicaciones-baja:
+    post:
+      operationId: crearComunicacionBaja
+      tags: [Integración SUNAT/OSE]
+      summary: Comunicar la baja de comprobantes (asíncrono, paso 1 de 2)
+      description: Genera el RA-<Fecha>-#####, lo firma y lo envía. Devuelve 202 con el ticket. El estado se consulta en el paso 2.
+      x-puerto-entrada: ComunicarBajaUseCase.comunicar
+      x-caso-uso: CU-05
+      x-reglas: [REG-111, REG-121, REG-122, REG-124, REG-160]
+      parameters: [{ $ref: '#/components/parameters/IdempotencyKey' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '../02-dominio-y-contratos/schemas/comunicacion-baja.schema.yaml' }
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '202': { $ref: '#/components/responses/Aceptado' }
+        '200': { $ref: '#/components/responses/ReplayIdempotente' }
+        '400': { $ref: '#/components/responses/SolicitudInvalida' }
+        '409': { $ref: '#/components/responses/Conflicto' }
+        '422': { $ref: '#/components/responses/ReglaIncumplida' }
+  /comunicaciones-baja/{id}:
+    get:
+      operationId: consultarEstadoBaja
+      tags: [Integración SUNAT/OSE]
+      summary: Consultar el estado de la baja por ticket (paso 2 de 2)
+      x-puerto-entrada: ComunicarBajaUseCase.consultarEstado
+      x-caso-uso: CU-05
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '200':
+          description: Estado (PENDIENTE_ENVIO, EN_PROCESO, ACEPTADA o RECHAZADA). Si está EN_PROCESO, el cliente reintenta según Retry-After.
+          headers:
+            Retry-After: { schema: { type: integer } }
+          content:
+            application/json:
+              schema: { $ref: '../02-dominio-y-contratos/schemas/comunicacion-baja.schema.yaml' }
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+  /resumenes-diarios:
+    post:
+      operationId: crearResumenDiario
+      tags: [Integración SUNAT/OSE]
+      summary: Generar y enviar el resumen diario de boletas y notas (asíncrono)
+      x-puerto-entrada: EnviarResumenDiarioUseCase.enviar
+      x-caso-uso: CU-06
+      x-reglas: [REG-111, REG-120, REG-122, REG-123, REG-124, REG-160]
+      parameters: [{ $ref: '#/components/parameters/IdempotencyKey' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [fechaReferencia]
+              properties:
+                fechaReferencia: { type: string, format: date }
+                establecimientoCodigo: { type: string, pattern: '^\d{4}$' }
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '202': { $ref: '#/components/responses/Aceptado' }
+        '200': { $ref: '#/components/responses/ReplayIdempotente' }
+        '409': { $ref: '#/components/responses/Conflicto' }
+        '422': { $ref: '#/components/responses/ReglaIncumplida' }
+  /resumenes-diarios/{id}:
+    get:
+      operationId: consultarEstadoResumen
+      tags: [Integración SUNAT/OSE]
+      summary: Consultar el estado del resumen diario por ticket
+      x-puerto-entrada: EnviarResumenDiarioUseCase.consultarEstado
+      x-caso-uso: CU-06
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '200':
+          description: Resumen con su estado.
+          headers:
+            Retry-After: { schema: { type: integer } }
+          content:
+            application/json:
+              schema: { $ref: '../02-dominio-y-contratos/schemas/resumen-diario.schema.yaml' }
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+  /series:
+    get:
+      operationId: listarSeries
+      tags: [Series]
+      summary: Listar series y su último correlativo por establecimiento
+      x-puerto-entrada: GestionarSeriesUseCase.listar
+      x-caso-uso: CU-07
+      parameters:
+        - { name: establecimiento, in: query, schema: { type: string, pattern: '^\d{4}$' } }
+        - { name: tipo, in: query, schema: { $ref: '../02-dominio-y-contratos/schemas/catalogos.schema.yaml#/$defs/Cat01' } }
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '200':
+          description: Series.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '../02-dominio-y-contratos/schemas/serie.schema.yaml' }
+    post:
+      operationId: crearSerie
+      tags: [Series]
+      summary: Registrar una serie para un establecimiento
+      x-puerto-entrada: GestionarSeriesUseCase.crear
+      x-caso-uso: CU-07
+      x-reglas: [REG-030, REG-031, REG-033, REG-037, REG-160]
+      parameters: [{ $ref: '#/components/parameters/IdempotencyKey' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '../02-dominio-y-contratos/schemas/serie.schema.yaml' }
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '201':
+          description: Serie creada.
+          content:
+            application/json:
+              schema: { $ref: '../02-dominio-y-contratos/schemas/serie.schema.yaml' }
+        '409': { $ref: '#/components/responses/Conflicto' }
+        '422': { $ref: '#/components/responses/ReglaIncumplida' }
+  /series/contingencia/asignaciones:
+    post:
+      operationId: asignarSeriesContingencia
+      tags: [Series]
+      summary: Reservar una serie de contingencia para un dispositivo Android (ADR-006)
+      x-puerto-entrada: GestionarSeriesUseCase.asignarContingencia
+      x-caso-uso: CU-07
+      x-reglas: [REG-033, REG-034, REG-170]
+      parameters: [{ $ref: '#/components/parameters/IdempotencyKey' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [dispositivoId, establecimientoCodigo, tiposComprobante]
+              properties:
+                dispositivoId: { type: string }
+                establecimientoCodigo: { type: string, pattern: '^\d{4}$' }
+                tiposComprobante: { type: array, items: { enum: ['01', '03', '07', '08'] } }
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '201':
+          description: Series de contingencia asignadas.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '../02-dominio-y-contratos/schemas/serie.schema.yaml' }
+        '409': { $ref: '#/components/responses/Conflicto' }
+  /catalogos:
+    get:
+      operationId: listarCatalogos
+      tags: [Catálogos]
+      summary: Listar los catálogos disponibles (índice)
+      x-puerto-entrada: ConsultarCatalogoUseCase.listar
+      x-caso-uso: CU-08
+      security: []
+      responses:
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '200':
+          description: Números, nombres y advertencia de fuente no oficial.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    numero: { type: string }
+                    nombre: { type: string }
+                    advertencia: { type: string }
+  /catalogos/{numero}:
+    get:
+      operationId: obtenerCatalogo
+      tags: [Catálogos]
+      summary: Obtener un catálogo SUNAT (01-10, 16, 51-53)
+      x-puerto-entrada: ConsultarCatalogoUseCase.obtener
+      x-caso-uso: CU-08
+      security: []
+      parameters:
+        - name: numero
+          in: path
+          required: true
+          schema: { enum: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '16', '51', '52', '53'] }
+      responses:
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '200':
+          description: Catálogo con metadatos de fuente y contraste.
+          headers:
+            ETag: { schema: { type: string } }
+          content:
+            application/json:
+              schema: { $ref: '../02-dominio-y-contratos/schemas/catalogo.schema.yaml' }
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+  /validaciones/ruc/{ruc}:
+    get:
+      operationId: validarRuc
+      tags: [Identidad]
+      summary: Validar un RUC (formato, dígito verificador y padrón)
+      description: Si no hay conexión, devuelve solo la validación de formato (`consultaPadron` ausente). Mientras el algoritmo oficial esté PENDIENTE, `digitoVerificadorValido` puede ser null (REG-041).
+      x-puerto-entrada: ValidarDocumentoIdentidadUseCase.validarRuc
+      x-caso-uso: CU-09
+      x-reglas: [REG-040, REG-041, REG-042, REG-046]
+      parameters:
+        - name: ruc
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '200':
+          description: Resultado (válido o inválido, con incidencias).
+          content:
+            application/json:
+              schema: { $ref: '../02-dominio-y-contratos/schemas/validacion-ruc.schema.yaml' }
+        '503': { $ref: '#/components/responses/ProveedorNoDisponible' }
+  /importaciones-legado:
+    post:
+      operationId: importarLegado
+      tags: [Migración]
+      summary: Importar fichas del legado (asíncrono; simulación por defecto)
+      x-puerto-entrada: ImportarLegadoUseCase.importar
+      x-caso-uso: CU-10
+      x-reglas: [REG-130, REG-131, REG-132, REG-133, REG-134, REG-135, REG-160]
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - { name: modo, in: query, schema: { enum: [SIMULACION, DEFINITIVO], default: SIMULACION } }
+        - { name: establecimiento, in: query, required: true, schema: { type: string, pattern: '^\d{4}$' } }
+      requestBody:
+        required: true
+        content:
+          text/csv:
+            schema: { type: string, description: 'Columnas fecha,ingreso,salida,producto,nro_documento (ficha-legado.schema.yaml).' }
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '202': { $ref: '#/components/responses/Aceptado' }
+        '200': { $ref: '#/components/responses/ReplayIdempotente' }
+        '400': { $ref: '#/components/responses/SolicitudInvalida' }
+  /importaciones-legado/{id}:
+    get:
+      operationId: consultarImportacion
+      tags: [Migración]
+      summary: Consultar el estado, los totales y las incidencias de una importación
+      x-puerto-entrada: ImportarLegadoUseCase.consultar
+      x-caso-uso: CU-10
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '200':
+          description: Lote de importación.
+          content:
+            application/json:
+              schema: { $ref: '../02-dominio-y-contratos/schemas/importacion-legado.schema.yaml' }
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+  /registros/{formato}/{periodo}:
+    get:
+      operationId: generarRegistro
+      tags: [Registros]
+      summary: Generar el registro 14.1, 8.1 o 12.1 de un período
+      description: Estructura oficial PENDIENTE (ENT-07). `text/plain` queda reservado para el formato oficial cuando se verifique.
+      x-puerto-entrada: GenerarRegistroUseCase.generar
+      x-caso-uso: CU-11
+      x-reglas: [REG-140, REG-141, REG-142]
+      parameters:
+        - name: formato
+          in: path
+          required: true
+          schema: { enum: ['14.1', '8.1', '12.1'] }
+        - name: periodo
+          in: path
+          required: true
+          schema: { type: string, pattern: '^\d{4}(0[1-9]|1[0-2])$' }
+        - { name: establecimiento, in: query, description: 'Obligatorio para el 12.1.', schema: { type: string, pattern: '^\d{4}$' } }
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '200':
+          description: Registro del período.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - { $ref: '../02-dominio-y-contratos/schemas/registro-ventas-14-1.schema.yaml' }
+                  - { $ref: '../02-dominio-y-contratos/schemas/registro-compras-8-1.schema.yaml' }
+                  - { $ref: '../02-dominio-y-contratos/schemas/registro-inventario-12-1.schema.yaml' }
+        '400': { $ref: '#/components/responses/SolicitudInvalida' }
+        '422': { $ref: '#/components/responses/ReglaIncumplida' }
+  /sincronizacion/lotes:
+    post:
+      operationId: sincronizarLoteOffline
+      tags: [Integración SUNAT/OSE]
+      summary: Recibir los comprobantes emitidos sin conexión por un dispositivo Android (ADR-006)
+      description: Cada elemento del lote lleva su propia Idempotency-Key (emisor+tipo+serie+correlativo). La respuesta indica el resultado de cada elemento.
+      x-puerto-entrada: SincronizarDispositivoUseCase.sincronizar
+      x-caso-uso: CU-12
+      x-reglas: [REG-033, REG-034, REG-110, REG-160, REG-170]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [dispositivoId, elementos]
+              properties:
+                dispositivoId: { type: string }
+                elementos:
+                  type: array
+                  items:
+                    type: object
+                    required: [idempotencyKey, comprobante]
+                    properties:
+                      idempotencyKey: { type: string }
+                      comprobante:
+                        oneOf:
+                          - { $ref: '../02-dominio-y-contratos/schemas/comprobante.schema.yaml' }
+                          - { $ref: '../02-dominio-y-contratos/schemas/nota.schema.yaml' }
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '207':
+          description: Resultado por elemento.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idempotencyKey: { type: string }
+                    estado: { enum: [ACEPTADO_EN_NODO, DUPLICADO, RECHAZADO] }
+                    problema: { $ref: '../02-dominio-y-contratos/schemas/problema.schema.yaml' }
+        '400': { $ref: '#/components/responses/SolicitudInvalida' }
+  /productos:
+    get:
+      operationId: listarProductos
+      tags: [Inventario]
+      summary: Listar productos
+      x-puerto-entrada: GestionarProductosUseCase.listar
+      x-caso-uso: CU-13
+      parameters:
+        - { name: requiereHomologacion, in: query, schema: { type: boolean } }
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '200':
+          description: Productos.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '../02-dominio-y-contratos/schemas/producto.schema.yaml' }
+    post:
+      operationId: registrarProducto
+      tags: [Inventario]
+      summary: Registrar u homologar un producto (código interno, código SUNAT, unidad, sistema de ISC)
+      x-puerto-entrada: GestionarProductosUseCase.registrar
+      x-caso-uso: CU-13
+      x-reglas: [REG-012, REG-016, REG-017, REG-027, REG-132]
+      parameters: [{ $ref: '#/components/parameters/IdempotencyKey' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '../02-dominio-y-contratos/schemas/producto.schema.yaml' }
+      responses:
+        '401': { $ref: '#/components/responses/NoAutorizado' }
+        '429': { $ref: '#/components/responses/DemasiadasSolicitudes' }
+        '201':
+          description: Producto registrado.
+          content:
+            application/json:
+              schema: { $ref: '../02-dominio-y-contratos/schemas/producto.schema.yaml' }
+        '409': { $ref: '#/components/responses/Conflicto' }
+        '422': { $ref: '#/components/responses/ReglaIncumplida' }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Token del dispositivo o usuario, emitido por el nodo. Se configura como `<TOKEN>`; nunca se versiona.
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: false
+      description: REG-160. Para comprobantes se recomienda emisor+tipo+serie+correlativo o un UUID del cliente.
+      schema: { type: string, maxLength: 100 }
+  responses:
+    Aceptado:
+      description: Aceptado para proceso asíncrono. Consultar en Location.
+      headers:
+        Location: { schema: { type: string } }
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id: { type: string, format: uuid }
+              ticket: { type: string }
+              estado: { type: string }
+    ReplayIdempotente:
+      description: Misma Idempotency-Key y mismo cuerpo. Se devuelve el resultado original.
+      headers:
+        Idempotent-Replayed: { schema: { type: boolean } }
+      content:
+        application/json:
+          schema: { type: object }
+    SolicitudInvalida:
+      description: El JSON no cumple el schema.
+      content:
+        application/problem+json:
+          schema: { $ref: '../02-dominio-y-contratos/schemas/problema.schema.yaml' }
+    ReglaIncumplida:
+      description: Se incumple una regla de negocio (violaciones[].regla = REG-XXX).
+      content:
+        application/problem+json:
+          schema: { $ref: '../02-dominio-y-contratos/schemas/problema.schema.yaml' }
+    Conflicto:
+      description: DUPLICADO (REG-034), IDEMPOTENCIA_CONFLICTO (REG-160) o ESTADO_INVALIDO.
+      content:
+        application/problem+json:
+          schema: { $ref: '../02-dominio-y-contratos/schemas/problema.schema.yaml' }
+    NoEncontrado:
+      description: El recurso no existe.
+      content:
+        application/problem+json:
+          schema: { $ref: '../02-dominio-y-contratos/schemas/problema.schema.yaml' }
+    NoAutorizado:
+      description: Token ausente o inválido.
+      content:
+        application/problem+json:
+          schema: { $ref: '../02-dominio-y-contratos/schemas/problema.schema.yaml' }
+    DemasiadasSolicitudes:
+      description: Límite de solicitudes excedido (protección del nodo local). Reintentar tras Retry-After.
+      headers:
+        Retry-After: { schema: { type: integer } }
+      content:
+        application/problem+json:
+          schema: { $ref: '../02-dominio-y-contratos/schemas/problema.schema.yaml' }
+    ProveedorNoDisponible:
+      description: OSE, SUNAT o padrón no disponible. Para la emisión, el comprobante queda encolado (no es un error de negocio).
+      headers:
+        Retry-After: { schema: { type: integer } }
+      content:
+        application/problem+json:
+          schema: { $ref: '../02-dominio-y-contratos/schemas/problema.schema.yaml' }

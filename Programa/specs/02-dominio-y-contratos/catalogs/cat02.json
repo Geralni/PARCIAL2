@@ -1,0 +1,1740 @@
+{
+  "$schema": "../schemas/catalogo.schema.yaml",
+  "numero": "02",
+  "nombre": "Código de tipo de monedas",
+  "fuente": {
+    "archivo": "Git/02.txt",
+    "formato_detectado": "JSON",
+    "tipo": "comunitaria_no_oficial",
+    "ultima_actualizacion": "2020",
+    "registros_origen": 279
+  },
+  "advertencia": "Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse con el Anexo 8 oficial de SUNAT antes de producción.",
+  "campo_ubl": [
+    {
+      "xpath": "/Invoice/cbc:DocumentCurrencyCode",
+      "referencia": "Anexo 9-A, RS 117-2017, pág. 1"
+    },
+    {
+      "xpath": "/Invoice/cac:LegalMonetaryTotal/cbc:PayableAmount/@currencyID",
+      "referencia": "Anexo 9-A, RS 117-2017, pág. 7"
+    }
+  ],
+  "contraste_anexo_9a": {
+    "estado": "NO_APLICA",
+    "observaciones": [
+      "El anexo remite a ISO 4217 Alpha (@listID, pág. 1). El archivo fuente lista país-moneda; se deduplica por código de moneda."
+    ]
+  },
+  "duplicados_detectados": [],
+  "items": [
+    {
+      "codigo": "AED",
+      "descripcion": "UAE Dirham",
+      "numero_iso": 784,
+      "decimales": "2",
+      "paises": [
+        "UNITED ARAB EMIRATES (THE)"
+      ]
+    },
+    {
+      "codigo": "AFN",
+      "descripcion": "Afghani",
+      "numero_iso": 971,
+      "decimales": "2",
+      "paises": [
+        "AFGHANISTAN"
+      ]
+    },
+    {
+      "codigo": "ALL",
+      "descripcion": "Lek",
+      "numero_iso": 8,
+      "decimales": "2",
+      "paises": [
+        "ALBANIA"
+      ]
+    },
+    {
+      "codigo": "AMD",
+      "descripcion": "Armenian Dram",
+      "numero_iso": 51,
+      "decimales": "2",
+      "paises": [
+        "ARMENIA"
+      ]
+    },
+    {
+      "codigo": "ANG",
+      "descripcion": "Netherlands Antillean Guilder",
+      "numero_iso": 532,
+      "decimales": "2",
+      "paises": [
+        "CURAÇAO",
+        "SINT MAARTEN (DUTCH PART)"
+      ]
+    },
+    {
+      "codigo": "AOA",
+      "descripcion": "Kwanza",
+      "numero_iso": 973,
+      "decimales": "2",
+      "paises": [
+        "ANGOLA"
+      ]
+    },
+    {
+      "codigo": "ARS",
+      "descripcion": "Argentine Peso",
+      "numero_iso": 32,
+      "decimales": "2",
+      "paises": [
+        "ARGENTINA"
+      ]
+    },
+    {
+      "codigo": "AUD",
+      "descripcion": "Australian Dollar",
+      "numero_iso": 36,
+      "decimales": "2",
+      "paises": [
+        "AUSTRALIA",
+        "CHRISTMAS ISLAND",
+        "COCOS (KEELING) ISLANDS (THE)",
+        "HEARD ISLAND AND McDONALD ISLANDS",
+        "KIRIBATI",
+        "NAURU",
+        "NORFOLK ISLAND",
+        "TUVALU"
+      ]
+    },
+    {
+      "codigo": "AWG",
+      "descripcion": "Aruban Florin",
+      "numero_iso": 533,
+      "decimales": "2",
+      "paises": [
+        "ARUBA"
+      ]
+    },
+    {
+      "codigo": "AZN",
+      "descripcion": "Azerbaijan Manat",
+      "numero_iso": 944,
+      "decimales": "2",
+      "paises": [
+        "AZERBAIJAN"
+      ]
+    },
+    {
+      "codigo": "BAM",
+      "descripcion": "Convertible Mark",
+      "numero_iso": 977,
+      "decimales": "2",
+      "paises": [
+        "BOSNIA AND HERZEGOVINA"
+      ]
+    },
+    {
+      "codigo": "BBD",
+      "descripcion": "Barbados Dollar",
+      "numero_iso": 52,
+      "decimales": "2",
+      "paises": [
+        "BARBADOS"
+      ]
+    },
+    {
+      "codigo": "BDT",
+      "descripcion": "Taka",
+      "numero_iso": 50,
+      "decimales": "2",
+      "paises": [
+        "BANGLADESH"
+      ]
+    },
+    {
+      "codigo": "BGN",
+      "descripcion": "Bulgarian Lev",
+      "numero_iso": 975,
+      "decimales": "2",
+      "paises": [
+        "BULGARIA"
+      ]
+    },
+    {
+      "codigo": "BHD",
+      "descripcion": "Bahraini Dinar",
+      "numero_iso": 48,
+      "decimales": "3",
+      "paises": [
+        "BAHRAIN"
+      ]
+    },
+    {
+      "codigo": "BIF",
+      "descripcion": "Burundi Franc",
+      "numero_iso": 108,
+      "decimales": "0",
+      "paises": [
+        "BURUNDI"
+      ]
+    },
+    {
+      "codigo": "BMD",
+      "descripcion": "Bermudian Dollar",
+      "numero_iso": 60,
+      "decimales": "2",
+      "paises": [
+        "BERMUDA"
+      ]
+    },
+    {
+      "codigo": "BND",
+      "descripcion": "Brunei Dollar",
+      "numero_iso": 96,
+      "decimales": "2",
+      "paises": [
+        "BRUNEI DARUSSALAM"
+      ]
+    },
+    {
+      "codigo": "BOB",
+      "descripcion": "Boliviano",
+      "numero_iso": 68,
+      "decimales": "2",
+      "paises": [
+        "BOLIVIA (PLURINATIONAL STATE OF)"
+      ]
+    },
+    {
+      "codigo": "BOV",
+      "descripcion": "",
+      "numero_iso": 984,
+      "decimales": "2",
+      "paises": [
+        "BOLIVIA (PLURINATIONAL STATE OF)"
+      ]
+    },
+    {
+      "codigo": "BRL",
+      "descripcion": "Brazilian Real",
+      "numero_iso": 986,
+      "decimales": "2",
+      "paises": [
+        "BRAZIL"
+      ]
+    },
+    {
+      "codigo": "BSD",
+      "descripcion": "Bahamian Dollar",
+      "numero_iso": 44,
+      "decimales": "2",
+      "paises": [
+        "BAHAMAS (THE)"
+      ]
+    },
+    {
+      "codigo": "BTN",
+      "descripcion": "Ngultrum",
+      "numero_iso": 64,
+      "decimales": "2",
+      "paises": [
+        "BHUTAN"
+      ]
+    },
+    {
+      "codigo": "BWP",
+      "descripcion": "Pula",
+      "numero_iso": 72,
+      "decimales": "2",
+      "paises": [
+        "BOTSWANA"
+      ]
+    },
+    {
+      "codigo": "BYN",
+      "descripcion": "Belarusian Ruble",
+      "numero_iso": 933,
+      "decimales": "2",
+      "paises": [
+        "BELARUS"
+      ]
+    },
+    {
+      "codigo": "BZD",
+      "descripcion": "Belize Dollar",
+      "numero_iso": 84,
+      "decimales": "2",
+      "paises": [
+        "BELIZE"
+      ]
+    },
+    {
+      "codigo": "CAD",
+      "descripcion": "Canadian Dollar",
+      "numero_iso": 124,
+      "decimales": "2",
+      "paises": [
+        "CANADA"
+      ]
+    },
+    {
+      "codigo": "CDF",
+      "descripcion": "Congolese Franc",
+      "numero_iso": 976,
+      "decimales": "2",
+      "paises": [
+        "CONGO (THE DEMOCRATIC REPUBLIC OF THE)"
+      ]
+    },
+    {
+      "codigo": "CHE",
+      "descripcion": "",
+      "numero_iso": 947,
+      "decimales": "2",
+      "paises": [
+        "SWITZERLAND"
+      ]
+    },
+    {
+      "codigo": "CHF",
+      "descripcion": "Swiss Franc",
+      "numero_iso": 756,
+      "decimales": "2",
+      "paises": [
+        "LIECHTENSTEIN",
+        "SWITZERLAND"
+      ]
+    },
+    {
+      "codigo": "CHW",
+      "descripcion": "",
+      "numero_iso": 948,
+      "decimales": "2",
+      "paises": [
+        "SWITZERLAND"
+      ]
+    },
+    {
+      "codigo": "CLF",
+      "descripcion": "",
+      "numero_iso": 990,
+      "decimales": "4",
+      "paises": [
+        "CHILE"
+      ]
+    },
+    {
+      "codigo": "CLP",
+      "descripcion": "Chilean Peso",
+      "numero_iso": 152,
+      "decimales": "0",
+      "paises": [
+        "CHILE"
+      ]
+    },
+    {
+      "codigo": "CNY",
+      "descripcion": "Yuan Renminbi",
+      "numero_iso": 156,
+      "decimales": "2",
+      "paises": [
+        "CHINA"
+      ]
+    },
+    {
+      "codigo": "COP",
+      "descripcion": "Colombian Peso",
+      "numero_iso": 170,
+      "decimales": "2",
+      "paises": [
+        "COLOMBIA"
+      ]
+    },
+    {
+      "codigo": "COU",
+      "descripcion": "",
+      "numero_iso": 970,
+      "decimales": "2",
+      "paises": [
+        "COLOMBIA"
+      ]
+    },
+    {
+      "codigo": "CRC",
+      "descripcion": "Costa Rican Colon",
+      "numero_iso": 188,
+      "decimales": "2",
+      "paises": [
+        "COSTA RICA"
+      ]
+    },
+    {
+      "codigo": "CUC",
+      "descripcion": "Peso Convertible",
+      "numero_iso": 931,
+      "decimales": "2",
+      "paises": [
+        "CUBA"
+      ]
+    },
+    {
+      "codigo": "CUP",
+      "descripcion": "Cuban Peso",
+      "numero_iso": 192,
+      "decimales": "2",
+      "paises": [
+        "CUBA"
+      ]
+    },
+    {
+      "codigo": "CVE",
+      "descripcion": "Cabo Verde Escudo",
+      "numero_iso": 132,
+      "decimales": "2",
+      "paises": [
+        "CABO VERDE"
+      ]
+    },
+    {
+      "codigo": "CZK",
+      "descripcion": "Czech Koruna",
+      "numero_iso": 203,
+      "decimales": "2",
+      "paises": [
+        "CZECHIA"
+      ]
+    },
+    {
+      "codigo": "DJF",
+      "descripcion": "Djibouti Franc",
+      "numero_iso": 262,
+      "decimales": "0",
+      "paises": [
+        "DJIBOUTI"
+      ]
+    },
+    {
+      "codigo": "DKK",
+      "descripcion": "Danish Krone",
+      "numero_iso": 208,
+      "decimales": "2",
+      "paises": [
+        "DENMARK",
+        "FAROE ISLANDS (THE)",
+        "GREENLAND"
+      ]
+    },
+    {
+      "codigo": "DOP",
+      "descripcion": "Dominican Peso",
+      "numero_iso": 214,
+      "decimales": "2",
+      "paises": [
+        "DOMINICAN REPUBLIC (THE)"
+      ]
+    },
+    {
+      "codigo": "DZD",
+      "descripcion": "Algerian Dinar",
+      "numero_iso": 12,
+      "decimales": "2",
+      "paises": [
+        "ALGERIA"
+      ]
+    },
+    {
+      "codigo": "EGP",
+      "descripcion": "Egyptian Pound",
+      "numero_iso": 818,
+      "decimales": "2",
+      "paises": [
+        "EGYPT"
+      ]
+    },
+    {
+      "codigo": "ERN",
+      "descripcion": "Nakfa",
+      "numero_iso": 232,
+      "decimales": "2",
+      "paises": [
+        "ERITREA"
+      ]
+    },
+    {
+      "codigo": "ETB",
+      "descripcion": "Ethiopian Birr",
+      "numero_iso": 230,
+      "decimales": "2",
+      "paises": [
+        "ETHIOPIA"
+      ]
+    },
+    {
+      "codigo": "EUR",
+      "descripcion": "Euro",
+      "numero_iso": 978,
+      "decimales": "2",
+      "paises": [
+        "ÅLAND ISLANDS",
+        "ANDORRA",
+        "AUSTRIA",
+        "BELGIUM",
+        "CYPRUS",
+        "ESTONIA",
+        "EUROPEAN UNION",
+        "FINLAND",
+        "FRANCE",
+        "FRENCH GUIANA",
+        "FRENCH SOUTHERN TERRITORIES (THE)",
+        "GERMANY",
+        "GREECE",
+        "GUADELOUPE",
+        "HOLY SEE (THE)",
+        "IRELAND",
+        "ITALY",
+        "LATVIA",
+        "LITHUANIA",
+        "LUXEMBOURG",
+        "MALTA",
+        "MARTINIQUE",
+        "MAYOTTE",
+        "MONACO",
+        "MONTENEGRO",
+        "NETHERLANDS (THE)",
+        "PORTUGAL",
+        "RÉUNION",
+        "SAINT BARTHÉLEMY",
+        "SAINT MARTIN (FRENCH PART)",
+        "SAINT PIERRE AND MIQUELON",
+        "SAN MARINO",
+        "SLOVAKIA",
+        "SLOVENIA",
+        "SPAIN"
+      ]
+    },
+    {
+      "codigo": "FJD",
+      "descripcion": "Fiji Dollar",
+      "numero_iso": 242,
+      "decimales": "2",
+      "paises": [
+        "FIJI"
+      ]
+    },
+    {
+      "codigo": "FKP",
+      "descripcion": "Falkland Islands Pound",
+      "numero_iso": 238,
+      "decimales": "2",
+      "paises": [
+        "FALKLAND ISLANDS (THE) [MALVINAS]"
+      ]
+    },
+    {
+      "codigo": "GBP",
+      "descripcion": "Pound Sterling",
+      "numero_iso": 826,
+      "decimales": "2",
+      "paises": [
+        "GUERNSEY",
+        "ISLE OF MAN",
+        "JERSEY",
+        "UNITED KINGDOM OF GREAT BRITAIN AND NORTHERN IRELAND (THE)"
+      ]
+    },
+    {
+      "codigo": "GEL",
+      "descripcion": "Lari",
+      "numero_iso": 981,
+      "decimales": "2",
+      "paises": [
+        "GEORGIA"
+      ]
+    },
+    {
+      "codigo": "GHS",
+      "descripcion": "Ghana Cedi",
+      "numero_iso": 936,
+      "decimales": "2",
+      "paises": [
+        "GHANA"
+      ]
+    },
+    {
+      "codigo": "GIP",
+      "descripcion": "Gibraltar Pound",
+      "numero_iso": 292,
+      "decimales": "2",
+      "paises": [
+        "GIBRALTAR"
+      ]
+    },
+    {
+      "codigo": "GMD",
+      "descripcion": "Dalasi",
+      "numero_iso": 270,
+      "decimales": "2",
+      "paises": [
+        "GAMBIA (THE)"
+      ]
+    },
+    {
+      "codigo": "GNF",
+      "descripcion": "Guinean Franc",
+      "numero_iso": 324,
+      "decimales": "0",
+      "paises": [
+        "GUINEA"
+      ]
+    },
+    {
+      "codigo": "GTQ",
+      "descripcion": "Quetzal",
+      "numero_iso": 320,
+      "decimales": "2",
+      "paises": [
+        "GUATEMALA"
+      ]
+    },
+    {
+      "codigo": "GYD",
+      "descripcion": "Guyana Dollar",
+      "numero_iso": 328,
+      "decimales": "2",
+      "paises": [
+        "GUYANA"
+      ]
+    },
+    {
+      "codigo": "HKD",
+      "descripcion": "Hong Kong Dollar",
+      "numero_iso": 344,
+      "decimales": "2",
+      "paises": [
+        "HONG KONG"
+      ]
+    },
+    {
+      "codigo": "HNL",
+      "descripcion": "Lempira",
+      "numero_iso": 340,
+      "decimales": "2",
+      "paises": [
+        "HONDURAS"
+      ]
+    },
+    {
+      "codigo": "HRK",
+      "descripcion": "Kuna",
+      "numero_iso": 191,
+      "decimales": "2",
+      "paises": [
+        "CROATIA"
+      ]
+    },
+    {
+      "codigo": "HTG",
+      "descripcion": "Gourde",
+      "numero_iso": 332,
+      "decimales": "2",
+      "paises": [
+        "HAITI"
+      ]
+    },
+    {
+      "codigo": "HUF",
+      "descripcion": "Forint",
+      "numero_iso": 348,
+      "decimales": "2",
+      "paises": [
+        "HUNGARY"
+      ]
+    },
+    {
+      "codigo": "IDR",
+      "descripcion": "Rupiah",
+      "numero_iso": 360,
+      "decimales": "2",
+      "paises": [
+        "INDONESIA"
+      ]
+    },
+    {
+      "codigo": "ILS",
+      "descripcion": "New Israeli Sheqel",
+      "numero_iso": 376,
+      "decimales": "2",
+      "paises": [
+        "ISRAEL"
+      ]
+    },
+    {
+      "codigo": "INR",
+      "descripcion": "Indian Rupee",
+      "numero_iso": 356,
+      "decimales": "2",
+      "paises": [
+        "BHUTAN",
+        "INDIA"
+      ]
+    },
+    {
+      "codigo": "IQD",
+      "descripcion": "Iraqi Dinar",
+      "numero_iso": 368,
+      "decimales": "3",
+      "paises": [
+        "IRAQ"
+      ]
+    },
+    {
+      "codigo": "IRR",
+      "descripcion": "Iranian Rial",
+      "numero_iso": 364,
+      "decimales": "2",
+      "paises": [
+        "IRAN (ISLAMIC REPUBLIC OF)"
+      ]
+    },
+    {
+      "codigo": "ISK",
+      "descripcion": "Iceland Krona",
+      "numero_iso": 352,
+      "decimales": "0",
+      "paises": [
+        "ICELAND"
+      ]
+    },
+    {
+      "codigo": "JMD",
+      "descripcion": "Jamaican Dollar",
+      "numero_iso": 388,
+      "decimales": "2",
+      "paises": [
+        "JAMAICA"
+      ]
+    },
+    {
+      "codigo": "JOD",
+      "descripcion": "Jordanian Dinar",
+      "numero_iso": 400,
+      "decimales": "3",
+      "paises": [
+        "JORDAN"
+      ]
+    },
+    {
+      "codigo": "JPY",
+      "descripcion": "Yen",
+      "numero_iso": 392,
+      "decimales": "0",
+      "paises": [
+        "JAPAN"
+      ]
+    },
+    {
+      "codigo": "KES",
+      "descripcion": "Kenyan Shilling",
+      "numero_iso": 404,
+      "decimales": "2",
+      "paises": [
+        "KENYA"
+      ]
+    },
+    {
+      "codigo": "KGS",
+      "descripcion": "Som",
+      "numero_iso": 417,
+      "decimales": "2",
+      "paises": [
+        "KYRGYZSTAN"
+      ]
+    },
+    {
+      "codigo": "KHR",
+      "descripcion": "Riel",
+      "numero_iso": 116,
+      "decimales": "2",
+      "paises": [
+        "CAMBODIA"
+      ]
+    },
+    {
+      "codigo": "KMF",
+      "descripcion": "Comorian Franc",
+      "numero_iso": 174,
+      "decimales": "0",
+      "paises": [
+        "COMOROS (THE)"
+      ]
+    },
+    {
+      "codigo": "KPW",
+      "descripcion": "North Korean Won",
+      "numero_iso": 408,
+      "decimales": "2",
+      "paises": [
+        "KOREA (THE DEMOCRATIC PEOPLE’S REPUBLIC OF)"
+      ]
+    },
+    {
+      "codigo": "KRW",
+      "descripcion": "Won",
+      "numero_iso": 410,
+      "decimales": "0",
+      "paises": [
+        "KOREA (THE REPUBLIC OF)"
+      ]
+    },
+    {
+      "codigo": "KWD",
+      "descripcion": "Kuwaiti Dinar",
+      "numero_iso": 414,
+      "decimales": "3",
+      "paises": [
+        "KUWAIT"
+      ]
+    },
+    {
+      "codigo": "KYD",
+      "descripcion": "Cayman Islands Dollar",
+      "numero_iso": 136,
+      "decimales": "2",
+      "paises": [
+        "CAYMAN ISLANDS (THE)"
+      ]
+    },
+    {
+      "codigo": "KZT",
+      "descripcion": "Tenge",
+      "numero_iso": 398,
+      "decimales": "2",
+      "paises": [
+        "KAZAKHSTAN"
+      ]
+    },
+    {
+      "codigo": "LAK",
+      "descripcion": "Lao Kip",
+      "numero_iso": 418,
+      "decimales": "2",
+      "paises": [
+        "LAO PEOPLE’S DEMOCRATIC REPUBLIC (THE)"
+      ]
+    },
+    {
+      "codigo": "LBP",
+      "descripcion": "Lebanese Pound",
+      "numero_iso": 422,
+      "decimales": "2",
+      "paises": [
+        "LEBANON"
+      ]
+    },
+    {
+      "codigo": "LKR",
+      "descripcion": "Sri Lanka Rupee",
+      "numero_iso": 144,
+      "decimales": "2",
+      "paises": [
+        "SRI LANKA"
+      ]
+    },
+    {
+      "codigo": "LRD",
+      "descripcion": "Liberian Dollar",
+      "numero_iso": 430,
+      "decimales": "2",
+      "paises": [
+        "LIBERIA"
+      ]
+    },
+    {
+      "codigo": "LSL",
+      "descripcion": "Loti",
+      "numero_iso": 426,
+      "decimales": "2",
+      "paises": [
+        "LESOTHO"
+      ]
+    },
+    {
+      "codigo": "LYD",
+      "descripcion": "Libyan Dinar",
+      "numero_iso": 434,
+      "decimales": "3",
+      "paises": [
+        "LIBYA"
+      ]
+    },
+    {
+      "codigo": "MAD",
+      "descripcion": "Moroccan Dirham",
+      "numero_iso": 504,
+      "decimales": "2",
+      "paises": [
+        "MOROCCO",
+        "WESTERN SAHARA"
+      ]
+    },
+    {
+      "codigo": "MDL",
+      "descripcion": "Moldovan Leu",
+      "numero_iso": 498,
+      "decimales": "2",
+      "paises": [
+        "MOLDOVA (THE REPUBLIC OF)"
+      ]
+    },
+    {
+      "codigo": "MGA",
+      "descripcion": "Malagasy Ariary",
+      "numero_iso": 969,
+      "decimales": "2",
+      "paises": [
+        "MADAGASCAR"
+      ]
+    },
+    {
+      "codigo": "MKD",
+      "descripcion": "Denar",
+      "numero_iso": 807,
+      "decimales": "2",
+      "paises": [
+        "MACEDONIA (THE FORMER YUGOSLAV REPUBLIC OF)"
+      ]
+    },
+    {
+      "codigo": "MMK",
+      "descripcion": "Kyat",
+      "numero_iso": 104,
+      "decimales": "2",
+      "paises": [
+        "MYANMAR"
+      ]
+    },
+    {
+      "codigo": "MNT",
+      "descripcion": "Tugrik",
+      "numero_iso": 496,
+      "decimales": "2",
+      "paises": [
+        "MONGOLIA"
+      ]
+    },
+    {
+      "codigo": "MOP",
+      "descripcion": "Pataca",
+      "numero_iso": 446,
+      "decimales": "2",
+      "paises": [
+        "MACAO"
+      ]
+    },
+    {
+      "codigo": "MRU",
+      "descripcion": "Ouguiya",
+      "numero_iso": 929,
+      "decimales": "2",
+      "paises": [
+        "MAURITANIA"
+      ]
+    },
+    {
+      "codigo": "MUR",
+      "descripcion": "Mauritius Rupee",
+      "numero_iso": 480,
+      "decimales": "2",
+      "paises": [
+        "MAURITIUS"
+      ]
+    },
+    {
+      "codigo": "MVR",
+      "descripcion": "Rufiyaa",
+      "numero_iso": 462,
+      "decimales": "2",
+      "paises": [
+        "MALDIVES"
+      ]
+    },
+    {
+      "codigo": "MWK",
+      "descripcion": "Malawi Kwacha",
+      "numero_iso": 454,
+      "decimales": "2",
+      "paises": [
+        "MALAWI"
+      ]
+    },
+    {
+      "codigo": "MXN",
+      "descripcion": "Mexican Peso",
+      "numero_iso": 484,
+      "decimales": "2",
+      "paises": [
+        "MEXICO"
+      ]
+    },
+    {
+      "codigo": "MXV",
+      "descripcion": "",
+      "numero_iso": 979,
+      "decimales": "2",
+      "paises": [
+        "MEXICO"
+      ]
+    },
+    {
+      "codigo": "MYR",
+      "descripcion": "Malaysian Ringgit",
+      "numero_iso": 458,
+      "decimales": "2",
+      "paises": [
+        "MALAYSIA"
+      ]
+    },
+    {
+      "codigo": "MZN",
+      "descripcion": "Mozambique Metical",
+      "numero_iso": 943,
+      "decimales": "2",
+      "paises": [
+        "MOZAMBIQUE"
+      ]
+    },
+    {
+      "codigo": "NAD",
+      "descripcion": "Namibia Dollar",
+      "numero_iso": 516,
+      "decimales": "2",
+      "paises": [
+        "NAMIBIA"
+      ]
+    },
+    {
+      "codigo": "NGN",
+      "descripcion": "Naira",
+      "numero_iso": 566,
+      "decimales": "2",
+      "paises": [
+        "NIGERIA"
+      ]
+    },
+    {
+      "codigo": "NIO",
+      "descripcion": "Cordoba Oro",
+      "numero_iso": 558,
+      "decimales": "2",
+      "paises": [
+        "NICARAGUA"
+      ]
+    },
+    {
+      "codigo": "NOK",
+      "descripcion": "Norwegian Krone",
+      "numero_iso": 578,
+      "decimales": "2",
+      "paises": [
+        "BOUVET ISLAND",
+        "NORWAY",
+        "SVALBARD AND JAN MAYEN"
+      ]
+    },
+    {
+      "codigo": "NPR",
+      "descripcion": "Nepalese Rupee",
+      "numero_iso": 524,
+      "decimales": "2",
+      "paises": [
+        "NEPAL"
+      ]
+    },
+    {
+      "codigo": "NZD",
+      "descripcion": "New Zealand Dollar",
+      "numero_iso": 554,
+      "decimales": "2",
+      "paises": [
+        "COOK ISLANDS (THE)",
+        "NEW ZEALAND",
+        "NIUE",
+        "PITCAIRN",
+        "TOKELAU"
+      ]
+    },
+    {
+      "codigo": "OMR",
+      "descripcion": "Rial Omani",
+      "numero_iso": 512,
+      "decimales": "3",
+      "paises": [
+        "OMAN"
+      ]
+    },
+    {
+      "codigo": "PAB",
+      "descripcion": "Balboa",
+      "numero_iso": 590,
+      "decimales": "2",
+      "paises": [
+        "PANAMA"
+      ]
+    },
+    {
+      "codigo": "PEN",
+      "descripcion": "Sol",
+      "numero_iso": 604,
+      "decimales": "2",
+      "paises": [
+        "PERU"
+      ]
+    },
+    {
+      "codigo": "PGK",
+      "descripcion": "Kina",
+      "numero_iso": 598,
+      "decimales": "2",
+      "paises": [
+        "PAPUA NEW GUINEA"
+      ]
+    },
+    {
+      "codigo": "PHP",
+      "descripcion": "Philippine Peso",
+      "numero_iso": 608,
+      "decimales": "2",
+      "paises": [
+        "PHILIPPINES (THE)"
+      ]
+    },
+    {
+      "codigo": "PKR",
+      "descripcion": "Pakistan Rupee",
+      "numero_iso": 586,
+      "decimales": "2",
+      "paises": [
+        "PAKISTAN"
+      ]
+    },
+    {
+      "codigo": "PLN",
+      "descripcion": "Zloty",
+      "numero_iso": 985,
+      "decimales": "2",
+      "paises": [
+        "POLAND"
+      ]
+    },
+    {
+      "codigo": "PYG",
+      "descripcion": "Guarani",
+      "numero_iso": 600,
+      "decimales": "0",
+      "paises": [
+        "PARAGUAY"
+      ]
+    },
+    {
+      "codigo": "QAR",
+      "descripcion": "Qatari Rial",
+      "numero_iso": 634,
+      "decimales": "2",
+      "paises": [
+        "QATAR"
+      ]
+    },
+    {
+      "codigo": "RON",
+      "descripcion": "Romanian Leu",
+      "numero_iso": 946,
+      "decimales": "2",
+      "paises": [
+        "ROMANIA"
+      ]
+    },
+    {
+      "codigo": "RSD",
+      "descripcion": "Serbian Dinar",
+      "numero_iso": 941,
+      "decimales": "2",
+      "paises": [
+        "SERBIA"
+      ]
+    },
+    {
+      "codigo": "RUB",
+      "descripcion": "Russian Ruble",
+      "numero_iso": 643,
+      "decimales": "2",
+      "paises": [
+        "RUSSIAN FEDERATION (THE)"
+      ]
+    },
+    {
+      "codigo": "RWF",
+      "descripcion": "Rwanda Franc",
+      "numero_iso": 646,
+      "decimales": "0",
+      "paises": [
+        "RWANDA"
+      ]
+    },
+    {
+      "codigo": "SAR",
+      "descripcion": "Saudi Riyal",
+      "numero_iso": 682,
+      "decimales": "2",
+      "paises": [
+        "SAUDI ARABIA"
+      ]
+    },
+    {
+      "codigo": "SBD",
+      "descripcion": "Solomon Islands Dollar",
+      "numero_iso": 90,
+      "decimales": "2",
+      "paises": [
+        "SOLOMON ISLANDS"
+      ]
+    },
+    {
+      "codigo": "SCR",
+      "descripcion": "Seychelles Rupee",
+      "numero_iso": 690,
+      "decimales": "2",
+      "paises": [
+        "SEYCHELLES"
+      ]
+    },
+    {
+      "codigo": "SDG",
+      "descripcion": "Sudanese Pound",
+      "numero_iso": 938,
+      "decimales": "2",
+      "paises": [
+        "SUDAN (THE)"
+      ]
+    },
+    {
+      "codigo": "SEK",
+      "descripcion": "Swedish Krona",
+      "numero_iso": 752,
+      "decimales": "2",
+      "paises": [
+        "SWEDEN"
+      ]
+    },
+    {
+      "codigo": "SGD",
+      "descripcion": "Singapore Dollar",
+      "numero_iso": 702,
+      "decimales": "2",
+      "paises": [
+        "SINGAPORE"
+      ]
+    },
+    {
+      "codigo": "SHP",
+      "descripcion": "Saint Helena Pound",
+      "numero_iso": 654,
+      "decimales": "2",
+      "paises": [
+        "SAINT HELENA, ASCENSION AND TRISTAN DA CUNHA"
+      ]
+    },
+    {
+      "codigo": "SLL",
+      "descripcion": "Leone",
+      "numero_iso": 694,
+      "decimales": "2",
+      "paises": [
+        "SIERRA LEONE"
+      ]
+    },
+    {
+      "codigo": "SOS",
+      "descripcion": "Somali Shilling",
+      "numero_iso": 706,
+      "decimales": "2",
+      "paises": [
+        "SOMALIA"
+      ]
+    },
+    {
+      "codigo": "SRD",
+      "descripcion": "Surinam Dollar",
+      "numero_iso": 968,
+      "decimales": "2",
+      "paises": [
+        "SURINAME"
+      ]
+    },
+    {
+      "codigo": "SSP",
+      "descripcion": "South Sudanese Pound",
+      "numero_iso": 728,
+      "decimales": "2",
+      "paises": [
+        "SOUTH SUDAN"
+      ]
+    },
+    {
+      "codigo": "STN",
+      "descripcion": "Dobra",
+      "numero_iso": 930,
+      "decimales": "2",
+      "paises": [
+        "SAO TOME AND PRINCIPE"
+      ]
+    },
+    {
+      "codigo": "SVC",
+      "descripcion": "El Salvador Colon",
+      "numero_iso": 222,
+      "decimales": "2",
+      "paises": [
+        "EL SALVADOR"
+      ]
+    },
+    {
+      "codigo": "SYP",
+      "descripcion": "Syrian Pound",
+      "numero_iso": 760,
+      "decimales": "2",
+      "paises": [
+        "SYRIAN ARAB REPUBLIC"
+      ]
+    },
+    {
+      "codigo": "SZL",
+      "descripcion": "Lilangeni",
+      "numero_iso": 748,
+      "decimales": "2",
+      "paises": [
+        "ESWATINI"
+      ]
+    },
+    {
+      "codigo": "THB",
+      "descripcion": "Baht",
+      "numero_iso": 764,
+      "decimales": "2",
+      "paises": [
+        "THAILAND"
+      ]
+    },
+    {
+      "codigo": "TJS",
+      "descripcion": "Somoni",
+      "numero_iso": 972,
+      "decimales": "2",
+      "paises": [
+        "TAJIKISTAN"
+      ]
+    },
+    {
+      "codigo": "TMT",
+      "descripcion": "Turkmenistan New Manat",
+      "numero_iso": 934,
+      "decimales": "2",
+      "paises": [
+        "TURKMENISTAN"
+      ]
+    },
+    {
+      "codigo": "TND",
+      "descripcion": "Tunisian Dinar",
+      "numero_iso": 788,
+      "decimales": "3",
+      "paises": [
+        "TUNISIA"
+      ]
+    },
+    {
+      "codigo": "TOP",
+      "descripcion": "Pa’anga",
+      "numero_iso": 776,
+      "decimales": "2",
+      "paises": [
+        "TONGA"
+      ]
+    },
+    {
+      "codigo": "TRY",
+      "descripcion": "Turkish Lira",
+      "numero_iso": 949,
+      "decimales": "2",
+      "paises": [
+        "TURKEY"
+      ]
+    },
+    {
+      "codigo": "TTD",
+      "descripcion": "Trinidad and Tobago Dollar",
+      "numero_iso": 780,
+      "decimales": "2",
+      "paises": [
+        "TRINIDAD AND TOBAGO"
+      ]
+    },
+    {
+      "codigo": "TWD",
+      "descripcion": "New Taiwan Dollar",
+      "numero_iso": 901,
+      "decimales": "2",
+      "paises": [
+        "TAIWAN (PROVINCE OF CHINA)"
+      ]
+    },
+    {
+      "codigo": "TZS",
+      "descripcion": "Tanzanian Shilling",
+      "numero_iso": 834,
+      "decimales": "2",
+      "paises": [
+        "TANZANIA, UNITED REPUBLIC OF"
+      ]
+    },
+    {
+      "codigo": "UAH",
+      "descripcion": "Hryvnia",
+      "numero_iso": 980,
+      "decimales": "2",
+      "paises": [
+        "UKRAINE"
+      ]
+    },
+    {
+      "codigo": "UGX",
+      "descripcion": "Uganda Shilling",
+      "numero_iso": 800,
+      "decimales": "0",
+      "paises": [
+        "UGANDA"
+      ]
+    },
+    {
+      "codigo": "USD",
+      "descripcion": "US Dollar",
+      "numero_iso": 840,
+      "decimales": "2",
+      "paises": [
+        "AMERICAN SAMOA",
+        "BONAIRE, SINT EUSTATIUS AND SABA",
+        "BRITISH INDIAN OCEAN TERRITORY (THE)",
+        "ECUADOR",
+        "EL SALVADOR",
+        "GUAM",
+        "HAITI",
+        "MARSHALL ISLANDS (THE)",
+        "MICRONESIA (FEDERATED STATES OF)",
+        "NORTHERN MARIANA ISLANDS (THE)",
+        "PALAU",
+        "PANAMA",
+        "PUERTO RICO",
+        "TIMOR-LESTE",
+        "TURKS AND CAICOS ISLANDS (THE)",
+        "UNITED STATES MINOR OUTLYING ISLANDS (THE)",
+        "UNITED STATES OF AMERICA (THE)",
+        "VIRGIN ISLANDS (BRITISH)",
+        "VIRGIN ISLANDS (U.S.)"
+      ]
+    },
+    {
+      "codigo": "USN",
+      "descripcion": "",
+      "numero_iso": 997,
+      "decimales": "2",
+      "paises": [
+        "UNITED STATES OF AMERICA (THE)"
+      ]
+    },
+    {
+      "codigo": "UYI",
+      "descripcion": "",
+      "numero_iso": 940,
+      "decimales": "0",
+      "paises": [
+        "URUGUAY"
+      ]
+    },
+    {
+      "codigo": "UYU",
+      "descripcion": "Peso Uruguayo",
+      "numero_iso": 858,
+      "decimales": "2",
+      "paises": [
+        "URUGUAY"
+      ]
+    },
+    {
+      "codigo": "UYW",
+      "descripcion": "Unidad Previsional",
+      "numero_iso": 927,
+      "decimales": "4",
+      "paises": [
+        "URUGUAY"
+      ]
+    },
+    {
+      "codigo": "UZS",
+      "descripcion": "Uzbekistan Sum",
+      "numero_iso": 860,
+      "decimales": "2",
+      "paises": [
+        "UZBEKISTAN"
+      ]
+    },
+    {
+      "codigo": "VES",
+      "descripcion": "Bolívar Soberano",
+      "numero_iso": 928,
+      "decimales": "2",
+      "paises": [
+        "VENEZUELA (BOLIVARIAN REPUBLIC OF)"
+      ]
+    },
+    {
+      "codigo": "VND",
+      "descripcion": "Dong",
+      "numero_iso": 704,
+      "decimales": "0",
+      "paises": [
+        "VIET NAM"
+      ]
+    },
+    {
+      "codigo": "VUV",
+      "descripcion": "Vatu",
+      "numero_iso": 548,
+      "decimales": "0",
+      "paises": [
+        "VANUATU"
+      ]
+    },
+    {
+      "codigo": "WST",
+      "descripcion": "Tala",
+      "numero_iso": 882,
+      "decimales": "2",
+      "paises": [
+        "SAMOA"
+      ]
+    },
+    {
+      "codigo": "XAF",
+      "descripcion": "CFA Franc BEAC",
+      "numero_iso": 950,
+      "decimales": "0",
+      "paises": [
+        "CAMEROON",
+        "CENTRAL AFRICAN REPUBLIC (THE)",
+        "CHAD",
+        "CONGO (THE)",
+        "EQUATORIAL GUINEA",
+        "GABON"
+      ]
+    },
+    {
+      "codigo": "XAG",
+      "descripcion": "Silver",
+      "numero_iso": 961,
+      "decimales": "N.A.",
+      "paises": [
+        "ZZ11_Silver"
+      ]
+    },
+    {
+      "codigo": "XAU",
+      "descripcion": "Gold",
+      "numero_iso": 959,
+      "decimales": "N.A.",
+      "paises": [
+        "ZZ08_Gold"
+      ]
+    },
+    {
+      "codigo": "XBA",
+      "descripcion": "Bond Markets Unit European Composite Unit (EURCO)",
+      "numero_iso": 955,
+      "decimales": "N.A.",
+      "paises": [
+        "ZZ01_Bond Markets Unit European_EURCO"
+      ]
+    },
+    {
+      "codigo": "XBB",
+      "descripcion": "Bond Markets Unit European Monetary Unit (E.M.U.-6)",
+      "numero_iso": 956,
+      "decimales": "N.A.",
+      "paises": [
+        "ZZ02_Bond Markets Unit European_EMU-6"
+      ]
+    },
+    {
+      "codigo": "XBC",
+      "descripcion": "Bond Markets Unit European Unit of Account 9 (E.U.A.-9)",
+      "numero_iso": 957,
+      "decimales": "N.A.",
+      "paises": [
+        "ZZ03_Bond Markets Unit European_EUA-9"
+      ]
+    },
+    {
+      "codigo": "XBD",
+      "descripcion": "Bond Markets Unit European Unit of Account 17 (E.U.A.-17)",
+      "numero_iso": 958,
+      "decimales": "N.A.",
+      "paises": [
+        "ZZ04_Bond Markets Unit European_EUA-17"
+      ]
+    },
+    {
+      "codigo": "XCD",
+      "descripcion": "East Caribbean Dollar",
+      "numero_iso": 951,
+      "decimales": "2",
+      "paises": [
+        "ANGUILLA",
+        "ANTIGUA AND BARBUDA",
+        "DOMINICA",
+        "GRENADA",
+        "MONTSERRAT",
+        "SAINT KITTS AND NEVIS",
+        "SAINT LUCIA",
+        "SAINT VINCENT AND THE GRENADINES"
+      ]
+    },
+    {
+      "codigo": "XDR",
+      "descripcion": "SDR (Special Drawing Right)",
+      "numero_iso": 960,
+      "decimales": "N.A.",
+      "paises": [
+        "INTERNATIONAL MONETARY FUND (IMF)"
+      ]
+    },
+    {
+      "codigo": "XOF",
+      "descripcion": "CFA Franc BCEAO",
+      "numero_iso": 952,
+      "decimales": "0",
+      "paises": [
+        "BENIN",
+        "BURKINA FASO",
+        "CÔTE D'IVOIRE",
+        "GUINEA-BISSAU",
+        "MALI",
+        "NIGER (THE)",
+        "SENEGAL",
+        "TOGO"
+      ]
+    },
+    {
+      "codigo": "XPD",
+      "descripcion": "Palladium",
+      "numero_iso": 964,
+      "decimales": "N.A.",
+      "paises": [
+        "ZZ09_Palladium"
+      ]
+    },
+    {
+      "codigo": "XPF",
+      "descripcion": "CFP Franc",
+      "numero_iso": 953,
+      "decimales": "0",
+      "paises": [
+        "FRENCH POLYNESIA",
+        "NEW CALEDONIA",
+        "WALLIS AND FUTUNA"
+      ]
+    },
+    {
+      "codigo": "XPT",
+      "descripcion": "Platinum",
+      "numero_iso": 962,
+      "decimales": "N.A.",
+      "paises": [
+        "ZZ10_Platinum"
+      ]
+    },
+    {
+      "codigo": "XSU",
+      "descripcion": "Sucre",
+      "numero_iso": 994,
+      "decimales": "N.A.",
+      "paises": [
+        "SISTEMA UNITARIO DE COMPENSACION REGIONAL DE PAGOS \"SUCRE\""
+      ]
+    },
+    {
+      "codigo": "XTS",
+      "descripcion": "Codes specifically reserved for testing purposes",
+      "numero_iso": 963,
+      "decimales": "N.A.",
+      "paises": [
+        "ZZ06_Testing_Code"
+      ]
+    },
+    {
+      "codigo": "XUA",
+      "descripcion": "ADB Unit of Account",
+      "numero_iso": 965,
+      "decimales": "N.A.",
+      "paises": [
+        "MEMBER COUNTRIES OF THE AFRICAN DEVELOPMENT BANK GROUP"
+      ]
+    },
+    {
+      "codigo": "XXX",
+      "descripcion": "The codes assigned for transactions where no currency is involved",
+      "numero_iso": 999,
+      "decimales": "N.A.",
+      "paises": [
+        "ZZ07_No_Currency"
+      ]
+    },
+    {
+      "codigo": "YER",
+      "descripcion": "Yemeni Rial",
+      "numero_iso": 886,
+      "decimales": "2",
+      "paises": [
+        "YEMEN"
+      ]
+    },
+    {
+      "codigo": "ZAR",
+      "descripcion": "Rand",
+      "numero_iso": 710,
+      "decimales": "2",
+      "paises": [
+        "LESOTHO",
+        "NAMIBIA",
+        "SOUTH AFRICA"
+      ]
+    },
+    {
+      "codigo": "ZMW",
+      "descripcion": "Zambian Kwacha",
+      "numero_iso": 967,
+      "decimales": "2",
+      "paises": [
+        "ZAMBIA"
+      ]
+    },
+    {
+      "codigo": "ZWL",
+      "descripcion": "Zimbabwe Dollar",
+      "numero_iso": 932,
+      "decimales": "2",
+      "paises": [
+        "ZIMBABWE"
+      ]
+    }
+  ]
+}

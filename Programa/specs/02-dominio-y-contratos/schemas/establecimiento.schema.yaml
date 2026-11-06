@@ -1,0 +1,31 @@
+# Establecimiento (local)
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/establecimiento.schema.yaml
+title: Establecimiento (local)
+description: Domicilio fiscal o local anexo con código SUNAT. Las series cuelgan del establecimiento (ENT-06 §6).
+type: object
+additionalProperties: false
+required:
+- codigoSunat
+- descripcion
+properties:
+  codigoSunat:
+    $ref: common.schema.yaml#/$defs/CodigoEstablecimiento
+    x-trazabilidad: MT-076
+  codigoInterno:
+    type: string
+    maxLength: 20
+    x-trazabilidad: interno
+  descripcion:
+    type: string
+    maxLength: 100
+    x-trazabilidad: interno
+  direccion:
+    $ref: common.schema.yaml#/$defs/Direccion
+    x-trazabilidad: interno
+  permiteOffline:
+    type: boolean
+    default: false
+    x-trazabilidad: interno
+    description: ADR-006; columna 'Offline' de ENT-06 §6.

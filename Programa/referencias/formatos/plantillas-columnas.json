@@ -1,0 +1,266 @@
+{
+  "14.1": {
+    "archivo": "Git/registro ventas formato 14.1.xls",
+    "hoja": "F 14.1 Reg. de Ventas",
+    "titulo": "FORMATO 14.1: REGISTRO DE VENTAS E INGRESOS",
+    "cabecera": [
+      "PERIODO",
+      "RUC",
+      "APELLIDOS Y NOMBRES, DENOMINACIÓN O RAZÓN SOCIAL"
+    ],
+    "columnas": [
+      {
+        "columna": 1,
+        "encabezado": "NÚMERO / CORRELATIVO / DEL REGISTRO O / CÓDIGO UNICO / DE LA OPERACIÓN"
+      },
+      {
+        "columna": 2,
+        "encabezado": "FECHA DE / EMISIÓN DEL / COMPROBANTE / DE PAGO / O DOCUMENTO"
+      },
+      {
+        "columna": 3,
+        "encabezado": "FECHA / DE / VENCIMIENTO / Y/O PAGO"
+      },
+      {
+        "columna": 4,
+        "encabezado": "COMPROBANTE DE PAGO / O DOCUMENTO / TIPO / (TABLA 10)"
+      },
+      {
+        "columna": 5,
+        "encabezado": "N° SERIE O / N° DE SERIE DE LA / MAQUINA REGISTRADORA"
+      },
+      {
+        "columna": 6,
+        "encabezado": "NÚMERO"
+      },
+      {
+        "columna": 7,
+        "encabezado": "INFORMACIÓN DEL CLIENTE / DOCUMENTO DE IDENTIDAD / TIPO / (TABLA 2)"
+      },
+      {
+        "columna": 8,
+        "encabezado": "NÚMERO"
+      },
+      {
+        "columna": 9,
+        "encabezado": "APELLIDOS Y NOMBRES, / DENOMINACIÓN / O RAZÓN SOCIAL"
+      },
+      {
+        "columna": 10,
+        "encabezado": "VALOR / FACTURADO / DE LA / EXPORTACIÓN"
+      },
+      {
+        "columna": 11,
+        "encabezado": "BASE / IMPONIBLE / DE LA / OPERACIÓN / GRAVADA"
+      },
+      {
+        "columna": 12,
+        "encabezado": "IMPORTE TOTAL DE LA OPERACIÓN / EXONERADA O INAFECTA / EXONERADA"
+      },
+      {
+        "columna": 13,
+        "encabezado": "INAFECTA"
+      },
+      {
+        "columna": 14,
+        "encabezado": "ISC"
+      },
+      {
+        "columna": 15,
+        "encabezado": "IGV Y/O IPM"
+      },
+      {
+        "columna": 16,
+        "encabezado": "OTROS TRIBUTOS / Y CARGOS QUE / NO FORMAN PARTE / DE LA / BASE IMPONIBLE"
+      },
+      {
+        "columna": 17,
+        "encabezado": "IMPORTE / TOTAL / DEL / COMPROBANTE / DE PAGO"
+      },
+      {
+        "columna": 18,
+        "encabezado": "TIPO / DE / CAMBIO"
+      },
+      {
+        "columna": 19,
+        "encabezado": "REFERENCIA DEL COMPROBANTE DE PAGO / O DOCUMENTO ORIGINAL QUE SE MODIFICA / FECHA"
+      },
+      {
+        "columna": 20,
+        "encabezado": "TIPO / (TABLA 10)"
+      },
+      {
+        "columna": 21,
+        "encabezado": "SERIE"
+      },
+      {
+        "columna": 22,
+        "encabezado": "N° DEL / COMPROBANTE / DE PAGO O DOCUMENTO"
+      }
+    ]
+  },
+  "8.1": {
+    "archivo": "Git/592044723-FORMATO-8-1.xlsx",
+    "hoja": "FORMATO 8.1 REGISTRO DE COMPRAS",
+    "titulo": "FORMATO 8.1; REGISTRO DE COMPRAS",
+    "cabecera": [
+      "PERIODO",
+      "RUC",
+      "APELLIDOS Y NOMBRES, DENOMINACIÓN O RAZÓN SOCIAL"
+    ],
+    "columnas": [
+      {
+        "columna": 2,
+        "encabezado": "N° Correlativo del registro o codigo unico de la operación"
+      },
+      {
+        "columna": 3,
+        "encabezado": "Fecha de emision del comprobante de pago o documento"
+      },
+      {
+        "columna": 4,
+        "encabezado": "Fecha de vencimiento o fecha de pago"
+      },
+      {
+        "columna": 5,
+        "encabezado": "COMPROBANTE DE PAGO / TIPO (TABLA 10)"
+      },
+      {
+        "columna": 6,
+        "encabezado": "Serie o Codigo de la dependencia aduanera (Tabla 11)"
+      },
+      {
+        "columna": 7,
+        "encabezado": "Numero de comprob. de pago"
+      },
+      {
+        "columna": 8,
+        "encabezado": "INFORMACION DEL PROVEEDOR / DOC. DE INDENTIDAD / TIPO (TABLA 2)"
+      },
+      {
+        "columna": 9,
+        "encabezado": "NÚMERO"
+      },
+      {
+        "columna": 10,
+        "encabezado": "Apellidos y Nombres, Denominación o Razón Social"
+      },
+      {
+        "columna": 11,
+        "encabezado": "DIVISIONARIA"
+      },
+      {
+        "columna": 12,
+        "encabezado": "Adquisiciones gravadas destinadas a operaciones Gravadas y/o de Exportación / BASE IMPONIBLE"
+      },
+      {
+        "columna": 13,
+        "encabezado": "IGV"
+      },
+      {
+        "columna": 14,
+        "encabezado": "IMPORTE TOTAL"
+      },
+      {
+        "columna": 15,
+        "encabezado": "DIVISIONARIA"
+      },
+      {
+        "columna": 16,
+        "encabezado": "Tipo de Cambio"
+      },
+      {
+        "columna": 17,
+        "encabezado": "Referencia del comprobante de Pago o Documento Original que se modifica / FECHA"
+      },
+      {
+        "columna": 18,
+        "encabezado": "Tipo (Tabla 10)"
+      },
+      {
+        "columna": 19,
+        "encabezado": "Serie"
+      },
+      {
+        "columna": 20,
+        "encabezado": "N° del comprobante de pago o documento"
+      }
+    ],
+    "observacion": "Plantilla simplificada: una sola columna de base imponible e IGV; incluye columnas contables 'DIVISIONARIA'."
+  },
+  "13.1": {
+    "archivo": "Git/464918148-11-FORMATO-DE-KARDEX-SEGUN-SUNAT-xls.xls",
+    "hoja": "F 13.1 Det.Inv.Per.Val.",
+    "titulo": "FORMATO 13.1: \"REGISTRO DE INVENTARIO PERMANENTE VALORIZADO - DETALLE DEL INVENTARIO VALORIZADO\"",
+    "cabecera": [
+      "PERÍODO",
+      "RUC",
+      "APELLIDOS Y NOMBRES, DENOMINACIÓN O RAZÓN SOCIAL",
+      "ESTABLECIMIENTO (1)",
+      "CÓDIGO DE LA EXISTENCIA",
+      "TIPO (TABLA 5)",
+      "DESCRIPCIÓN",
+      "CÓDIGO DE LA UNIDAD DE MEDIDA (TABLA 6)",
+      "MÉTODO DE VALUACIÓN"
+    ],
+    "columnas": [
+      {
+        "columna": 1,
+        "encabezado": "DOCUMENTO DE TRASLADO, COMPROBANTE DE PAGO, / DOCUMENTO INTERNO O SIMILAR / FECHA"
+      },
+      {
+        "columna": 2,
+        "encabezado": "TIPO (TABLA 10)"
+      },
+      {
+        "columna": 3,
+        "encabezado": "SERIE"
+      },
+      {
+        "columna": 4,
+        "encabezado": "NÚMERO"
+      },
+      {
+        "columna": 5,
+        "encabezado": "TIPO DE / OPERACIÓN / (TABLA 12)"
+      },
+      {
+        "columna": 6,
+        "encabezado": "ENTRADAS / CANTIDAD"
+      },
+      {
+        "columna": 7,
+        "encabezado": "COSTO UNITARIO"
+      },
+      {
+        "columna": 8,
+        "encabezado": "COSTO TOTAL"
+      },
+      {
+        "columna": 9,
+        "encabezado": "SALIDAS / CANTIDAD"
+      },
+      {
+        "columna": 10,
+        "encabezado": "COSTO UNITARIO"
+      },
+      {
+        "columna": 11,
+        "encabezado": "COSTO TOTAL"
+      },
+      {
+        "columna": 12,
+        "encabezado": "SALDO FINAL / CANTIDAD"
+      },
+      {
+        "columna": 13,
+        "encabezado": "COSTO UNITARIO"
+      },
+      {
+        "columna": 14,
+        "encabezado": "COSTO TOTAL"
+      }
+    ],
+    "observacion": "El nombre del archivo dice 'kardex', pero es el FORMATO 13.1 (valorizado), no el 12.1. Las filas de datos de ejemplo (empresa de terceros) NO se extraen."
+  }
+}

@@ -1,0 +1,8 @@
+# Necesario para validar_contratos.py, verificar_matriz.py, construir_matriz.py y convertir_catalogos.py (schemas en YAML) y extraer_formatos_excel.py.
+jsonschema>=4.23
+referencing>=0.35
+pyyaml>=6.0
+lxml>=5.0
+openapi-spec-validator>=0.7
+openpyxl>=3.1   # solo tools/extraer_formatos_excel.py
+xlrd>=2.0       # solo tools/extraer_formatos_excel.py (.xls)

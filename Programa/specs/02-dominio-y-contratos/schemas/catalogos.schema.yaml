@@ -1,0 +1,752 @@
+# Códigos de catálogos SUNAT (Anexo 8)
+# JSON Schema 2020-12 escrito en YAML. GENERADO por tools/convertir_catalogos.py. No editar a mano.
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/catalogos.schema.yaml
+title: Códigos de catálogos SUNAT (Anexo 8)
+description: GENERADO por tools/convertir_catalogos.py. No editar a mano.
+$defs:
+  Cat01:
+    title: 'Catálogo 01: Código de tipo de documento'
+    description: Generado desde catalogs/cat01.json (Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse
+      con el Anexo 8 oficial de SUNAT antes de producción.)
+    type: string
+    enum:
+    - '01'
+    - '03'
+    - '04'
+    - '05'
+    - '06'
+    - '07'
+    - '08'
+    - '09'
+    - '11'
+    - '12'
+    - '13'
+    - '14'
+    - '15'
+    - '16'
+    - '18'
+    - '19'
+    - '20'
+    - '21'
+    - '23'
+    - '24'
+    - '28'
+    - '29'
+    - '30'
+    - '31'
+    - '32'
+    - '34'
+    - '35'
+    - '36'
+    - '37'
+    - '40'
+    - '41'
+    - '42'
+    - '43'
+    - '45'
+    - '55'
+    - '56'
+    - '71'
+    - '72'
+    - '87'
+    - '88'
+    x-catalogo: ../catalogs/cat01.json
+  Cat02:
+    title: 'Catálogo 02: Código de tipo de monedas'
+    description: Generado desde catalogs/cat02.json (Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse
+      con el Anexo 8 oficial de SUNAT antes de producción.)
+    type: string
+    enum:
+    - AED
+    - AFN
+    - ALL
+    - AMD
+    - ANG
+    - AOA
+    - ARS
+    - AUD
+    - AWG
+    - AZN
+    - BAM
+    - BBD
+    - BDT
+    - BGN
+    - BHD
+    - BIF
+    - BMD
+    - BND
+    - BOB
+    - BOV
+    - BRL
+    - BSD
+    - BTN
+    - BWP
+    - BYN
+    - BZD
+    - CAD
+    - CDF
+    - CHE
+    - CHF
+    - CHW
+    - CLF
+    - CLP
+    - CNY
+    - COP
+    - COU
+    - CRC
+    - CUC
+    - CUP
+    - CVE
+    - CZK
+    - DJF
+    - DKK
+    - DOP
+    - DZD
+    - EGP
+    - ERN
+    - ETB
+    - EUR
+    - FJD
+    - FKP
+    - GBP
+    - GEL
+    - GHS
+    - GIP
+    - GMD
+    - GNF
+    - GTQ
+    - GYD
+    - HKD
+    - HNL
+    - HRK
+    - HTG
+    - HUF
+    - IDR
+    - ILS
+    - INR
+    - IQD
+    - IRR
+    - ISK
+    - JMD
+    - JOD
+    - JPY
+    - KES
+    - KGS
+    - KHR
+    - KMF
+    - KPW
+    - KRW
+    - KWD
+    - KYD
+    - KZT
+    - LAK
+    - LBP
+    - LKR
+    - LRD
+    - LSL
+    - LYD
+    - MAD
+    - MDL
+    - MGA
+    - MKD
+    - MMK
+    - MNT
+    - MOP
+    - MRU
+    - MUR
+    - MVR
+    - MWK
+    - MXN
+    - MXV
+    - MYR
+    - MZN
+    - NAD
+    - NGN
+    - NIO
+    - NOK
+    - NPR
+    - NZD
+    - OMR
+    - PAB
+    - PEN
+    - PGK
+    - PHP
+    - PKR
+    - PLN
+    - PYG
+    - QAR
+    - RON
+    - RSD
+    - RUB
+    - RWF
+    - SAR
+    - SBD
+    - SCR
+    - SDG
+    - SEK
+    - SGD
+    - SHP
+    - SLL
+    - SOS
+    - SRD
+    - SSP
+    - STN
+    - SVC
+    - SYP
+    - SZL
+    - THB
+    - TJS
+    - TMT
+    - TND
+    - TOP
+    - TRY
+    - TTD
+    - TWD
+    - TZS
+    - UAH
+    - UGX
+    - USD
+    - USN
+    - UYI
+    - UYU
+    - UYW
+    - UZS
+    - VES
+    - VND
+    - VUV
+    - WST
+    - XAF
+    - XAG
+    - XAU
+    - XBA
+    - XBB
+    - XBC
+    - XBD
+    - XCD
+    - XDR
+    - XOF
+    - XPD
+    - XPF
+    - XPT
+    - XSU
+    - XTS
+    - XUA
+    - XXX
+    - YER
+    - ZAR
+    - ZMW
+    - ZWL
+    x-catalogo: ../catalogs/cat02.json
+  Cat03:
+    title: 'Catálogo 03: Código de tipo de unidad de medida comercial'
+    description: Generado desde catalogs/cat03.json (Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse
+      con el Anexo 8 oficial de SUNAT antes de producción.)
+    type: string
+    enum:
+    - BJ
+    - BLL
+    - 4A
+    - BG
+    - BO
+    - BX
+    - CT
+    - CMK
+    - CMQ
+    - CMT
+    - CEN
+    - CY
+    - CJ
+    - DZN
+    - DZP
+    - BE
+    - GLI
+    - GRM
+    - GRO
+    - HLT
+    - LEF
+    - SET
+    - KGM
+    - KTM
+    - KWH
+    - KT
+    - CA
+    - LBR
+    - LTR
+    - MWH
+    - MTR
+    - MTK
+    - MTQ
+    - MGM
+    - MLT
+    - MMT
+    - MMK
+    - MMQ
+    - MLL
+    - MU
+    - ONZ
+    - PF
+    - PK
+    - PR
+    - FOT
+    - FTK
+    - FTQ
+    - C62
+    - PG
+    - ST
+    - INH
+    - RM
+    - DR
+    - STN
+    - LTN
+    - TNE
+    - TU
+    - NIU
+    - ZZ
+    - GLL
+    - YRD
+    - YDK
+    x-catalogo: ../catalogs/cat03.json
+  Cat04:
+    title: 'Catálogo 04: Código de país'
+    description: Generado desde catalogs/cat04.json (Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse
+      con el Anexo 8 oficial de SUNAT antes de producción.)
+    type: string
+    enum:
+    - AX
+    - AF
+    - AL
+    - DZ
+    - AS
+    - AD
+    - AO
+    - AI
+    - AQ
+    - AG
+    - AR
+    - AM
+    - AW
+    - AU
+    - AT
+    - AZ
+    - BS
+    - BH
+    - BD
+    - BB
+    - BY
+    - BE
+    - BZ
+    - BJ
+    - BM
+    - BT
+    - BO
+    - BA
+    - BW
+    - BV
+    - BR
+    - IO
+    - BN
+    - BG
+    - BF
+    - BI
+    - KH
+    - CM
+    - CA
+    - CV
+    - KY
+    - CF
+    - TD
+    - CL
+    - CN
+    - CX
+    - CC
+    - CO
+    - KM
+    - CD
+    - CG
+    - CK
+    - CR
+    - CI
+    - HR
+    - CU
+    - CY
+    - CZ
+    - DK
+    - DJ
+    - DM
+    - DO
+    - EC
+    - EG
+    - SV
+    - GQ
+    - ER
+    - EE
+    - ET
+    - FK
+    - FO
+    - FJ
+    - FI
+    - FR
+    - GF
+    - PF
+    - TF
+    - GA
+    - GM
+    - GE
+    - DE
+    - GH
+    - GI
+    - GR
+    - GL
+    - GD
+    - GP
+    - GU
+    - GT
+    - GN
+    - GW
+    - GY
+    - HT
+    - HM
+    - HN
+    - HK
+    - HU
+    - IS
+    - IN
+    - ID
+    - IR
+    - IQ
+    - IE
+    - IL
+    - IT
+    - JM
+    - JP
+    - JO
+    - KZ
+    - KE
+    - KI
+    - KP
+    - KR
+    - KW
+    - KG
+    - LA
+    - LV
+    - LB
+    - LS
+    - LR
+    - LY
+    - LI
+    - LT
+    - LU
+    - MO
+    - MK
+    - MG
+    - MW
+    - MY
+    - MV
+    - ML
+    - MT
+    - MH
+    - MQ
+    - MR
+    - MU
+    - YT
+    - MX
+    - FM
+    - MD
+    - MC
+    - MN
+    - MS
+    - MA
+    - MZ
+    - MM
+    - NA
+    - NR
+    - NP
+    - NL
+    - AN
+    - NC
+    - NZ
+    - NI
+    - NE
+    - NG
+    - NU
+    - NF
+    - MP
+    - 'NO'
+    - OM
+    - PK
+    - PW
+    - PS
+    - PA
+    - PG
+    - PY
+    - PE
+    - PH
+    - PN
+    - PL
+    - PT
+    - PR
+    - QA
+    - RE
+    - RO
+    - RU
+    - RW
+    - SH
+    - KN
+    - LC
+    - PM
+    - VC
+    - WS
+    - SM
+    - ST
+    - SA
+    - SN
+    - CS
+    - SC
+    - SL
+    - SG
+    - SK
+    - SI
+    - SB
+    - SO
+    - ZA
+    - GS
+    - ES
+    - LK
+    - SD
+    - SR
+    - SJ
+    - SZ
+    - SE
+    - CH
+    - SY
+    - TW
+    - TJ
+    - TZ
+    - TH
+    - TL
+    - TG
+    - TK
+    - TO
+    - TT
+    - TN
+    - TR
+    - TM
+    - TC
+    - TV
+    - UG
+    - UA
+    - AE
+    - GB
+    - US
+    - UM
+    - UY
+    - UZ
+    - VU
+    - VA
+    - VE
+    - VN
+    - VG
+    - VI
+    - WF
+    - EH
+    - YE
+    - ZM
+    - ZW
+    x-catalogo: ../catalogs/cat04.json
+  Cat05:
+    title: 'Catálogo 05: Códigos de tipos de tributos'
+    description: Generado desde catalogs/cat05.json (Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse
+      con el Anexo 8 oficial de SUNAT antes de producción.)
+    type: string
+    enum:
+    - '1000'
+    - '1016'
+    - '2000'
+    - '3000'
+    - '7152'
+    - '9995'
+    - '9996'
+    - '9997'
+    - '9998'
+    - '9999'
+    x-catalogo: ../catalogs/cat05.json
+  Cat06:
+    title: 'Catálogo 06: Código de tipo de documento de identidad'
+    description: Generado desde catalogs/cat06.json (Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse
+      con el Anexo 8 oficial de SUNAT antes de producción.)
+    type: string
+    enum:
+    - '0'
+    - '1'
+    - '4'
+    - '6'
+    - '7'
+    - A
+    - B
+    - C
+    - D
+    - E
+    x-catalogo: ../catalogs/cat06.json
+  Cat07:
+    title: 'Catálogo 07: Código de tipo de afectación del IGV'
+    description: Generado desde catalogs/cat07.json (Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse
+      con el Anexo 8 oficial de SUNAT antes de producción.)
+    type: string
+    enum:
+    - '10'
+    - '11'
+    - '12'
+    - '13'
+    - '14'
+    - '15'
+    - '16'
+    - '17'
+    - '20'
+    - '21'
+    - '30'
+    - '31'
+    - '32'
+    - '33'
+    - '34'
+    - '35'
+    - '36'
+    - '37'
+    - '40'
+    x-catalogo: ../catalogs/cat07.json
+  Cat08:
+    title: 'Catálogo 08: Código de tipos de sistema de cálculo del ISC'
+    description: Generado desde catalogs/cat08.json (Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse
+      con el Anexo 8 oficial de SUNAT antes de producción.)
+    type: string
+    enum:
+    - '01'
+    - '02'
+    - '03'
+    x-catalogo: ../catalogs/cat08.json
+  Cat09:
+    title: 'Catálogo 09: Códigos de tipo de nota de crédito electrónica'
+    description: Generado desde catalogs/cat09.json (Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse
+      con el Anexo 8 oficial de SUNAT antes de producción.)
+    type: string
+    enum:
+    - '01'
+    - '02'
+    - '03'
+    - '04'
+    - '05'
+    - '06'
+    - '07'
+    - '08'
+    - '09'
+    - '10'
+    - '11'
+    - '12'
+    - '13'
+    x-catalogo: ../catalogs/cat09.json
+  Cat10:
+    title: 'Catálogo 10: Códigos de tipo de nota de débito electrónica'
+    description: Generado desde catalogs/cat10.json (Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse
+      con el Anexo 8 oficial de SUNAT antes de producción.)
+    type: string
+    enum:
+    - '01'
+    - '02'
+    - '03'
+    - '11'
+    - '12'
+    x-catalogo: ../catalogs/cat10.json
+  Cat16:
+    title: 'Catálogo 16: Código de tipo de precio de venta unitario'
+    description: Generado desde catalogs/cat16.json (Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse
+      con el Anexo 8 oficial de SUNAT antes de producción.)
+    type: string
+    enum:
+    - '01'
+    - '02'
+    - '03'
+    x-catalogo: ../catalogs/cat16.json
+  Cat51:
+    title: 'Catálogo 51: Código de tipo de operación'
+    description: Generado desde catalogs/cat51.json (Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse
+      con el Anexo 8 oficial de SUNAT antes de producción.)
+    type: string
+    enum:
+    - '0101'
+    - '0112'
+    - '0113'
+    - '0200'
+    - '0201'
+    - '0202'
+    - '0203'
+    - '0204'
+    - '0205'
+    - '0206'
+    - '0207'
+    - '0208'
+    - '0301'
+    - '0302'
+    - '0401'
+    - '0501'
+    - '0502'
+    - '0503'
+    - '1001'
+    - '1002'
+    - '1003'
+    - '1004'
+    - '2001'
+    - '2100'
+    - '2101'
+    - '2102'
+    - '2103'
+    - '2104'
+    x-catalogo: ../catalogs/cat51.json
+  Cat52:
+    title: 'Catálogo 52: Códigos de leyendas'
+    description: Generado desde catalogs/cat52.json (Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse
+      con el Anexo 8 oficial de SUNAT antes de producción.)
+    type: string
+    enum:
+    - '1000'
+    - '1002'
+    - '2000'
+    - '2001'
+    - '2002'
+    - '2003'
+    - '2004'
+    - '2005'
+    - '2006'
+    - '2007'
+    - '2008'
+    - '2009'
+    - '2010'
+    - '2011'
+    x-catalogo: ../catalogs/cat52.json
+  Cat53:
+    title: 'Catálogo 53: Códigos de cargos o descuentos'
+    description: Generado desde catalogs/cat53.json (Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse
+      con el Anexo 8 oficial de SUNAT antes de producción.)
+    type: string
+    enum:
+    - '00'
+    - '01'
+    - '02'
+    - '03'
+    - '04'
+    - '05'
+    - '06'
+    - '07'
+    - '45'
+    - '46'
+    - '47'
+    - '48'
+    - '49'
+    - '50'
+    - '51'
+    - '52'
+    - '53'
+    - '54'
+    - '60'
+    - '61'
+    - '62'
+    x-catalogo: ../catalogs/cat53.json

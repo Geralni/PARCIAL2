@@ -1,0 +1,49 @@
+{
+  "$schema": "../schemas/catalogo.schema.yaml",
+  "numero": "08",
+  "nombre": "Código de tipos de sistema de cálculo del ISC",
+  "fuente": {
+    "archivo": "Git/08.txt",
+    "formato_detectado": "JSON",
+    "tipo": "comunitaria_no_oficial",
+    "ultima_actualizacion": "2020",
+    "registros_origen": 3
+  },
+  "advertencia": "Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse con el Anexo 8 oficial de SUNAT antes de producción.",
+  "campo_ubl": [
+    {
+      "xpath": "/Invoice/cac:InvoiceLine/cac:TaxTotal/cac:TaxSubtotal/cac:TaxCategory/cbc:TierRange",
+      "referencia": "Anexo 9-A, RS 117-2017, pág. 10"
+    },
+    {
+      "xpath": "/CreditNote/cac:CreditNoteLine/cac:TaxTotal/cac:TaxSubtotal/cac:TaxCategory/cbc:TierRange",
+      "referencia": "Anexo 9-A, RS 117-2017, pág. 22"
+    },
+    {
+      "xpath": "/DebitNote/cac:DebitNoteLine/cac:TaxTotal/cac:TaxSubtotal/cac:TaxCategory/cbc:TierRange",
+      "referencia": "Anexo 9-A, RS 117-2017, pág. 26"
+    }
+  ],
+  "contraste_anexo_9a": {
+    "estado": "COHERENTE",
+    "observaciones": [
+      "TierRange 0..1 an2 Catálogo 08 en la factura (pág. 10), la boleta (pág. 17) y la NC (pág. 22). Los 3 códigos (01, 02, 03) tienen 2 dígitos.",
+      "Las tasas, los montos fijos y los apéndices del TUO IGV e ISC citados en las descripciones NO están en el workspace: son parámetros PENDIENTE."
+    ]
+  },
+  "duplicados_detectados": [],
+  "items": [
+    {
+      "codigo": "01",
+      "descripcion": "Sistema al valor (Apéndice IV, lit. A – T.U.O IGV e ISC)"
+    },
+    {
+      "codigo": "02",
+      "descripcion": "Aplicación del Monto Fijo ( Sistema específico, bienes en el apéndice III, Apéndice IV, lit. B – T.U.O IGV e ISC)"
+    },
+    {
+      "codigo": "03",
+      "descripcion": "Sistema de Precios de Venta al Público (Apéndice IV, lit. C – T.U.O IGV e ISC)"
+    }
+  ]
+}

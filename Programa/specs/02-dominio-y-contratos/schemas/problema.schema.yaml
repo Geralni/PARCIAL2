@@ -1,0 +1,74 @@
+# Error (Problem Details, RFC 9457)
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/problema.schema.yaml
+title: Error (Problem Details, RFC 9457)
+description: Respuesta de error única para el binding HTTP y para los puertos (ResultadoError). Cada violación cita la regla
+  REG-XXX.
+type: object
+additionalProperties: false
+required:
+- type
+- title
+- status
+properties:
+  type:
+    type: string
+    format: uri-reference
+    x-trazabilidad: interno
+    examples:
+    - /errores/validacion
+  title:
+    type: string
+    x-trazabilidad: interno
+  status:
+    type: integer
+    minimum: 400
+    maximum: 599
+    x-trazabilidad: interno
+  detail:
+    type: string
+    x-trazabilidad: interno
+  instance:
+    type: string
+    x-trazabilidad: interno
+  codigo:
+    enum:
+    - VALIDACION
+    - DUPLICADO
+    - IDEMPOTENCIA_CONFLICTO
+    - NO_ENCONTRADO
+    - ESTADO_INVALIDO
+    - PROVEEDOR_NO_DISPONIBLE
+    - RECHAZADO_SUNAT
+    - NO_AUTORIZADO
+    - INTERNO
+    x-trazabilidad: interno
+  violaciones:
+    type: array
+    x-trazabilidad: interno
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - regla
+      - severidad
+      - mensaje
+      properties:
+        regla:
+          type: string
+          pattern: ^REG-\d{3}$
+          x-trazabilidad: interno
+        campo:
+          type: string
+          description: JSON Pointer al campo.
+          x-trazabilidad: interno
+        severidad:
+          enum:
+          - ERROR
+          - ADVERTENCIA
+          - INFO
+          x-trazabilidad: interno
+        mensaje:
+          type: string
+          x-trazabilidad: interno

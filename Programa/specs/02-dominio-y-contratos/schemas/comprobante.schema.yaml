@@ -1,0 +1,207 @@
+# Comprobante de pago electrónico (factura o boleta)
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/comprobante.schema.yaml
+title: Comprobante de pago electrónico (factura o boleta)
+description: 'Raíz del agregado Comprobante. readOnly = lo asigna el sistema. Reglas: reglas-de-validacion.md. Trazabilidad:
+  x-trazabilidad -> 05-trazabilidad/matriz-trazabilidad.csv.'
+type: object
+additionalProperties: false
+required:
+- tipoComprobante
+- serie
+- fechaEmision
+- moneda
+- establecimientoCodigo
+- adquirente
+- lineas
+x-reglas:
+- REG-003
+- REG-004
+- REG-034
+- REG-069
+properties:
+  id:
+    $ref: common.schema.yaml#/$defs/Uuid
+    readOnly: true
+    x-trazabilidad: interno
+  tipoComprobante:
+    allOf:
+    - $ref: catalogos.schema.yaml#/$defs/Cat01
+    - enum:
+      - '01'
+      - '03'
+    x-trazabilidad: MT-010
+    x-reglas:
+    - REG-010
+  serie:
+    $ref: common.schema.yaml#/$defs/Serie
+    x-trazabilidad: MT-006
+  correlativo:
+    $ref: common.schema.yaml#/$defs/Correlativo
+    readOnly: true
+    x-trazabilidad: MT-006
+    x-reglas:
+    - REG-035
+  fechaEmision:
+    $ref: common.schema.yaml#/$defs/Fecha
+    x-trazabilidad: MT-007
+    x-reglas:
+    - REG-080
+  horaEmision:
+    $ref: common.schema.yaml#/$defs/Hora
+    x-trazabilidad: MT-008
+  fechaVencimiento:
+    $ref: common.schema.yaml#/$defs/Fecha
+    x-trazabilidad: MT-009
+    x-reglas:
+    - REG-081
+  tipoOperacion:
+    $ref: catalogos.schema.yaml#/$defs/Cat51
+    default: '0101'
+    x-trazabilidad: MT-087
+    x-reglas:
+    - REG-021
+    - REG-023
+  moneda:
+    $ref: catalogos.schema.yaml#/$defs/Cat02
+    x-trazabilidad: MT-013
+  establecimientoCodigo:
+    $ref: common.schema.yaml#/$defs/CodigoEstablecimiento
+    x-trazabilidad: MT-076
+  emisorRuc:
+    $ref: common.schema.yaml#/$defs/Ruc
+    readOnly: true
+    x-trazabilidad: MT-073
+  adquirente:
+    $ref: adquirente.schema.yaml
+    x-trazabilidad: MT-078
+  leyendas:
+    type: array
+    x-trazabilidad: MT-011
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - codigo
+      - texto
+      properties:
+        codigo:
+          $ref: catalogos.schema.yaml#/$defs/Cat52
+          x-trazabilidad: MT-012
+        texto:
+          $ref: common.schema.yaml#/$defs/Texto100
+          x-trazabilidad: MT-011
+  ordenCompra:
+    type: string
+    maxLength: 20
+    x-trazabilidad: MT-015
+  guias:
+    type: array
+    x-trazabilidad: MT-016
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - tipo
+      - serieNumero
+      properties:
+        tipo:
+          $ref: catalogos.schema.yaml#/$defs/Cat01
+          x-trazabilidad: MT-017
+        serieNumero:
+          type: string
+          pattern: ^[A-Z0-9]{4}-\d{1,8}$
+          x-trazabilidad: MT-016
+  documentosRelacionados:
+    type: array
+    x-trazabilidad: MT-018
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - tipo
+      - numero
+      properties:
+        tipo:
+          type: string
+          pattern: ^\d{2}$
+          x-trazabilidad: MT-019
+          description: Catálogo 12 (PENDIENTE).
+        numero:
+          type: string
+          maxLength: 30
+          x-trazabilidad: MT-018
+  formaPago:
+    $ref: forma-pago.schema.yaml
+    x-trazabilidad: MT-193
+  cargosDescuentos:
+    type: array
+    items:
+      $ref: common.schema.yaml#/$defs/CargoDescuento
+    x-trazabilidad: MT-029
+  lineas:
+    type: array
+    minItems: 1
+    maxItems: 999
+    items:
+      $ref: linea-detalle.schema.yaml
+    x-trazabilidad: MT-048
+    x-reglas:
+    - REG-006
+    - REG-009
+  tributos:
+    readOnly: true
+    type: array
+    items:
+      $ref: tributo.schema.yaml
+    x-trazabilidad: MT-035
+    x-reglas:
+    - REG-057
+  totales:
+    $ref: totales.schema.yaml
+    readOnly: true
+    x-trazabilidad: MT-046
+    description: Calculado por el núcleo (REG-061..REG-068); el cliente no lo envía.
+  estado:
+    enum:
+    - BORRADOR
+    - EMITIDO
+    - ENVIADO
+    - ACEPTADO
+    - OBSERVADO
+    - RECHAZADO
+    - ANULADO
+    readOnly: true
+    x-trazabilidad: interno
+    description: RF-17. Transiciones en modelo-dominio.md.
+  firma:
+    $ref: firma-digital.schema.yaml
+    readOnly: true
+    x-trazabilidad: MT-001
+  respuestaSunat:
+    $ref: respuesta-sunat.schema.yaml
+    readOnly: true
+    x-trazabilidad: interno
+  origen:
+    $ref: common.schema.yaml#/$defs/Origen
+    readOnly: true
+    x-trazabilidad: interno
+allOf:
+- description: 'REG-030 / REG-031: la letra de la serie depende del tipo (salvo contingencia numérica).'
+  if:
+    properties:
+      tipoComprobante:
+        const: '01'
+  then:
+    properties:
+      serie:
+        pattern: ^(F[A-Z0-9]{3}|\d{4})$
+- if:
+    properties:
+      tipoComprobante:
+        const: '03'
+  then:
+    properties:
+      serie:
+        pattern: ^(B[A-Z0-9]{3}|\d{4})$

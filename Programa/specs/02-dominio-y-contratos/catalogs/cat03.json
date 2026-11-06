@@ -1,0 +1,276 @@
+{
+  "$schema": "../schemas/catalogo.schema.yaml",
+  "numero": "03",
+  "nombre": "Código de tipo de unidad de medida comercial",
+  "fuente": {
+    "archivo": "Git/03.txt",
+    "formato_detectado": "JSON",
+    "tipo": "comunitaria_no_oficial",
+    "ultima_actualizacion": "2020",
+    "registros_origen": 62
+  },
+  "advertencia": "Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse con el Anexo 8 oficial de SUNAT antes de producción.",
+  "campo_ubl": [
+    {
+      "xpath": "/Invoice/cac:InvoiceLine/cbc:InvoicedQuantity/@unitCode",
+      "referencia": "Anexo 9-A, RS 117-2017, pág. 8"
+    }
+  ],
+  "contraste_anexo_9a": {
+    "estado": "NO_APLICA",
+    "observaciones": [
+      "El anexo remite a UN/ECE rec 20 (@unitCodeListID, pág. 8). Es un subconjunto comercial."
+    ]
+  },
+  "duplicados_detectados": [],
+  "items": [
+    {
+      "codigo": "BJ",
+      "descripcion": "BALDE"
+    },
+    {
+      "codigo": "BLL",
+      "descripcion": "BARRILES"
+    },
+    {
+      "codigo": "4A",
+      "descripcion": "BOBINAS"
+    },
+    {
+      "codigo": "BG",
+      "descripcion": "BOLSA"
+    },
+    {
+      "codigo": "BO",
+      "descripcion": "BOTELLAS"
+    },
+    {
+      "codigo": "BX",
+      "descripcion": "CAJAS"
+    },
+    {
+      "codigo": "CT",
+      "descripcion": "CARTONES"
+    },
+    {
+      "codigo": "CMK",
+      "descripcion": "CENTIMETRO CUADRADO"
+    },
+    {
+      "codigo": "CMQ",
+      "descripcion": "CENTIMETRO CUBICO"
+    },
+    {
+      "codigo": "CMT",
+      "descripcion": "CENTIMETRO LINEAL"
+    },
+    {
+      "codigo": "CEN",
+      "descripcion": "CIENTO DE UNIDADES"
+    },
+    {
+      "codigo": "CY",
+      "descripcion": "CILINDRO"
+    },
+    {
+      "codigo": "CJ",
+      "descripcion": "CONOS"
+    },
+    {
+      "codigo": "DZN",
+      "descripcion": "DOCENA"
+    },
+    {
+      "codigo": "DZP",
+      "descripcion": "DOCENA POR 10**6"
+    },
+    {
+      "codigo": "BE",
+      "descripcion": "FARDO"
+    },
+    {
+      "codigo": "GLI",
+      "descripcion": "GALON INGLES (4,545956L)"
+    },
+    {
+      "codigo": "GRM",
+      "descripcion": "GRAMO"
+    },
+    {
+      "codigo": "GRO",
+      "descripcion": "GRUESA"
+    },
+    {
+      "codigo": "HLT",
+      "descripcion": "HELECTROLITO"
+    },
+    {
+      "codigo": "LEF",
+      "descripcion": "HOJA"
+    },
+    {
+      "codigo": "SET",
+      "descripcion": "JUEGO"
+    },
+    {
+      "codigo": "KGM",
+      "descripcion": "KILOGRAMO"
+    },
+    {
+      "codigo": "KTM",
+      "descripcion": "KILOMETRO"
+    },
+    {
+      "codigo": "KWH",
+      "descripcion": "KILOVATIO HORA"
+    },
+    {
+      "codigo": "KT",
+      "descripcion": "KIT"
+    },
+    {
+      "codigo": "CA",
+      "descripcion": "LATAS"
+    },
+    {
+      "codigo": "LBR",
+      "descripcion": "LIBRAS"
+    },
+    {
+      "codigo": "LTR",
+      "descripcion": "LITROS"
+    },
+    {
+      "codigo": "MWH",
+      "descripcion": "MEGAWHAT HORA"
+    },
+    {
+      "codigo": "MTR",
+      "descripcion": "METRO"
+    },
+    {
+      "codigo": "MTK",
+      "descripcion": "METRO CUADRADO"
+    },
+    {
+      "codigo": "MTQ",
+      "descripcion": "METRO CUBICO"
+    },
+    {
+      "codigo": "MGM",
+      "descripcion": "MILIGRAMOS"
+    },
+    {
+      "codigo": "MLT",
+      "descripcion": "MILILITRO"
+    },
+    {
+      "codigo": "MMT",
+      "descripcion": "MILIMETRO"
+    },
+    {
+      "codigo": "MMK",
+      "descripcion": "MILIMETRO CUADRADO"
+    },
+    {
+      "codigo": "MMQ",
+      "descripcion": "MILIMETRO CUBICO"
+    },
+    {
+      "codigo": "MLL",
+      "descripcion": "MILLARES"
+    },
+    {
+      "codigo": "MU",
+      "descripcion": "MILLON DE UNIDADES"
+    },
+    {
+      "codigo": "ONZ",
+      "descripcion": "ONZAS"
+    },
+    {
+      "codigo": "PF",
+      "descripcion": "PALETAS"
+    },
+    {
+      "codigo": "PK",
+      "descripcion": "PAQUETE"
+    },
+    {
+      "codigo": "PR",
+      "descripcion": "PAR"
+    },
+    {
+      "codigo": "FOT",
+      "descripcion": "PIES"
+    },
+    {
+      "codigo": "FTK",
+      "descripcion": "PIES CUADRADOS"
+    },
+    {
+      "codigo": "FTQ",
+      "descripcion": "PIES CUBICOS"
+    },
+    {
+      "codigo": "C62",
+      "descripcion": "PIEZAS"
+    },
+    {
+      "codigo": "PG",
+      "descripcion": "PLACAS"
+    },
+    {
+      "codigo": "ST",
+      "descripcion": "PLIEGO"
+    },
+    {
+      "codigo": "INH",
+      "descripcion": "PULGADAS"
+    },
+    {
+      "codigo": "RM",
+      "descripcion": "RESMA"
+    },
+    {
+      "codigo": "DR",
+      "descripcion": "TAMBOR"
+    },
+    {
+      "codigo": "STN",
+      "descripcion": "TONELADA CORTA"
+    },
+    {
+      "codigo": "LTN",
+      "descripcion": "TONELADA LARGA"
+    },
+    {
+      "codigo": "TNE",
+      "descripcion": "TONELADAS"
+    },
+    {
+      "codigo": "TU",
+      "descripcion": "TUBOS"
+    },
+    {
+      "codigo": "NIU",
+      "descripcion": "UNIDAD (BIENES)"
+    },
+    {
+      "codigo": "ZZ",
+      "descripcion": "UNIDAD (SERVICIOS)"
+    },
+    {
+      "codigo": "GLL",
+      "descripcion": "US GALON (3,7843 L)"
+    },
+    {
+      "codigo": "YRD",
+      "descripcion": "YARDA"
+    },
+    {
+      "codigo": "YDK",
+      "descripcion": "YARDA CUADRADA"
+    }
+  ]
+}

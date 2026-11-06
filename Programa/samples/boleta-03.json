@@ -1,0 +1,44 @@
+{
+  "tipoComprobante": "03",
+  "serie": "B001",
+  "fechaEmision": "2026-10-27",
+  "tipoOperacion": "0101",
+  "moneda": "PEN",
+  "establecimientoCodigo": "0001",
+  "adquirente": {
+    "tipoDocumento": "1",
+    "numeroDocumento": "00000001",
+    "razonSocial": "CLIENTE FICTICIO"
+  },
+  "formaPago": { "tipo": "CONTADO" },
+  "lineas": [
+    {
+      "numeroOrden": 1,
+      "codigoProducto": "AZU-001",
+      "descripcion": "AZUCAR RUBIA 1 KG",
+      "cantidad": "2",
+      "unidadMedida": "KGM",
+      "valorUnitario": "4.00",
+      "precioUnitario": { "monto": "4.72", "tipoPrecio": "01" },
+      "valorVenta": "8.00",
+      "afectacionIgv": "10",
+      "tributos": [ { "codigoTributo": "1000", "base": "8.00", "tasa": "18.00", "monto": "1.44" } ],
+      "totalTributos": "1.44"
+    },
+    {
+      "numeroOrden": 2,
+      "descripcion": "BOLSA PLASTICA (ICBPER - PENDIENTE DE NORMA)",
+      "cantidad": "1",
+      "unidadMedida": "NIU",
+      "valorUnitario": "0.00",
+      "afectacionIgv": "30",
+      "icbper": { "cantidadBolsas": 1 },
+      "tributos": []
+    }
+  ],
+  "totales": {
+    "totalGravado": "8.00",
+    "totalIgv": "1.44",
+    "importeTotal": "9.44"
+  }
+}

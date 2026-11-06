@@ -1,0 +1,280 @@
+# Formato 8.1 - Registro de compras (estructura PLE)
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/registro-compras-8-1.schema.yaml
+title: Formato 8.1 - Registro de compras (estructura PLE)
+description: 'Campos 1-42 de la estructura PLE 8.1 transcrita en Git/''Macro excel Registro de compras y ventas excel 2019
+  MOD.xlsm'' (plantilla COMUNITARIA). La plantilla impresa Git/''592044723-FORMATO-8-1.xlsx'' es una versión simplificada
+  (DISC-19). ABC no emite estos comprobantes: los datos vienen de los comprobantes RECIBIDOS de proveedores (registro manual
+  o importación), por eso casi todos los campos son ''interno'' frente a la matriz del Anexo 9-A (que es de emisión). Pendiente:
+  contrastar con la estructura oficial vigente.'
+type: object
+additionalProperties: false
+required:
+- periodo
+- rucAdquirente
+- filas
+x-reglas:
+- REG-141
+- REG-143
+- REG-144
+- REG-145
+- REG-146
+x-estado: CITADA (fuente comunitaria)
+properties:
+  periodo:
+    $ref: common.schema.yaml#/$defs/Periodo
+    x-trazabilidad: interno
+    x-campo-ple: '1'
+  rucAdquirente:
+    $ref: common.schema.yaml#/$defs/Ruc
+    x-trazabilidad: interno
+    description: ABC como comprador.
+  razonSocial:
+    type: string
+    maxLength: 100
+    x-trazabilidad: interno
+  filas:
+    type: array
+    x-trazabilidad: interno
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - cuo
+      - correlativoAsiento
+      - fechaEmision
+      - tipoComprobante
+      - numero
+      - importeTotal
+      - estadoAnotacion
+      properties:
+        cuo:
+          type: string
+          maxLength: 40
+          x-trazabilidad: interno
+          x-campo-ple: '2'
+        correlativoAsiento:
+          type: string
+          pattern: ^[AMC][A-Za-z0-9\-]{1,9}$
+          x-trazabilidad: interno
+          x-campo-ple: '3'
+        fechaEmision:
+          $ref: common.schema.yaml#/$defs/Fecha
+          x-trazabilidad: interno
+          x-campo-ple: '4'
+        fechaVencimientoPago:
+          $ref: common.schema.yaml#/$defs/Fecha
+          x-trazabilidad: interno
+          x-campo-ple: '5'
+        tipoComprobante:
+          type: string
+          pattern: ^\d{2}$
+          x-trazabilidad: interno
+          x-campo-ple: '6'
+          description: Tabla 10 PLE.
+        serie:
+          type: string
+          maxLength: 20
+          x-trazabilidad: interno
+          x-campo-ple: '7'
+        anioDua:
+          type: string
+          pattern: ^\d{4}$
+          x-trazabilidad: interno
+          x-campo-ple: '8'
+        numero:
+          type: string
+          maxLength: 20
+          x-trazabilidad: interno
+          x-campo-ple: '9'
+        numeroFinalConsolidado:
+          type: string
+          maxLength: 20
+          x-trazabilidad: interno
+          x-campo-ple: '10'
+        proveedorTipoDocumento:
+          type: string
+          maxLength: 1
+          x-trazabilidad: interno
+          x-campo-ple: '11'
+          description: Tabla 2 PLE.
+        proveedorNumeroDocumento:
+          type: string
+          maxLength: 15
+          x-trazabilidad: interno
+          x-campo-ple: '12'
+        proveedorRazonSocial:
+          type: string
+          maxLength: 100
+          x-trazabilidad: interno
+          x-campo-ple: '13'
+        baseGravadaDestinoGravado:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: interno
+          x-campo-ple: '14'
+        igvDestinoGravado:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: interno
+          x-campo-ple: '15'
+        baseGravadaDestinoMixto:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: interno
+          x-campo-ple: '16'
+        igvDestinoMixto:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: interno
+          x-campo-ple: '17'
+        baseGravadaSinCredito:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: interno
+          x-campo-ple: '18'
+        igvSinCredito:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: interno
+          x-campo-ple: '19'
+        adquisicionesNoGravadas:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: interno
+          x-campo-ple: '20'
+        isc:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: interno
+          x-campo-ple: '21'
+        icbper:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: interno
+          x-campo-ple: '22'
+        otrosTributosCargos:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: interno
+          x-campo-ple: '23'
+        importeTotal:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: interno
+          x-campo-ple: '24'
+        moneda:
+          type: string
+          pattern: ^[A-Z]{3}$
+          x-trazabilidad: interno
+          x-campo-ple: '25'
+          description: Tabla 4 PLE.
+        tipoCambio:
+          type: string
+          pattern: ^\d\.\d{3}$
+          x-trazabilidad: interno
+          x-campo-ple: '26'
+        documentoModificadoFecha:
+          $ref: common.schema.yaml#/$defs/Fecha
+          x-trazabilidad: interno
+          x-campo-ple: '27'
+        documentoModificadoTipo:
+          type: string
+          pattern: ^\d{2}$
+          x-trazabilidad: interno
+          x-campo-ple: '28'
+        documentoModificadoSerie:
+          type: string
+          maxLength: 20
+          x-trazabilidad: interno
+          x-campo-ple: '29'
+        codigoDependenciaAduanera:
+          type: string
+          maxLength: 3
+          x-trazabilidad: interno
+          x-campo-ple: '30'
+          description: Tabla 11 PLE.
+        documentoModificadoNumero:
+          type: string
+          maxLength: 20
+          x-trazabilidad: interno
+          x-campo-ple: '31'
+        detraccionFecha:
+          $ref: common.schema.yaml#/$defs/Fecha
+          x-trazabilidad: interno
+          x-campo-ple: '32'
+        detraccionNumero:
+          type: string
+          maxLength: 24
+          x-trazabilidad: interno
+          x-campo-ple: '33'
+        marcaRetencion:
+          enum:
+          - ''
+          - '1'
+          x-trazabilidad: interno
+          x-campo-ple: '34'
+        clasificacionBienesServicios:
+          type: string
+          maxLength: 1
+          x-trazabilidad: interno
+          x-campo-ple: '35'
+          description: Tabla 30 PLE.
+        contratoProyecto:
+          type: string
+          maxLength: 12
+          x-trazabilidad: interno
+          x-campo-ple: '36'
+        errorTipo1:
+          enum:
+          - ''
+          - '1'
+          x-trazabilidad: interno
+          x-campo-ple: '37'
+        errorTipo2:
+          enum:
+          - ''
+          - '1'
+          x-trazabilidad: interno
+          x-campo-ple: '38'
+        errorTipo3:
+          enum:
+          - ''
+          - '1'
+          x-trazabilidad: interno
+          x-campo-ple: '39'
+        errorTipo4:
+          enum:
+          - ''
+          - '1'
+          x-trazabilidad: interno
+          x-campo-ple: '40'
+        indicadorMediosPago:
+          enum:
+          - ''
+          - '1'
+          x-trazabilidad: interno
+          x-campo-ple: '41'
+        estadoAnotacion:
+          enum:
+          - '0'
+          - '1'
+          - '6'
+          - '7'
+          - '9'
+          x-trazabilidad: interno
+          x-campo-ple: '42'
+          x-reglas:
+          - REG-146
+      allOf:
+      - if:
+          properties:
+            tipoComprobante:
+              enum:
+              - '07'
+              - '08'
+              - '87'
+              - '88'
+          required:
+          - tipoComprobante
+        then:
+          required:
+          - documentoModificadoFecha
+          - documentoModificadoTipo
+          - documentoModificadoNumero
+      - if:
+          required:
+          - moneda
+        then:
+          required:
+          - tipoCambio

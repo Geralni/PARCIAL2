@@ -1,0 +1,89 @@
+# Lote de importación del legado
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/importacion-legado.schema.yaml
+title: Lote de importación del legado
+description: Estado de un proceso de migración (asíncrono). ADR-005.
+type: object
+additionalProperties: false
+required:
+- id
+- estado
+properties:
+  id:
+    $ref: common.schema.yaml#/$defs/Uuid
+    x-trazabilidad: interno
+  archivo:
+    type: string
+    x-trazabilidad: interno
+  hashArchivo:
+    type: string
+    pattern: ^[a-f0-9]{64}$
+    x-trazabilidad: interno
+    description: 'Idempotencia: el mismo archivo no se importa dos veces (REG-160).'
+  modo:
+    enum:
+    - SIMULACION
+    - DEFINITIVO
+    x-trazabilidad: interno
+  estado:
+    enum:
+    - RECIBIDO
+    - VALIDANDO
+    - EN_CUARENTENA_PARCIAL
+    - COMPLETADO
+    - FALLIDO
+    x-trazabilidad: interno
+  totales:
+    type: object
+    additionalProperties: false
+    x-trazabilidad: interno
+    properties:
+      filasLeidas:
+        type: integer
+        minimum: 0
+        x-trazabilidad: interno
+      movimientosCreados:
+        type: integer
+        minimum: 0
+        x-trazabilidad: interno
+      productosProvisionales:
+        type: integer
+        minimum: 0
+        x-trazabilidad: interno
+      filasEnCuarentena:
+        type: integer
+        minimum: 0
+        x-trazabilidad: interno
+      advertencias:
+        type: integer
+        minimum: 0
+        x-trazabilidad: interno
+  incidencias:
+    type: array
+    x-trazabilidad: interno
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - fila
+      - regla
+      - severidad
+      properties:
+        fila:
+          type: integer
+          minimum: 1
+          x-trazabilidad: interno
+        regla:
+          type: string
+          pattern: ^REG-\d{3}$
+          x-trazabilidad: interno
+        severidad:
+          enum:
+          - ERROR
+          - ADVERTENCIA
+          - INFO
+          x-trazabilidad: interno
+        mensaje:
+          type: string
+          x-trazabilidad: interno

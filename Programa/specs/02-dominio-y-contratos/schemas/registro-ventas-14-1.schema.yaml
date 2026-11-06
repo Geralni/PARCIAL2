@@ -1,0 +1,257 @@
+# Formato 14.1 - Registro de ventas e ingresos (estructura PLE)
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/registro-ventas-14-1.schema.yaml
+title: Formato 14.1 - Registro de ventas e ingresos (estructura PLE)
+description: 'Campos 1-35 de la estructura PLE 14.1 transcrita en Git/''Macro excel Registro de compras y ventas excel 2019
+  MOD.xlsm'' (hoja Estructura; plantilla COMUNITARIA, cita la RS 286-2009-SUNAT) y columnas del formato impreso de Git/''registro
+  ventas formato 14.1.xls''. Extracto en referencias/formatos/. x-campo-ple = número de campo PLE. Las fechas son ISO en el
+  contrato; el adaptador GeneradorRegistrosPort las exporta como DD/MM/AAAA (REG-143). Pendiente: contrastar con la estructura
+  oficial vigente.'
+type: object
+additionalProperties: false
+required:
+- periodo
+- rucEmisor
+- filas
+x-reglas:
+- REG-140
+- REG-143
+- REG-144
+- REG-145
+- REG-146
+x-estado: CITADA (fuente comunitaria)
+properties:
+  periodo:
+    $ref: common.schema.yaml#/$defs/Periodo
+    x-trazabilidad: interno
+    x-campo-ple: '1'
+    description: AAAAMM; en el archivo PLE se exporta AAAAMM00.
+  rucEmisor:
+    $ref: common.schema.yaml#/$defs/Ruc
+    x-trazabilidad: MT-073
+  razonSocial:
+    type: string
+    maxLength: 100
+    x-trazabilidad: MT-075
+  filas:
+    type: array
+    x-trazabilidad: interno
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - cuo
+      - correlativoAsiento
+      - tipoComprobante
+      - serie
+      - numero
+      - importeTotal
+      - estadoAnotacion
+      properties:
+        cuo:
+          type: string
+          maxLength: 40
+          x-trazabilidad: interno
+          x-campo-ple: '2'
+          description: Código Único de la Operación o correlativo del mes.
+        correlativoAsiento:
+          type: string
+          pattern: ^[AMC][A-Za-z0-9\-]{1,9}$
+          x-trazabilidad: interno
+          x-campo-ple: '3'
+          description: Empieza con A, M o C.
+        fechaEmision:
+          $ref: common.schema.yaml#/$defs/Fecha
+          x-trazabilidad: MT-007
+          x-campo-ple: '4'
+        fechaVencimiento:
+          $ref: common.schema.yaml#/$defs/Fecha
+          x-trazabilidad: MT-009
+          x-campo-ple: '5'
+        tipoComprobante:
+          type: string
+          pattern: ^\d{2}$
+          x-trazabilidad: MT-010
+          x-campo-ple: '6'
+          description: Tabla 10 PLE (para 01, 03, 07 y 08 coincide con el catálogo 01; DISC-22).
+        serie:
+          type: string
+          maxLength: 20
+          x-trazabilidad: MT-006
+          x-campo-ple: '7'
+        numero:
+          type: string
+          maxLength: 20
+          x-trazabilidad: MT-006
+          x-campo-ple: '8'
+        numeroFinalConsolidado:
+          type: string
+          maxLength: 20
+          x-trazabilidad: interno
+          x-campo-ple: '9'
+        clienteTipoDocumento:
+          type: string
+          maxLength: 1
+          x-trazabilidad: MT-079
+          x-campo-ple: '10'
+          x-reglas:
+          - REG-045
+          description: Tabla 2 PLE (DISC-21).
+        clienteNumeroDocumento:
+          type: string
+          maxLength: 15
+          x-trazabilidad: MT-078
+          x-campo-ple: '11'
+        clienteRazonSocial:
+          type: string
+          maxLength: 100
+          x-trazabilidad: MT-088
+          x-campo-ple: '12'
+        valorExportacion:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: MT-035
+          x-campo-ple: '13'
+        baseImponibleGravada:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: MT-035
+          x-campo-ple: '14'
+        descuentoBaseImponible:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: MT-043
+          x-campo-ple: '15'
+        igvIpm:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: MT-036
+          x-campo-ple: '16'
+        descuentoIgvIpm:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: interno
+          x-campo-ple: '17'
+        exonerado:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: MT-035
+          x-campo-ple: '18'
+        inafecto:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: MT-035
+          x-campo-ple: '19'
+        isc:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: MT-036
+          x-campo-ple: '20'
+        baseImponibleIvap:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: MT-035
+          x-campo-ple: '21'
+        ivap:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: MT-036
+          x-campo-ple: '22'
+        icbper:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: MT-190
+          x-campo-ple: '23'
+          description: Obligatorio (0.00 por defecto) para 01, 03, 07, 08, 12, 87 y 88 según la estructura PLE.
+        otrosTributosCargos:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: MT-044
+          x-campo-ple: '24'
+        importeTotal:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: MT-046
+          x-campo-ple: '25'
+        moneda:
+          type: string
+          pattern: ^[A-Z]{3}$
+          x-trazabilidad: MT-013
+          x-campo-ple: '26'
+          description: Tabla 4 PLE (solo EUR, JPY, PEN y USD; DISC-21).
+        tipoCambio:
+          type: string
+          pattern: ^\d\.\d{3}$
+          x-trazabilidad: interno
+          x-campo-ple: '27'
+          x-reglas:
+          - REG-145
+        documentoModificadoFecha:
+          $ref: common.schema.yaml#/$defs/Fecha
+          x-trazabilidad: interno
+          x-campo-ple: '28'
+          x-reglas:
+          - REG-144
+        documentoModificadoTipo:
+          type: string
+          pattern: ^\d{2}$
+          x-trazabilidad: MT-100
+          x-campo-ple: '29'
+          x-reglas:
+          - REG-144
+        documentoModificadoSerie:
+          type: string
+          maxLength: 20
+          x-trazabilidad: MT-099
+          x-campo-ple: '30'
+          x-reglas:
+          - REG-144
+        documentoModificadoNumero:
+          type: string
+          maxLength: 20
+          x-trazabilidad: MT-099
+          x-campo-ple: '31'
+          x-reglas:
+          - REG-144
+        contratoProyecto:
+          type: string
+          maxLength: 12
+          x-trazabilidad: interno
+          x-campo-ple: '32'
+        errorTipoCambio:
+          enum:
+          - ''
+          - '1'
+          x-trazabilidad: interno
+          x-campo-ple: '33'
+        indicadorMediosPago:
+          enum:
+          - ''
+          - '1'
+          x-trazabilidad: interno
+          x-campo-ple: '34'
+        estadoAnotacion:
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '8'
+          - '9'
+          x-trazabilidad: interno
+          x-campo-ple: '35'
+          x-reglas:
+          - REG-146
+          description: 0, 1, 2, 8 o 9 según la estructura PLE (RS 286-2009-SUNAT, art. 8 inc. e).
+      allOf:
+      - description: 'REG-144: notas (07, 08, 87, 88) exigen los campos 28-31.'
+        if:
+          properties:
+            tipoComprobante:
+              enum:
+              - '07'
+              - '08'
+              - '87'
+              - '88'
+          required:
+          - tipoComprobante
+        then:
+          required:
+          - documentoModificadoFecha
+          - documentoModificadoTipo
+          - documentoModificadoSerie
+          - documentoModificadoNumero
+      - description: 'REG-145: si hay moneda, el tipo de cambio es obligatorio.'
+        if:
+          required:
+          - moneda
+        then:
+          required:
+          - tipoCambio

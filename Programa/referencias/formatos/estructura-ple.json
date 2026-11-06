@@ -1,0 +1,1645 @@
+{
+  "fuente": {
+    "archivo": "Git/Macro excel Registro de compras y ventas excel 2019 MOD.xlsm",
+    "tipo": "plantilla comunitaria (no oficial)",
+    "nota": "Archivo idéntico (mismo SHA-256) a 'Macro excel ... MOD (1).xlsm'."
+  },
+  "libros": {
+    "8.1": {
+      "titulo": "8.1 REGISTRO DE COMPRAS",
+      "campos": [
+        {
+          "campo": "1",
+          "longitud": "8",
+          "obligatorio": "Si",
+          "llave_unica": "Si",
+          "descripcion": "Periodo",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio 2. Validar formato AAAAMM00 3. 01 <= MM <= 12 4. Menor o igual al periodo informado 5. Si periodo es menor a periodo informado, entonces campo 42 es igual a '9' o '6' o '7' 6. Si el periodo es igual a periodo informado, campo 42 es igual a '0' o '1'"
+        },
+        {
+          "campo": "2",
+          "longitud": "Hasta 40",
+          "obligatorio": "Si",
+          "llave_unica": "Si",
+          "descripcion": "1. Contribuyentes del Régimen General: Número correlativo del mes o Código Único de la Operación (CUO), que es la llave única o clave única o clave primaria del software contable que identifica de manera unívoca el asiento contable en el Libro Diario o del Libro Diario de Formato Simplificado en que se registró la operación. 2. Contribuyentes del Régimen Especial de Renta - RER: Número correlativo del mes.",
+          "formato": "Texto",
+          "observaciones": "1. Obligatorio 2. Si el campo 42 es igual a '0'', 1' o '6' o '7', consignar el Código Único de la Operación (CUO) o número correlativo de la operación que se está informando 3. Si el campo 42 es igual a '9', consignar el Código Único de la Operación (CUO) o número correlativo de la operación original que se modifica 4. No acepta el caracter \"&\" 5. Si el CUO proviene de un asiento contable consolidado se debe adicionar un número secuencial separado de un guión \"-\"."
+        },
+        {
+          "campo": "3",
+          "longitud": "De 2 hasta 10",
+          "obligatorio": "Si",
+          "llave_unica": "Si",
+          "descripcion": "Número correlativo del asiento contable identificado en el campo 2, cuando se utilice el Código Único de la Operación (CUO). El primer dígito debe ser: \"A\" para el asiento de apertura del ejercicio, \"M\" para los asientos de movimientos o ajustes del mes o \"C\" para el asiento de cierre del ejercicio.",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio 2. El primer dígito debe ser: A, M o C 3. En los casos de Contribuyentes del RER:Consignar M-RER. 4. No acepta el caracter \"&\""
+        },
+        {
+          "campo": "4",
+          "longitud": "10",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Fecha de emisión del comprobante de pago o documento",
+          "formato": "DD/MM/AAAA",
+          "observaciones": "1. Obligatorio. 2. Menor o igual al periodo informado. 3. Si fecha de emisión está dentro de los doce meses anteriores al periodo señalado en el campo 1, entonces campo 42 ='6'. 4. Si fecha de emisión está fuera de los doce meses anteriores al periodo señalado en el campo 1, entonces campo 42 ='7'."
+        },
+        {
+          "campo": "5",
+          "longitud": "10",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Fecha de Vencimiento o Fecha de Pago (1)",
+          "formato": "DD/MM/AAAA",
+          "observaciones": "1. Opcional, excepto cuando el campo 6 = '14' en cuyo caso es obligatorio 2. Menor o igual al mes siguiente del periodo informado 3. Menor o igual al mes siguiente del periodo señalado en el campo 1."
+        },
+        {
+          "campo": "6",
+          "longitud": "2",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Tipo de Comprobante de Pago o Documento",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio 2. Validar con parámetro tabla 10 3. No permite los tipos de comprobantes o documentos \"91\", \"97\" y \"98\"de la tabla 10"
+        },
+        {
+          "campo": "7",
+          "longitud": "Hasta 20",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Serie del comprobante de pago o documento. En los casos de la Declaración Única de Aduanas (DUA) o de la Declaración Simplificada de Importación (DSI) se consignará el código de la dependencia Aduanera.",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Optativo 2. Aplicar Regla General (tipo y nro. doc.)"
+        },
+        {
+          "campo": "8",
+          "longitud": "4",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Año de emisión de la DUA o DSI",
+          "formato": "Numérico",
+          "observaciones": "1. Si campo 6 = '50' , '52' registrar número mayor a 1981 y menor o igual al año del periodo informado o al año del periodo señalado en el campo 1."
+        },
+        {
+          "campo": "9",
+          "longitud": "Hasta 20",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Número del comprobante de pago o documento o número de orden del formulario físico o virtual donde conste el pago del impuesto, tratándose de liquidaciones de compra, utilización de servicios prestados por no domiciliados u otros, número de la DUA, de la DSI, de la Liquidación de cobranza u otros documentos emitidos por SUNAT que acrediten el crédito fiscal en la importación de bienes. En caso de optar por anotar el importe total de las operaciones diarias que no otorguen derecho a crédito fiscal en forma consolidada, registrar el número inicial (2).",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio 2. Aplicar Regla General (por tipo de doc.)"
+        },
+        {
+          "campo": "10",
+          "longitud": "Hasta 20",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "En caso de optar por anotar el importe total de las operaciones diarias que no otorguen derecho a crédito fiscal en forma consolidada, registrar el número final (2).",
+          "formato": "Numérico",
+          "observaciones": "1. Si campo 6 = '00','03','05','06','07','08','11','12','13','14','15','16','18','19','23','26','28','30','34','35','36','37','55','56','87' y '88' y campo 9 sea mayor o igual a cero"
+        },
+        {
+          "campo": "11",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Tipo de Documento de Identidad del proveedor",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio, excepto cuando a. campo 6 = '00','03','05','06','07','08','11','12','13','14','15','16','18','19','22','23','26','28','30','34','35','36','37','55','56','87','88', '91', '97' y '98' o b. campo 6 = '07', '08', '87', '88', '97', '98' y campo 28 = '03', '12', '13', '14' y '36' en cuyos casos será opcional 2. Validar con parámetro tabla 2, no acepta el tipo de documento 0"
+        },
+        {
+          "campo": "12",
+          "longitud": "Hasta 15",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Número de RUC del proveedor o número de documento de Identidad, según corresponda.",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio, excepto cuando a. campo 6 = '00','03','05','06','07','08','11','12','13','14','15','16','18','19','22','23','26','28','30','34','35','36','37','55','56','87','88', '91', '97' y '98' o b. campo 6 = '07', '08', '87', '88', '97', '98' y campo 28 = '03', '12', '13', '14' y '36' en cuyos casos será opcional 2. Aplicar Regla General (por tipo de doc.)"
+        },
+        {
+          "campo": "13",
+          "longitud": "Hasta 100",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Apellidos y nombres, denominación o razón social del proveedor. En caso de personas naturales se debe consignar los datos en el siguiente orden: apellido paterno, apellido materno y nombre completo.",
+          "formato": "Texto",
+          "observaciones": "1. Obligatorio, excepto cuando a. campo 6 = '00','03','05','06','07','08','11','12','13','14','15','16','18','19','22','23','26','28','30','34','35','36','37','55','56','87','88', '91', '97' y '98' o b. campo 6 = '07', '08', '87', '88', '97', '98' y campo 28 = '03', '12', '13', '14' y '36'"
+        },
+        {
+          "campo": "14",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Base imponible de las adquisiciones gravadas que dan derecho a crédito fiscal y/o saldo a favor por exportación, destinadas exclusivamente a operaciones gravadas y/o de exportación",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos"
+        },
+        {
+          "campo": "15",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Monto del Impuesto General a las Ventas y/o Impuesto de Promoción Municipal",
+          "formato": "Numérico",
+          "observaciones": "1. Negativo si campo 14 es negativo 2. Positivo si campo 14 es positivo 3. Impuesto que corresponde a la adquisición registrada conforme lo dispuesto en el campo 14."
+        },
+        {
+          "campo": "16",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Base imponible de las adquisiciones gravadas que dan derecho a crédito fiscal y/o saldo a favor por exportación, destinadas a operaciones gravadas y/o de exportación y a operaciones no gravadas",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos"
+        },
+        {
+          "campo": "17",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Monto del Impuesto General a las Ventas y/o Impuesto de Promoción Municipal",
+          "formato": "Numérico",
+          "observaciones": "1. Negativo si campo 16 es negtivo 2. Positivo si campo 16 es positivo 3. Impuesto que corresponde a la adquisición registrada conforme lo dispuesto en el campo 16."
+        },
+        {
+          "campo": "18",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Base imponible de las adquisiciones gravadas que no dan derecho a crédito fiscal y/o saldo a favor por exportación, por no estar destinadas a operaciones gravadas y/o de exportación.",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos"
+        },
+        {
+          "campo": "19",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Monto del Impuesto General a las Ventas y/o Impuesto de Promoción Municipal",
+          "formato": "Numérico",
+          "observaciones": "1. Negativo si campo 18 es negativo. 2. Positivo si campo 18 es positivo. 2. Impuesto que corresponde a la adquisición registrada conforme lo dispuesto en el campo 18."
+        },
+        {
+          "campo": "20",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Valor de las adquisiciones no gravadas",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos"
+        },
+        {
+          "campo": "21",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Monto del Impuesto Selectivo al Consumo en los casos en que el sujeto pueda utilizarlo como deducción.",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos"
+        },
+        {
+          "campo": "22",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Impuesto al Consumo de las Bolsas de Plástico.",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos. 2. Opcional, excepto cuando el campo 6 = '01','03','07','08',\"12\",'87' o '88' en cuyo caso es obligatorio, y el valor por defecto es 0.00."
+        },
+        {
+          "campo": "23",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Otros conceptos, tributos y cargos que no formen parte de la base imponible.",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos"
+        },
+        {
+          "campo": "24",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Importe total de las adquisiciones registradas según comprobante de pago.",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio 2. Acepta negativos 3. Suma de los campos 14 al 23"
+        },
+        {
+          "campo": "25",
+          "longitud": "3",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Código de la Moneda (Tabla 4)",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Validar con parámetro tabla 4"
+        },
+        {
+          "campo": "26",
+          "longitud": "1 entero y 3 decimales",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Tipo de cambio (3).",
+          "formato": "Numérico",
+          "observaciones": "1. #.### 2. Positivo"
+        },
+        {
+          "campo": "27",
+          "longitud": "10",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Fecha de emisión del comprobante de pago que se modifica (4).",
+          "formato": "DD/MM/AAAA",
+          "observaciones": "1. Obligatorio, si campo 6 = '07' o '08' o '87' o '88' o '97' o '98' 2. Menor o igual al periodo informado 3. Menor o igual al periodo señalado en el campo 1."
+        },
+        {
+          "campo": "28",
+          "longitud": "2",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Tipo de comprobante de pago que se modifica (4).",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio si campo 6 = '07' o '08' o '87' o '88' o '97' o '98' 2. Validar con parámetro tabla 10"
+        },
+        {
+          "campo": "29",
+          "longitud": "Hasta 20",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Número de serie del comprobante de pago que se modifica (4).",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio si campo 6 = '07' o '08' o '87' o '88' o '97' o '98' 2. Aplicar Regla General (por tipo de doc.)"
+        },
+        {
+          "campo": "30",
+          "longitud": "3",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Código de la dependencia Aduanera de la Declaración Única de Aduanas (DUA) o de la Declaración Simplificada de Importación (DSI) .",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio si campo 28 = '50' , '52'. Validar con parámetro tabla 11"
+        },
+        {
+          "campo": "31",
+          "longitud": "Hasta 20",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Número del comprobante de pago que se modifica (4).",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio si campo 6 = '07' o '08' o '87' o '88' o '97' o '98'"
+        },
+        {
+          "campo": "32",
+          "longitud": "10",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Fecha de emisión de la Constancia de Depósito de Detracción (5)",
+          "formato": "DD/MM/AAAA",
+          "observaciones": "1. Menor o igual al mes siguiente del periodo informado 2. Menor o igual al mes siguiente del periodo señalado en el campo 1."
+        },
+        {
+          "campo": "33",
+          "longitud": "Hasta 24",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Número de la Constancia de Depósito de Detracción (5)",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Positivo, de ser numérico"
+        },
+        {
+          "campo": "34",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Marca del comprobante de pago sujeto a retención",
+          "formato": "Numérico",
+          "observaciones": "1. Si identifica el comprobante sujeto a retención consignar '1' caso contrario no consignar nada"
+        },
+        {
+          "campo": "35",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Clasificación de los bienes y servicios adquiridos (Tabla 30) Aplicable solo a los contribuyentes que hayan obtenido ingresos mayores a 1,500 UIT en el ejercicio anterior",
+          "formato": "Numérico",
+          "observaciones": "1. Validar con parámetro tabla 30"
+        },
+        {
+          "campo": "36",
+          "longitud": "12",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Identificación del Contrato o del proyecto en el caso de los Operadores de las sociedades irregulares, consorcios, joint ventures u otras formas de contratos de colaboración empresarial, que no lleven contabilidad independiente.",
+          "formato": "Texto",
+          "observaciones": "1. Uso exclusivo para los Operadores de las sociedades irregulares, consorcios, joint ventures u otras formas de contratos de colaboración empresarial, que no lleven contabilidad independiente. En este caso, deberán identificar cada contrato o proyecto."
+        },
+        {
+          "campo": "37",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Error tipo 1: inconsistencia en el tipo de cambio",
+          "formato": "Numérico",
+          "observaciones": "1. El tipo de cambio (campo 26) correspondiente a la fecha de emisión (campo 4) debe ser igual al tipo de cambio (campo 3) correspondiente a la fecha (campo 1) de la Estructura 1 Tipo de Cambio, del mismo periodo, caso contrario se debe consignar \"1\". Esto se aplica a todos los tipos de comprobantes de pago, excepto el tipo 14 (tabla 10). 2. El tipo de cambio (campo 26) correspondiente a la fecha de vencimiento (campo 5) debe ser igual al tipo de cambio (campo 3) correspondiente a la fecha (campo 1) de la Estructura 1 Tipo de Cambio, del mismo periodo, caso contrario se debe consignar \"1\". Esto se aplica sólo al tipo de comprobantes de pago 14 (tabla 10)."
+        },
+        {
+          "campo": "38",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Error tipo 2: inconsistencia por proveedores no habidos",
+          "formato": "Numérico",
+          "observaciones": "1. El número de RUC (campo 12) no debe ser igual al número de RUC (campo 1) de la Estructura 2 Padrón de RUCs no Habidos, siempre que la fecha (campo 4) se encuentre comprendida entre la fecha de inicio en que adquirió la condición de no habido (campo 2) y la la fecha de fin de la condición de no habido (campo3) de la Estructura 2 Padrón de RUCs no Habidos, caso contrario se debe consignar \"1\". Esto se aplica a todos los tipos de comprobantes de pago (tabla 10)."
+        },
+        {
+          "campo": "39",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Error tipo 3: inconsistencia por proveedores que renunciaron a la exoneración del Apéndice I del IGV",
+          "formato": "Numérico",
+          "observaciones": "1. El número de RUC (campo 12) no debe ser igual al número de RUC (campo 1) de la Estructura 3 Padrón de RUCs que renunciaron a la exoneración del IGV, siempre que la fecha (campo 4) sea menor a la fecha que renunció a la exoneración del IGV (campo 2) de la Estructura 3 Padrón de RUCs que renunciaron a la exoneración del IGV, en caso contrario se debe consignar \"1\". Esto se aplica a todos los tipos de comprobantes de pago (tabla 10)."
+        },
+        {
+          "campo": "40",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Error tipo 4: inconsistencia por DNIs que fueron utilizados en las Liquidaciones de Compra y que ya cuentan con RUC",
+          "formato": "Numérico",
+          "observaciones": "1. El número de DNI (campo 12) no debe ser igual al número de DNI (campo 1) de la Estructura 4 Padrón de RUCs asociados al DNI, siempre que la fecha (campo 4) sea menor a la fecha que se crea el RUC (campo 3) de la Estructura 4 Padrón de RUCs asociados al DNI, en caso contrario se debe consignar \"1\". Esto se aplica sólo al tipo de comprobante de pago 04 \"Liquidaciones de Compra\" (tabla 10)."
+        },
+        {
+          "campo": "41",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Indicador de Comprobantes de pago cancelados con medios de pago",
+          "formato": "Numérico",
+          "observaciones": "1. Consignar \"1\" si el comprobante de pago fue cancelado con algún medio de pago establecido en la tabla 1, caso contrario no consignar nada"
+        },
+        {
+          "campo": "42",
+          "longitud": "1",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Estado que identifica la oportunidad de la anotación o indicación si ésta corresponde a un ajuste.",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio 2. Registrar '0' cuando el Comprobante de Pago o documento no da derecho al crédito fiscal. 3. Registrar '1' cuando se anota el Comprobante de Pago o documento en el periodo que se emitió o que se pagó el impuesto, según corresponda, y da derecho al crédito fiscal. 4. Registrar '6' cuando la fecha de emisión del Comprobante de Pago o de pago del impuesto, por operaciones que dan derecho a crédito fiscal, es anterior al periodo de anotación y esta se produce dentro de los doce meses siguientes a la emisión o pago del impuesto, según corresponda. 5. Registrar '7' cuando la fecha de emisión del Comprobante de Pago o pago del impuesto, por operaciones que no dan derecho a crédito fiscal, es anterior al periodo de anotación y esta se produce luego de los doce meses siguientes a la emisión o pago del impuesto, según corresponda. 6. Registrar '9' cuando se realice un ajuste o rectificación en la anotación de la información de una operación registrada en un periodo anterior."
+        },
+        {
+          "campo": "43 al 84",
+          "longitud": "Hasta 200",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Campos de libre utilización.",
+          "formato": "Texto",
+          "observaciones": "1. En caso de no tener la necesidad de utilizarlos, no incluya ni la información ni los palotes."
+        }
+      ],
+      "notas": [
+        "(1) Señalar la fecha correspondiente, de acuerdo a lo establecido en el literal b) del inciso II del numeral 1 del Artículo 10° del Reglamento de la Ley del Impuesto General a las Ventas",
+        "e Impuesto Selectivo al Consumo, aprobado por Decreto Supremo N.° 029-94-EF, publicado el 29.3.1994 y normas modificatorias.",
+        "(2) En caso la anotación corresponda a un ajuste respecto de operaciones registradas antes del 10/07/2011 y siempre que por las mencionadas operaciones",
+        "se lleve un sistema de control computarizado que mantenga la información detallada y que permita efectuar la verificación individual de cada documento.",
+        "(3) Utilizado conforme lo dispuesto en las normas sobre la materia.",
+        "(4) El monto ajustado de la base imponible y/o del impuesto o valor, según corresponda, señalado en las notas de crédito, se consignará en las columnas utilizadas para registrar los datos vinculados",
+        "a las adquisiciones gravadas destinadas a operaciones gravadas y/o de exportación; adquisiciones gravadas destinadas a operaciones gravadas y/o de exportación y a operaciones no gravadas y",
+        "adquisiciones gravadas destinadas a operaciones no gravadas.",
+        "El monto de la base imponible y/o impuesto o valor, según corresponda, señalados en las notas de débito, se consignará en las columnas indicadas en el párrafo anterior.",
+        "(5) Sólo para los casos de detracciones. Es optativo el llenado cuando exista un sistema de enlace que mantenga dicha información y se pueda identificar los comprobantes de pago",
+        "respecto de los cuales se efectuó el depósito."
+      ]
+    },
+    "8.2": {
+      "titulo": "8.2 REGISTRO DE COMPRAS - INFORMACIÓN DE OPERACIONES CON SUJETOS NO DOMICILIADOS",
+      "campos": [
+        {
+          "campo": "1",
+          "longitud": "8",
+          "obligatorio": "Si",
+          "llave_unica": "Si",
+          "descripcion": "Periodo",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio 2. Validar formato AAAAMM00 3. 01 <= MM <= 12 4. Menor o igual al periodo informado 5. Si periodo es menor a periodo informado, entonces campo 36 es igual a '9' 6. Si el periodo es igual a periodo informado, campo 36 es diferente a '9'"
+        },
+        {
+          "campo": "2",
+          "longitud": "Hasta 40",
+          "obligatorio": "Si",
+          "llave_unica": "Si",
+          "descripcion": "1. Contribuyentes del Régimen General: Número correlativo del mes o Código Único de la Operación (CUO), que es la llave única o clave única o clave primaria del software contable que identifica de manera unívoca el asiento contable en el Libro Diario o del Libro Diario de Formato Simplificado en que se registró la operación. 2. Contribuyentes del Régimen Especial de Renta - RER: Número correlativo del mes.",
+          "formato": "Texto",
+          "observaciones": "1. Obligatorio 2. Si el campo 36 es igual a '0', consignar el Código Único de la Operación (CUO) o número correlativo de la operación que se está informando 3. Si el campo 36 es igual a '9', consignar el Código Único de la Operación (CUO) o número correlativo de la operación original que se modifica 4. No acepta el caracter \"&\" 5. Si el CUO proviene de un asiento contable consolidado se debe adicionar un número secuencial separado de un guión \"-\"."
+        },
+        {
+          "campo": "3",
+          "longitud": "De 2 hasta 10",
+          "obligatorio": "Si",
+          "llave_unica": "Si",
+          "descripcion": "Número correlativo del asiento contable identificado en el campo 2, cuando se utilice el Código Único de la Operación (CUO). El primer dígito debe ser: \"A\" para el asiento de apertura del ejercicio, \"M\" para los asientos de movimientos o ajustes del mes o \"C\" para el asiento de cierre del ejercicio.",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio 2. El primer dígito debe ser: A, M o C 3. En los casos de Contribuyentes del RER: Consignar M-RER 4. No acepta el caracter \"&\""
+        },
+        {
+          "campo": "4",
+          "longitud": "10",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Fecha de emisión del comprobante de pago o documento",
+          "formato": "DD/MM/AAAA",
+          "observaciones": "1. Obligatorio 2. Menor o igual al periodo informado"
+        },
+        {
+          "campo": "5",
+          "longitud": "2",
+          "obligatorio": "Si",
+          "llave_unica": "Si",
+          "descripcion": "Tipo de Comprobante de Pago o Documento del sujeto no domiciliado",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio 2. Sólo permite los tipos de documentos \"00\", \"91\", \"97\" y \"98\"de la tabla 10 3. Aplicar Regla General (por tipo de comprobante)"
+        },
+        {
+          "campo": "6",
+          "longitud": "Hasta 20",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Serie del comprobante de pago o documento.",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Opcional. 2. No aplica Regla General ( por tipo de comprobante)"
+        },
+        {
+          "campo": "7",
+          "longitud": "Hasta 20",
+          "obligatorio": "Si",
+          "llave_unica": "Si",
+          "descripcion": "Número del comprobante de pago o documento.",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio. 2. Aplica Regla General ( por tipo de comprobante)"
+        },
+        {
+          "campo": "8",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Valor de las adquisiciones",
+          "formato": "Numérico",
+          "observaciones": ""
+        },
+        {
+          "campo": "9",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Otros conceptos adicionales",
+          "formato": "Numérico",
+          "observaciones": ""
+        },
+        {
+          "campo": "10",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Importe total de las adquisiciones registradas según comprobante de pago o documento",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio"
+        },
+        {
+          "campo": "11",
+          "longitud": "2",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Tipo de Comprobante de Pago o Documento que sustenta el crédito fiscal",
+          "formato": "Numérico",
+          "observaciones": "1. Sólo permite los tipos de documentos \"00\", \"46\", \"50\", \"51\", \"52\" y \"53\" de la tabla 10 2. Aplicar Regla General (por tipo de doc.)"
+        },
+        {
+          "campo": "12",
+          "longitud": "Hasta 20",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Serie del comprobante de pago o documento que sustenta el crédito fiscal. En los casos de la Declaración Única de Aduanas (DUA) o de la Declaración Simplificada de Importación (DSI) se consignará el código de la dependencia Aduanera.",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Aplicar Regla General (tipo y nro. doc.)"
+        },
+        {
+          "campo": "13",
+          "longitud": "4",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Año de emisión de la DUA o DSI que sustenta el crédito fiscal",
+          "formato": "Numérico",
+          "observaciones": "1. Si campo 11= '50' , '52' registrar número mayor a 1981 y menor o igual al año del periodo informado o al año del periodo señalado en el campo 1."
+        },
+        {
+          "campo": "14",
+          "longitud": "Hasta 20",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Número del comprobante de pago o documento o número de orden del formulario físico o virtual donde conste el pago del impuesto, tratándose de la utilización de servicios prestados por no domiciliados u otros, número de la DUA o de la DSI, que sustente el crédito fiscal.",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Aplicar Regla General (por tipo de doc.)"
+        },
+        {
+          "campo": "15",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Monto de retención del IGV",
+          "formato": "Numérico",
+          "observaciones": ""
+        },
+        {
+          "campo": "16",
+          "longitud": "3",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Código de la Moneda (Tabla 4)",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio 2. Validar con parámetro tabla 4"
+        },
+        {
+          "campo": "17",
+          "longitud": "1 entero y 3 decimales",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Tipo de cambio",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio si campo 16 <> \"PEN\" 2. #.### 3. Positivo"
+        },
+        {
+          "campo": "18",
+          "longitud": "4",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Pais de la residencia del sujeto no domiciliado",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Validar con parámetro tabla 35"
+        },
+        {
+          "campo": "19",
+          "longitud": "Hasta 100",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Apellidos y nombres, denominación o razón social del sujeto no domiciliado. En caso de personas naturales se debe consignar los datos en el siguiente orden: apellido paterno, apellido materno y nombre completo.",
+          "formato": "Texto",
+          "observaciones": ""
+        },
+        {
+          "campo": "20",
+          "longitud": "Hasta 100",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Domicilio en el extranjero del sujeto no domiciliado",
+          "formato": "Texto",
+          "observaciones": ""
+        },
+        {
+          "campo": "21",
+          "longitud": "Hasta 15",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Número de identificación del sujeto no domiciliado",
+          "formato": "Texto",
+          "observaciones": ""
+        },
+        {
+          "campo": "22",
+          "longitud": "Hasta 15",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Número de identificación fiscal del beneficiario efectivo de los pagos",
+          "formato": "Texto",
+          "observaciones": ""
+        },
+        {
+          "campo": "23",
+          "longitud": "Hasta 100",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Apellidos y nombres, denominación o razón social del beneficiario efectivo de los pagos. En caso de personas naturales se debe consignar los datos en el siguiente orden: apellido paterno, apellido materno y nombre completo.",
+          "formato": "Texto",
+          "observaciones": ""
+        },
+        {
+          "campo": "24",
+          "longitud": "4",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Pais de la residencia del beneficiario efectivo de los pagos",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Validar con parámetro tabla 35"
+        },
+        {
+          "campo": "25",
+          "longitud": "2",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Vínculo entre el contribuyente y el residente en el extranjero",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Validar con parámetro tabla 27"
+        },
+        {
+          "campo": "26",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Renta Bruta",
+          "formato": "Numérico",
+          "observaciones": ""
+        },
+        {
+          "campo": "27",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Deducción / Costo de Enajenación de bienes de capital",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos"
+        },
+        {
+          "campo": "28",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Renta Neta",
+          "formato": "Numérico",
+          "observaciones": ""
+        },
+        {
+          "campo": "29",
+          "longitud": "Hasta 3 enteros y 2 decimales",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Tasa de retención",
+          "formato": "Numérico",
+          "observaciones": ""
+        },
+        {
+          "campo": "30",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Impuesto retenido",
+          "formato": "Numérico",
+          "observaciones": ""
+        },
+        {
+          "campo": "31",
+          "longitud": "2",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Convenios para evitar la doble imposición",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio 2. Validar con parámetro tabla 25"
+        },
+        {
+          "campo": "32",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Exoneración aplicada",
+          "formato": "Numérico",
+          "observaciones": "1. Validar con parámetro tabla 33"
+        },
+        {
+          "campo": "33",
+          "longitud": "2",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Tipo de Renta",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio 2. Validar con parámetro tabla 31"
+        },
+        {
+          "campo": "34",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Modalidad del servicio prestado por el no domiciliado",
+          "formato": "Numérico",
+          "observaciones": "1. Validar con parámetro tabla 32"
+        },
+        {
+          "campo": "35",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Aplicación del penultimo parrafo del Art. 76° de la Ley del Impuesto a la Renta",
+          "formato": "Numérico",
+          "observaciones": "1. Consignar 1 si aplica"
+        },
+        {
+          "campo": "36",
+          "longitud": "1",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Estado que identifica la oportunidad de la anotación o indicación si ésta corresponde a un ajuste.",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio 2. Registrar '0' cuando la operación (anotación optativa sin efecto en el IGV) corresponde al periodo. 3. Registrar '9' cuando se realice un ajuste o rectificación en la anotación de la información de una operación registrada en un periodo anterior."
+        },
+        {
+          "campo": "37 al 72",
+          "longitud": "Hasta 200",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Campos de libre utilización.",
+          "formato": "Texto",
+          "observaciones": "1. En caso de no tener la necesidad de utilizarlos, no incluya ni la información ni los palotes."
+        }
+      ],
+      "notas": []
+    },
+    "8.3": {
+      "titulo": "8.3 REGISTRO DE COMPRAS SIMPLIFICADO",
+      "campos": [
+        {
+          "campo": "1",
+          "longitud": "8",
+          "obligatorio": "Si",
+          "llave_unica": "Si",
+          "descripcion": "Periodo",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio 2. Validar formato AAAAMM00 3. 01 <= MM <= 12 4. Menor o igual al periodo informado 5. Si periodo es menor a periodo informado, entonces campo 32 es igual a '9' o '6' o '7' 6. Si el periodo es igual a periodo informado, campo 32 es igual a '0' o '1'"
+        },
+        {
+          "campo": "2",
+          "longitud": "Hasta 40",
+          "obligatorio": "Si",
+          "llave_unica": "Si",
+          "descripcion": "1. Contribuyentes del Régimen General: Número correlativo del mes o Código Único de la Operación (CUO), que es la llave única o clave única o clave primaria del software contable que identifica de manera unívoca el asiento contable en el Libro Diario o del Libro Diario de Formato Simplificado en que se registró la operación. 2. Contribuyentes del Régimen Especial de Renta - RER: Número correlativo del mes.",
+          "formato": "Texto",
+          "observaciones": "1. Obligatorio 2. Si el campo 32 es igual a '0'', 1' o '6' o '7', consignar el Código Único de la Operación (CUO) o número correlativo de la operación que se está informando 3. Si el campo 32 es igual a '9', consignar el Código Único de la Operación (CUO) o número correlativo de la operación original que se modifica 4. No acepta el caracter \"&\" 5. Si el CUO proviene de un asiento contable consolidado se debe adicionar un número secuencial separado de un guión \"-\"."
+        },
+        {
+          "campo": "3",
+          "longitud": "De 2 hasta 10",
+          "obligatorio": "Si",
+          "llave_unica": "Si",
+          "descripcion": "Número correlativo del asiento contable identificado en el campo 2, cuando se utilice el Código Único de la Operación (CUO). El primer dígito debe ser: \"A\" para el asiento de apertura del ejercicio, \"M\" para los asientos de movimientos o ajustes del mes o \"C\" para el asiento de cierre del ejercicio.",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio 2. El primer dígito debe ser: A, M o C 3. En los casos de Contribuyentes del RER: Consignar M-RER 4. No acepta el caracter \"&\""
+        },
+        {
+          "campo": "4",
+          "longitud": "10",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Fecha de emisión del comprobante de pago o documento",
+          "formato": "DD/MM/AAAA",
+          "observaciones": "1. Obligatorio 2. Menor o igual al periodo informado 5. Si fecha de emisión está dentro de los doce meses anteriores al periodo señalado en el campo 1, entonces campo 32 = '6' 6. Si fecha de emisión está fuera de los doce meses anteriores al periodo señalado en el campo 1, entonces campo 32 = '7'"
+        },
+        {
+          "campo": "5",
+          "longitud": "10",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Fecha de Vencimiento o Fecha de Pago (1)",
+          "formato": "DD/MM/AAAA",
+          "observaciones": "1. Opcional, excepto cuando el campo 6 = '14' en cuyo caso es obligatorio 2. Menor o igual al mes siguiente del periodo informado 3. Menor o igual al mes siguiente del periodo señalado en el campo 1."
+        },
+        {
+          "campo": "6",
+          "longitud": "2",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Tipo de Comprobante de Pago o Documento",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio 2. Validar con parámetro tabla 10 3. Aplicar Regla General (tipo y nro. doc.)"
+        },
+        {
+          "campo": "7",
+          "longitud": "Hasta 20",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Serie del comprobante de pago o documento. En los casos de la Declaración Única de Aduanas (DUA) o de la Declaración Simplificada de Importación (DSI) se consignará el código de la dependencia Aduanera.",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio 2. Aplicar Regla General (tipo y nro. doc.)"
+        },
+        {
+          "campo": "8",
+          "longitud": "Hasta 20",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Número del comprobante de pago o documento o número de orden del formulario físico o virtual donde conste el pago del impuesto, tratándose de liquidaciones de compra, utilización de servicios prestados por no domiciliados u otros, número de la DUA, de la DSI, de la Liquidación de cobranza u otros documentos emitidos por SUNAT que acrediten el crédito fiscal en la importación de bienes. En caso de optar por anotar el importe total de las operaciones diarias que no otorguen derecho a crédito fiscal en forma consolidada, registrar el número inicial (2).",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio 2. Aplicar Regla General (por tipo de doc.)"
+        },
+        {
+          "campo": "9",
+          "longitud": "Hasta 20",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "En caso de optar por anotar el importe total de las operaciones diarias que no otorguen derecho a crédito fiscal en forma consolidada, registrar el número final (2).",
+          "formato": "Numérico",
+          "observaciones": "1. Si campo 6 = '00','03','05','06','11','12','13','14','15','16','18','19','23','26','28','30','36','37','55','56', campo 8 debe ser positivo o cero"
+        },
+        {
+          "campo": "10",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Tipo de Documento de Identidad del proveedor",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio, excepto cuando campo 6 = '00','03','05','06','11','12','13','14','15','16','18','19','22','23','26','28','30','36','37','55','56','91', en cuyos casos será opcional 2. Validar con parámetro tabla 2, no acepta el tipo de documento 0"
+        },
+        {
+          "campo": "11",
+          "longitud": "Hasta 15",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Número de RUC del proveedor o número de documento de Identidad, según corresponda.",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio, excepto cuando campo 6 = '00','03','05','06','11','12','13','14','15','16','18','19','22','23','26','28','30','36','37','55','56','91', en cuyos casos será opcional 2. Aplicar Regla General (por tipo de doc.)"
+        },
+        {
+          "campo": "12",
+          "longitud": "Hasta 100",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Apellidos y nombres, denominación o razón social del proveedor. En caso de personas naturales se debe consignar los datos en el siguiente orden: apellido paterno, apellido materno y nombre completo.",
+          "formato": "Texto",
+          "observaciones": "1. Obligatorio, excepto cuando campo 6 = '00','03','05','06','11','12','13','14','15','16','18','19','22','23','26','28','30','36','37','55','56','91'."
+        },
+        {
+          "campo": "13",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Base imponible de las adquisiciones gravadas que dan derecho a crédito fiscal y/o saldo a favor por exportación, destinadas exclusivamente a operaciones gravadas y/o de exportación",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos"
+        },
+        {
+          "campo": "14",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Monto del Impuesto General a las Ventas y/o Impuesto de Promoción Municipal",
+          "formato": "Numérico",
+          "observaciones": "1. Negativo si campo 13 es negtivo 2. Positivo si campo 13 es positivo 3. Impuesto que corresponde a la adquisición registrada conforme lo dispuesto en el campo 13."
+        },
+        {
+          "campo": "15",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Impuesto al Consumo de las Bolsas de Plástico.",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos. 2. Opcional, excepto cuando el campo 6 = '01', '03', '07', '08', \"12\", '87' o '88' en cuyo caso es obligatorio, y el valor por defecto es 0.00."
+        },
+        {
+          "campo": "16",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Otros conceptos, tributos y cargos que no formen parte de la base imponible.",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos"
+        },
+        {
+          "campo": "17",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Importe total de las adquisiciones registradas según comprobante de pago.",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio 2. Acepta negativos 3. Suma de los campos 13, 14, 15 y 16."
+        },
+        {
+          "campo": "18",
+          "longitud": "3",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Código de la Moneda (Tabla 4)",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Validar con parámetro tabla 4"
+        },
+        {
+          "campo": "19",
+          "longitud": "1 entero y 3 decimales",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Tipo de cambio (3).",
+          "formato": "Numérico",
+          "observaciones": "1. #.### 2. Positivo"
+        },
+        {
+          "campo": "20",
+          "longitud": "10",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Fecha de emisión del comprobante de pago que se modifica (4).",
+          "formato": "DD/MM/AAAA",
+          "observaciones": "1. Obligatorio, si campo 6 = '07' o '08' o '87' o '88' 2. Menor o igual al periodo informado 3. Menor o igual al periodo señalado en el campo 1."
+        },
+        {
+          "campo": "21",
+          "longitud": "2",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Tipo de comprobante de pago que se modifica (4).",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio si campo 6 = '07' o '08' o '87' o '88' 2. Validar con parámetro tabla 10"
+        },
+        {
+          "campo": "22",
+          "longitud": "Hasta 20",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Número de serie del comprobante de pago que se modifica (4).",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio si campo 6 = '07' o '08' o '87' o '88' 2. Aplicar Regla General (por tipo de doc.)"
+        },
+        {
+          "campo": "23",
+          "longitud": "Hasta 20",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Número del comprobante de pago que se modifica (4).",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio si campo 6 = '07' o '08' o '87' o '88'"
+        },
+        {
+          "campo": "24",
+          "longitud": "10",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Fecha de emisión de la Constancia de Depósito de Detracción (6)",
+          "formato": "DD/MM/AAAA",
+          "observaciones": "1. Menor o igual al mes siguiente del periodo informado 2. Menor o igual al mes siguiente del periodo señalado en el campo 1."
+        },
+        {
+          "campo": "25",
+          "longitud": "Hasta 24",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Número de la Constancia de Depósito de Detracción (6)",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Positivo, de ser numérico"
+        },
+        {
+          "campo": "26",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Marca del comprobante de pago sujeto a retención",
+          "formato": "Numérico",
+          "observaciones": "1. Si identifica el comprobante sujeto a retención consignar '1' caso contrario no consignar nada"
+        },
+        {
+          "campo": "27",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Clasificación de los bienes y servicios adquiridos (Tabla 30) Aplicable solo a los contribuyentes que hayan obtenido ingresos mayores a 1,500 UIT en el ejercicio anterior",
+          "formato": "Numérico",
+          "observaciones": "1. Validar con parámetro tabla 30"
+        },
+        {
+          "campo": "28",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Error tipo 1: inconsistencia en el tipo de cambio",
+          "formato": "Numérico",
+          "observaciones": "1. El tipo de cambio (campo 19) correspondiente a la fecha de emisión (campo 4) debe ser igual al tipo de cambio (campo 3) correspondiente a la fecha (campo 1) de la Estructura 1 Tipo de Cambio, del mismo periodo, caso contrario se debe consignar \"1\". Esto se aplica a todos los tipos de comprobantes de pago, excepto el tipo 14 (tabla 10). 2. El tipo de cambio (campo 19) correspondiente a la fecha de vencimiento (campo 5) debe ser igual al tipo de cambio (campo 3) correspondiente a la fecha (campo 1) de la Estructura 1 Tipo de Cambio, del mismo periodo, caso contrario se debe consignar \"1\". Esto se aplica sólo al tipo de comprobantes de pago 14 (tabla 10)."
+        },
+        {
+          "campo": "29",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Error tipo 2: inconsistencia por proveedores no habidos",
+          "formato": "Numérico",
+          "observaciones": "1. El número de RUC (campo 11) no debe ser igual al número de RUC (campo 1) de la Estructura 2 Padrón de RUCs no Habidos, siempre que la fecha (campo 4) se encuentre comprendida entre la fecha de inicio en que adquirió la condición de no habido (campo 2) y la la fecha de fin de la condición de no habido (campo3) de la Estructura 2 Padrón de RUCs no Habidos, caso contrario se debe consignar \"1\". Esto se aplica a todos los tipos de comprobantes de pago (tabla 10)."
+        },
+        {
+          "campo": "30",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Error tipo 3: inconsistencia por proveedores que renunciaron a la exoneración del Apéndice I del IGV",
+          "formato": "Numérico",
+          "observaciones": "1. El número de RUC (campo 11) no debe ser igual al número de RUC (campo 1) de la Estructura 3 Padrón de RUCs que renunciaron a la exoneración del IGV, siempre que la fecha (campo 4) sea menor a la fecha que renunció a la exoneración del IGV (campo 2) de la Estructura 3 Padrón de RUCs que renunciaron a la exoneración del IGV, caso contrario se debe consignar \"1\". Esto se aplica a todos los tipos de comprobantes de pago (tabla 10)."
+        },
+        {
+          "campo": "31",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Indicador de Comprobantes de pago cancelados con medios de pago",
+          "formato": "Numérico",
+          "observaciones": "1. Consignar \"1\" si el comprobante de pago fue cancelado con algún medio de pago establecido en la tabla 1, caso contrario no consignar nada"
+        },
+        {
+          "campo": "32",
+          "longitud": "1",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Estado que identifica la oportunidad de la anotación o indicación si ésta corresponde a un ajuste.",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio 2. Registrar '0' cuando el Comprobante de Pago o documento no da derecho al crédito fiscal. 3. Registrar '1' cuando se anota el Comprobante de Pago o documento en el periodo que se emitió o que se pagó el impuesto, según corresponda, y da derecho al crédito fiscal. 4. Registrar '6' cuando la fecha de emisión del Comprobante de Pago o de pago del impuesto, por operaciones que dan derecho a crédito fiscal, es anterior al periodo de anotación y esta se produce dentro de los doce meses siguientes a la emisión o pago del impuesto, según corresponda. 5. Registrar '7' cuando la fecha de emisión del Comprobante de Pago o pago del impuesto, por operaciones que no dan derecho a crédito fiscal, es anterior al periodo de anotación y esta se produce luego de los doce meses siguientes a la emisión o pago del impuesto, según corresponda. 6. Registrar '9' cuando se realice un ajuste o rectificación en la anotación de la información de una operación registrada en un periodo anterior."
+        },
+        {
+          "campo": "33 al 64",
+          "longitud": "Hasta 200",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Campos de libre utilización.",
+          "formato": "Texto",
+          "observaciones": "1. En caso de no tener la necesidad de utilizarlos, no incluya ni la información ni los palotes."
+        }
+      ],
+      "notas": []
+    },
+    "14.1": {
+      "titulo": "14.1 REGISTRO DE VENTAS E INGRESOS",
+      "campos": [
+        {
+          "campo": "1",
+          "longitud": "8",
+          "obligatorio": "Si",
+          "llave_unica": "Si",
+          "descripcion": "Periodo",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio 2. Validar formato AAAAMM00 3. 01 <= MM <= 12 4. Menor o igual al periodo informado 5. Si el periodo es igual a periodo informado, campo 35 es igual a '1' o '2' o '0' 6. Si periodo es menor a periodo informado, entonces campo 35 es diferente a a '1'"
+        },
+        {
+          "campo": "2",
+          "longitud": "Hasta 40",
+          "obligatorio": "Si",
+          "llave_unica": "Si",
+          "descripcion": "1. Contribuyentes del Régimen General: Número correlativo del mes o Código Único de la Operación (CUO), que es la llave única o clave única o clave primaria del software contable que identifica de manera unívoca el asiento contable en el Libro Diario o del Libro Diario de Formato Simplificado en que se registró la operación. 2. Contribuyentes del Régimen Especial de Renta - RER: Número correlativo del mes",
+          "formato": "Texto",
+          "observaciones": "1. Obligatorio 2. Si el campo 35 es igual a '0', '1' o '2', consignar el Código Único de la Operación (CUO) o número correlativo de la operación que se está informando 3. Si el campo 35 es igual a '8', consignar el Código Único de la Operación (CUO) o número correlativo que corresponda al periodo en que se omitió la anotación. Para modificaciones posteriores se hará referencia a este Código Único de la Operación (CUO) o número correlativo 4. Si el campo 35 es igual a '9', consignar el Código Único de la Operación (CUO) o número correlativo de la operación original que se modifica 5. No acepta el caracter \"&\" 6. Si el CUO proviene de un asiento contable consolidado se debe adicionar un número secuencial separado de un guión \"-\"."
+        },
+        {
+          "campo": "3",
+          "longitud": "De 2 hasta 10",
+          "obligatorio": "Si",
+          "llave_unica": "Si",
+          "descripcion": "Número correlativo del asiento contable identificado en el campo 2, cuando se utilice el Código Único de la Operación (CUO). El primer dígito debe ser: \"A\" para el asiento de apertura del ejercicio, \"M\" para los asientos de movimientos o ajustes del mes o \"C\" para el asiento de cierre del ejercicio.",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio 2. El primer dígito debe ser: A, M o C 3. En los casos de Contribuyentes del RER: Consignar M-RER 4. No acepta el caracter \"&\""
+        },
+        {
+          "campo": "4",
+          "longitud": "10",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Fecha de emisión del Comprobante de Pago",
+          "formato": "DD/MM/AAAA",
+          "observaciones": "1. Obligatorio, excepto cuando el campo 35 = '2' 2. Menor o igual al periodo informado 3. Menor o igual al periodo señalado en el campo 1."
+        },
+        {
+          "campo": "5",
+          "longitud": "10",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Fecha de Vencimiento o Fecha de Pago (1)",
+          "formato": "DD/MM/AAAA",
+          "observaciones": "1. Solo es obligatorio cuando el campo 6 = '14' y campo 35 <> '2' 2. Menor o igual al mes siguiente del periodo informado 3. Menor o igual al mes siguiente del periodo señalado en el campo 1."
+        },
+        {
+          "campo": "6",
+          "longitud": "2",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Tipo de Comprobante de Pago o Documento",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio 2. Validar con parámetro tabla 10"
+        },
+        {
+          "campo": "7",
+          "longitud": "Hasta 20",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Número serie del comprobante de pago o documento o número de serie de la maquina registradora",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio 2. Aplicar Regla General (por tipo de doc.)"
+        },
+        {
+          "campo": "8",
+          "longitud": "Hasta 20",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Número del comprobante de pago o documento. Para efectos del registro de tickets o cintas emitidos por máquinas registradoras que no otorguen derecho a crédito fiscal de acuerdo a las normas de Comprobantes de Pago y opten por anotar el importe total de las operaciones realizadas por día y por máquina registradora, registrar el número inicial (2) Tratándose del IVAP, el usuario del servicio de pilado anotará la constancia de depósito por los retiros de bienes que hubiere efectuado",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio 2. Aplicar Regla General (por tipo de doc.)"
+        },
+        {
+          "campo": "9",
+          "longitud": "Hasta 20",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "1. Para efectos del registro de tickets o cintas emitidos por máquinas registradoras que no otorguen derecho a crédito fiscal de acuerdo a las normas de Comprobantes de Pago y opten por anotar el importe total de las operaciones realizadas por día y por máquina registradora, registrar el número final (2). 2. Se permite la consolidación diaria de las Boletas de Venta emitidas de manera electrónica. 3. Se permite la consolidación diaria de los documentos tipo “18” siempre que dichos documentos no otorguen derecho a crédito fiscal.",
+          "formato": "Numérico",
+          "observaciones": "1. Solo se permite cuando el tipo de documento = '00', '03','12', \"13\",\"18\", \"87\" y \"88\". 2. No se registra nada en este campo cuando el tipo de documento es <> '00', '03','12', \"13\",\"18\", \"87\" y \"88\". 3. A partir del 1 de julio de 2016, para tipo documento = '03' se deberá registrar de manera detallada cuando el monto total sea igual o mayor a S/ 700.00."
+        },
+        {
+          "campo": "10",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Tipo de Documento de Identidad del cliente",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio, excepto cuando a. campo 6 = '00','05','06','07','08','11','12','13','14','15','16','18','19','23','26','28','30','34','35','36','37','55','56','87' y '88' o b. campo 35 = '2' o c. campo 6 = '07', '08', '87', '88' y campo 29 = '03', '12', '13', '14' y '36' d. campo 13 > 0.00 e. campo 25 < 700.00 y campo 6 = '03' y'12' f. campo 9 <> vacio. en cuyos casos será opcional y no se aceptara el valor 0 2. Validar con parámetro tabla 2."
+        },
+        {
+          "campo": "11",
+          "longitud": "Hasta 15",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Número de Documento de Identidad del cliente",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio excepto cuando a. campo 6 = '00','05','06','07','08','11','12','13','14','15','16','18','19','23','26','28','30','34','35','36','37','55','56','87' y '88' o b. campo 35 = '2' o c. campo 6 = '07', '08', '87', '88' y campo 29 = '03', '12', '13', '14' y '36' d. campo 13 > 0.00 e. campo 25 < 700.00 y campo 6 = '03' y '12' f. campo 9 <> vacio en cuyos casos será opcional 2. Aplicar Regla General (tipo y nro. doc.)"
+        },
+        {
+          "campo": "12",
+          "longitud": "Hasta 100",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Apellidos y nombres, denominación o razón social del cliente. En caso de personas naturales se debe consignar los datos en el siguiente orden: Apellido paterno, apellido materno y nombre completo.",
+          "formato": "Texto",
+          "observaciones": "1. Obligatorio excepto cuando a. campo 6 = '00','05','06','07','08','11','12','13','14','15','16','18','19','23','26','28','30','34','35','36','37','55','56','87' y '88' o b. campo 35 = '2' o c. campo 6 = '07', '08', '87', '88' y campo 29 = '03', '12', '13', '14' y '36' d. campo 13 > 0.00 e. campo 25 < 700.00 y campo 6 = '03' y '12' f. campo 9 <> vacio"
+        },
+        {
+          "campo": "13",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Valor facturado de la exportación",
+          "formato": "Numérico",
+          "observaciones": ""
+        },
+        {
+          "campo": "14",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Base imponible de la operación gravada (4)",
+          "formato": "Numérico",
+          "observaciones": ""
+        },
+        {
+          "campo": "15",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Descuento de la Base Imponible",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos"
+        },
+        {
+          "campo": "16",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Impuesto General a las Ventas y/o Impuesto de Promoción Municipal",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos"
+        },
+        {
+          "campo": "17",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Descuento del Impuesto General a las Ventas y/o Impuesto de Promoción Municipal",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos"
+        },
+        {
+          "campo": "18",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Importe total de la operación exonerada",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos"
+        },
+        {
+          "campo": "19",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Importe total de la operación inafecta",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos"
+        },
+        {
+          "campo": "20",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Impuesto Selectivo al Consumo, de ser el caso.",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos"
+        },
+        {
+          "campo": "21",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Base imponible de la operación gravada con el Impuesto a las Ventas del Arroz Pilado",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio si campo 6 = '49' y campo 35 <> '2' 2. Acepta negativos"
+        },
+        {
+          "campo": "22",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Impuesto a las Ventas del Arroz Pilado",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio si campo 6 = '49' y campo 35 <> '2' 2. Acepta negativos"
+        },
+        {
+          "campo": "23",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Impuesto al Consumo de las Bolsas de Plástico.",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos. 2. Opcional, excepto cuando el campo 6 = '01', '03', '07', '08', '12', '87' o '88' en cuyo caso es obligatorio, y el valor por defecto es 0.00."
+        },
+        {
+          "campo": "24",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Otros conceptos, tributos y cargos que no forman parte de la base imponible",
+          "formato": "Numérico",
+          "observaciones": ""
+        },
+        {
+          "campo": "25",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Importe total del comprobante de pago",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos"
+        },
+        {
+          "campo": "26",
+          "longitud": "3",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Código de la Moneda (Tabla 4)",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Validar con parámetro tabla 4"
+        },
+        {
+          "campo": "27",
+          "longitud": "1 entero y 3 decimales",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Tipo de cambio (5)",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio si campo 26 contiene dato 2. #.### 3. Positivo"
+        },
+        {
+          "campo": "28",
+          "longitud": "10",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Fecha de emisión del comprobante de pago o documento original que se modifica (6) o documento referencial al documento que sustenta el crédito fiscal",
+          "formato": "DD/MM/AAAA",
+          "observaciones": "1. Obligatorio si campo 6 = '07' o '08' o '87' o '88' y campo 35 <> '2' 3. Menor o igual al periodo informado 4. Menor o igual al periodo señalado en el campo 1."
+        },
+        {
+          "campo": "29",
+          "longitud": "2",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Tipo del comprobante de pago que se modifica (6)",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio si campo 6 = '07' o '08' o '87' o '88' y campo 35 <> '2' 2. Validar con parametro tabla 10"
+        },
+        {
+          "campo": "30",
+          "longitud": "Hasta 20",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Número de serie del comprobante de pago que se modifica (6) o Código de la Dependencia Aduanera",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio si campo 6 = '07' o '08' o '87' o '88' y campo 35 <> '2'"
+        },
+        {
+          "campo": "31",
+          "longitud": "Hasta 20",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Número del comprobante de pago que se modifica (6) o Número de la DUA, de corresponder",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio si campo 6 = '07' o '08' o '87' o '88' y campo 35 <> '2'"
+        },
+        {
+          "campo": "32",
+          "longitud": "12",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Identificación del Contrato o del proyecto en el caso de los Operadores de las sociedades irregulares, consorcios, joint ventures u otras formas de contratos de colaboración empresarial, que no lleven contabilidad independiente.",
+          "formato": "Texto",
+          "observaciones": "1. Uso exclusivo para los Operadores de las sociedades irregulares, consorcios, joint ventures u otras formas de contratos de colaboración empresarial, que no lleven contabilidad independiente. En este caso, deberán identificar cada contrato o proyecto."
+        },
+        {
+          "campo": "33",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Error tipo 1: inconsistencia en el tipo de cambio",
+          "formato": "Numérico",
+          "observaciones": "1. El tipo de cambio (campo 27) correspondiente a la fecha de emisión (campo 4) debe ser igual al tipo de cambio (campo 3) correspondiente a la fecha (campo 1) de la Estructura 1 Tipo de Cambio, del mismo periodo, caso contrario se debe consignar \"1\". Esto se aplica a todos los tipos de comprobantes de pago, excepto el tipo 14 (tabla 10). 2. El tipo de cambio (campo 27) correspondiente a la fecha de vencimiento (campo 5) debe ser igual al tipo de cambio (campo 3) correspondiente a la fecha (campo 1) de la Estructura 1 Tipo de Cambio, del mismo periodo, caso contrario se debe consignar \"1\". Esto se aplica sólo al tipo de comprobantes de pago 14 (tabla 10)."
+        },
+        {
+          "campo": "34",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Indicador de Comprobantes de pago cancelados con medios de pago",
+          "formato": "Numérico",
+          "observaciones": "1. Consignar \"1\" si el comprobante de pago fue cancelado con algún medio de pago establecido en la tabla 1, caso contrario no consignar nada"
+        },
+        {
+          "campo": "35",
+          "longitud": "1",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Estado que identifica la oportunidad de la anotación o indicación si ésta corresponde a alguna de las situaciones previstas en el inciso e) del artículo 8° de la Resolución de Superintendencia N.° 286-2009/SUNAT",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio 2. Registrar '0' cuando la operación (anotación optativa sin efecto en el IGV) corresponde al periodo. 3. Registrar '1' cuando la operación (ventas gravadas, exoneradas, inafectas y/o exportaciones) corresponde al periodo, así como a las Notas de Crédito y Débito emitidas en el periodo. 4. Registrar '2' cuando el documento ha sido inutilizado durante el periodo previamente a ser entregado, emitido o durante su emisión. 5. Registrar '8' cuando la operación (ventas gravadas, exoneradas, inafectas y/o exportaciones) corresponde a un periodo anterior y NO ha sido anotada en dicho periodo. 6. Registrar '9' cuando la operación (ventas gravadas, exoneradas, inafectas y/o exportaciones) corresponde a un periodo anterior y SI ha sido anotada en dicho periodo."
+        },
+        {
+          "campo": "36 al 70",
+          "longitud": "Hasta 200",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Campos de libre utilización.",
+          "formato": "Texto",
+          "observaciones": "1. En caso de no tener la necesidad de utilizarlos, no incluya ni la información ni los palotes."
+        }
+      ],
+      "notas": [
+        "(1) En los casos de comprobantes de pago emitidos por empresas de servicios públicos.",
+        "(2) También podrá efectuarse la anotación de manera consolidada cuando ésta corresponda a alguna de las situaciones previstas en el inciso e) del artículo 8 de la Resolución de Superintendencia N.° 286-2009/SUNAT respecto de operaciones registradas antes del 10/07/2011 por las que se emitieron comprobantes de pago que no otorgan derecho a crédito fiscal diferentes a los tickets o cintas emitidos por máquinas registradoras y siempre que por las mencionadas operaciones se lleve un sistema de control computarizado que mantenga la información detallada y que permita efectuar la verificación individual de cada documento. En el caso de las boletas de venta de acuerdo al numeral 3.10 del art. 8 del Reglamento de Comprobantes de Pago, a partir del 1 de julio de 2016, se deberá registrar de manera cuando el monto total sea igual o mayor a S/ 700.00.",
+        "(3) Utilizado conforme a lo dispuesto en las normas sobre la materia.",
+        "(4) En caso de ser una operación gravada con el Impuesto selectivo al Consumo (ISC), no debe incluir el monto de dicho impuesto.",
+        "(5) Utilizado conforme lo dispuesto en las normas sobre la materia.",
+        "(6) El monto ajustado de la base imponible y/o del impuesto o valor, según corresponda, señalado en las notas de crédito, se consignará respectivamente, en las columnas utilizadas para registrar",
+        "los datos vinculados a las adquisiciones gravadas destinadas a operaciones gravadas y/o de exportación; adquisiciones gravadas destinadas a operaciones gravadas y/o de exportación",
+        "y a operaciones no gravadas y adquisiciones gravadas destinadas a operaciones no gravadas.",
+        "El monto de la base imponible y/o impuesto o valor, según corresponda, señalados en las notas de débito, se consignarán respectivamente en las columnas indicadas en el párrafo anterior."
+      ]
+    },
+    "14.2": {
+      "titulo": "14.2 REGISTRO DE VENTAS E INGRESOS SIMPLIFICADO",
+      "campos": [
+        {
+          "campo": "1",
+          "longitud": "8",
+          "obligatorio": "Si",
+          "llave_unica": "Si",
+          "descripcion": "Periodo",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio 2. Validar formato AAAAMM00 3. 01 <= MM <= 12 4. Menor o igual al periodo informado 5. Si el periodo es igual a periodo informado, campo 26 es igual a '1' o '2' o '0' 6. Si periodo es menor a periodo informado, entonces campo 26 es diferente a a '1'"
+        },
+        {
+          "campo": "2",
+          "longitud": "Hasta 40",
+          "obligatorio": "Si",
+          "llave_unica": "Si",
+          "descripcion": "1. Contribuyentes del Régimen General: Número correlativo del mes o Código Único de la Operación (CUO), que es la llave única o clave única o clave primaria del software contable que identifica de manera unívoca el asiento contable en el Libro Diario o del Libro Diario de Formato Simplificado en que se registró la operación. 2. Contribuyentes del Régimen Especial de Renta - RER: Número correlativo del mes",
+          "formato": "Texto",
+          "observaciones": "1. Obligatorio 2. Si el campo 26 es igual a '0', '1' o '2', consignar el Código Único de la Operación (CUO) o número correlativo de la operación que se está informando 3. Si el campo 26 es igual a '8', consignar el Código Único de la Operación (CUO) o número correlativo que corresponda al periodo en que se omitió la anotación. Para modificaciones posteriores se hará referencia a este Código Único de la Operación (CUO) o número correlativo 4. Si el campo 26 es igual a '9', consignar el Código Único de la Operación (CUO) o número correlativo de la operación original que se modifica 5. No acepta el caracter \"&\" 6. Si el CUO proviene de un asiento contable consolidado se debe adicionar un número secuencial separado de un guión \"-\"."
+        },
+        {
+          "campo": "3",
+          "longitud": "De 2 hasta 10",
+          "obligatorio": "Si",
+          "llave_unica": "Si",
+          "descripcion": "Número correlativo del asiento contable identificado en el campo 2, cuando se utilice el Código Único de la Operación (CUO). El primer dígito debe ser: \"A\" para el asiento de apertura del ejercicio, \"M\" para los asientos de movimientos o ajustes del mes o \"C\" para el asiento de cierre del ejercicio.",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio 2. El primer dígito debe ser: A, M o C 3. En los casos de Contribuyentes del RER : Consignar M-RER 4. No acepta el caracter \"&\""
+        },
+        {
+          "campo": "4",
+          "longitud": "10",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Fecha de emisión del Comprobante de Pago",
+          "formato": "DD/MM/AAAA",
+          "observaciones": "1. Obligatorio, excepto cuando el campo 26 = '2' 2. Menor o igual al periodo informado 3. Menor o igual al periodo señalado en el campo 1."
+        },
+        {
+          "campo": "5",
+          "longitud": "10",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Fecha de Vencimiento o Fecha de Pago (1)",
+          "formato": "DD/MM/AAAA",
+          "observaciones": "1. Solo es obligatorio cuando el campo 6 = '14' y campo 26 <> '2' 2. Menor o igual al mes siguiente del periodo informado 3. Menor o igual al mes siguiente del periodo señalado en el campo 1."
+        },
+        {
+          "campo": "6",
+          "longitud": "2",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Tipo de Comprobante de Pago o Documento",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio 2. Validar con parámetro tabla 10. 3. Aplicar Regla General (por tipo de doc.)"
+        },
+        {
+          "campo": "7",
+          "longitud": "Hasta 20",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Número serie del comprobante de pago o documento o número de serie de la maquina registradora",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio 2. Aplicar Regla General (por tipo de doc.)"
+        },
+        {
+          "campo": "8",
+          "longitud": "Hasta 20",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Número del comprobante de pago o documento. Para efectos del registro de tickets o cintas emitidos por máquinas registradoras que no otorguen derecho a crédito fiscal de acuerdo a las normas de Comprobantes de Pago y opten por anotar el importe total de las operaciones realizadas por día y por máquina registradora, registrar el número inicial (2) Tratándose del IVAP, el usuario del servicio de pilado anotará la constancia de depósito por los retiros de bienes que hubiere efectuado",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio 2. Aplicar Regla General (por tipo de doc.)"
+        },
+        {
+          "campo": "9",
+          "longitud": "Hasta 20",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "1. Para efectos del registro de tickets o cintas emitidos por máquinas registradoras que no otorguen derecho a crédito fiscal de acuerdo a las normas de Comprobantes de Pago y opten por anotar el importe total de las operaciones realizadas por día y por máquina registradora, registrar el número final (2). 2. Se permite la consolidación diaria de las Boletas de Venta emitidas de manera electrónica",
+          "formato": "Numérico",
+          "observaciones": "1. Solo se permite cuando el tipo de documento = '00', '03','12', \"13\" y \"87\". 2. No se registra nada en este campo cuando el tipo de documento es <> '00', '03','12', \"13\" y \"87\". 3. A partir del 1 de julio de 2016, para tipo documento = '03' se deberá registrar de manera detallada cuando el monto total sea igual o mayor a S/ 700.00."
+        },
+        {
+          "campo": "10",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Tipo de Documento de Identidad del cliente",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio, excepto cuando a. campo 6 = '00', o b. campo 26 = '2' o c. campo 17 < 700.00 y campo 6 = '03' y'12' d. campo 9 <> vacio. en cuyos casos será opcional y no se aceptara el valor 0 2. Validar con parámetro tabla 2."
+        },
+        {
+          "campo": "11",
+          "longitud": "Hasta 15",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Número de Documento de Identidad del cliente",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio, excepto cuando a. campo 6 = '00', o b. campo 26 = '2' o c. campo 17 < 700.00 y campo 6 = '03' y'12' d. campo 9 <> vacio 2. Aplicar Regla General (tipo y nro. doc.)"
+        },
+        {
+          "campo": "12",
+          "longitud": "Hasta 100",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Apellidos y nombres, denominación o razón social del cliente. En caso de personas naturales se debe consignar los datos en el siguiente orden: Apellido paterno, apellido materno y nombre completo.",
+          "formato": "Texto",
+          "observaciones": "1. Obligatorio excepto cuando a. campo 6 = '00', o b. campo 26 = '2' o c. campo 17 < 700.00 y campo 6 = '03' y '12' d. campo 9 <> vacio"
+        },
+        {
+          "campo": "13",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Base imponible de la operación gravada (4)",
+          "formato": "Numérico",
+          "observaciones": ""
+        },
+        {
+          "campo": "14",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Impuesto General a las Ventas y/o Impuesto de Promoción Municipal",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos"
+        },
+        {
+          "campo": "15",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Impuesto al Consumo de las Bolsas de Plástico",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos. 2. Opcional, excepto cuando el campo 6 = '01', '03', '07', '08', '12', '87' o '88' en cuyo caso es obligatorio"
+        },
+        {
+          "campo": "16",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Otros conceptos, tributos y cargos que no forman parte de la base imponible",
+          "formato": "Numérico",
+          "observaciones": ""
+        },
+        {
+          "campo": "17",
+          "longitud": "Hasta 12 enteros y hasta 2 decimales, sin comas de miles",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Importe total del comprobante de pago",
+          "formato": "Numérico",
+          "observaciones": "1. Acepta negativos"
+        },
+        {
+          "campo": "18",
+          "longitud": "3",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Código de la Moneda (Tabla 4)",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Validar con parámetro tabla 4"
+        },
+        {
+          "campo": "19",
+          "longitud": "1 entero y 3 decimales",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Tipo de cambio (5)",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio si campo 18 contiene dato 2. #.### 3. Positivo"
+        },
+        {
+          "campo": "20",
+          "longitud": "10",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Fecha de emisión del comprobante de pago o documento original que se modifica (6) o documento referencial al documento que sustenta el crédito fiscal",
+          "formato": "DD/MM/AAAA",
+          "observaciones": "1. Obligatorio si campo 6 = '07' o '08' y campo 26 <> '2' 3. Menor o igual al periodo informado 4. Menor o igual al periodo señalado en el campo 1"
+        },
+        {
+          "campo": "21",
+          "longitud": "2",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Tipo del comprobante de pago que se modifica (6)",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio si campo 6 = '07' o '08' y campo 26 <> '2' 2. Validar con parametro tabla 10"
+        },
+        {
+          "campo": "22",
+          "longitud": "Hasta 20",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Número de serie del comprobante de pago que se modifica (6) o Código de la Dependencia Aduanera",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio si campo 6 = '07' o '08' y campo 26 <> '2'"
+        },
+        {
+          "campo": "23",
+          "longitud": "Hasta 20",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Número del comprobante de pago que se modifica (6) o Número de la DUA, de corresponder",
+          "formato": "Alfanumérico",
+          "observaciones": "1. Obligatorio si campo 6 = '07' o '08' y campo 26 <> '2'"
+        },
+        {
+          "campo": "24",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Error tipo 1: inconsistencia en el tipo de cambio",
+          "formato": "Numérico",
+          "observaciones": "1. El tipo de cambio (campo 19) correspondiente a la fecha de emisión (campo 4) debe ser igual al tipo de cambio (campo 3) correspondiente a la fecha (campo 1) de la Estructura 1 Tipo de Cambio, del mismo periodo, caso contrario se debe consignar \"1\". Esto se aplica a todos los tipos de comprobantes de pago, excepto el tipo 14 (tabla 10). 2. El tipo de cambio (campo 19) correspondiente a la fecha de vencimiento (campo 5) debe ser igual al tipo de cambio (campo 3) correspondiente a la fecha (campo 1) de la Estructura 1 Tipo de Cambio, del mismo periodo, caso contrario se debe consignar \"1\". Esto se aplica sólo al tipo de comprobantes de pago 14 (tabla 10)."
+        },
+        {
+          "campo": "25",
+          "longitud": "1",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Indicador de Comprobantes de pago cancelados con medios de pago",
+          "formato": "Numérico",
+          "observaciones": "1. Consignar \"1\" si el comprobante de pago fue cancelado con algún medio de pago establecido en la tabla 1, caso contrario no consignar nada"
+        },
+        {
+          "campo": "26",
+          "longitud": "1",
+          "obligatorio": "Si",
+          "llave_unica": "No",
+          "descripcion": "Estado que identifica la oportunidad de la anotación o indicación si ésta corresponde a alguna de las situaciones previstas en el inciso e) del artículo 8° de la Resolución de Superintendencia N.° 286-2009/SUNAT",
+          "formato": "Numérico",
+          "observaciones": "1. Obligatorio 2. Registrar '0' cuando la operación (anotación optativa sin efecto en el IGV) corresponde al periodo. 3. Registrar '1' cuando la operación (ventas gravadas, exoneradas, inafectas y/o exportaciones) corresponde al periodo, así como a las Notas de Crédito y Débito emitidas en el periodo. 4. Registrar '2' cuando el documento ha sido inutilizado durante el periodo previamente a ser entregado, emitido o durante su emisión. 5. Registrar '8' cuando la operación (ventas gravadas, exoneradas, inafectas y/o exportaciones) corresponde a un periodo anterior y NO ha sido anotada en dicho periodo. 6. Registrar '9' cuando la operación (ventas gravadas, exoneradas, inafectas y/o exportaciones) corresponde a un periodo anterior y SI ha sido anotada en dicho periodo."
+        },
+        {
+          "campo": "27 al 52",
+          "longitud": "Hasta 200",
+          "obligatorio": "No",
+          "llave_unica": "No",
+          "descripcion": "Campos de libre utilización.",
+          "formato": "Texto",
+          "observaciones": "1. En caso de no tener la necesidad de utilizarlos, no incluya ni la información ni los palotes."
+        }
+      ],
+      "notas": []
+    }
+  }
+}

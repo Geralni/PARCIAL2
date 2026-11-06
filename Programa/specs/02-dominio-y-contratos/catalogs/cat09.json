@@ -1,0 +1,81 @@
+{
+  "$schema": "../schemas/catalogo.schema.yaml",
+  "numero": "09",
+  "nombre": "Códigos de tipo de nota de crédito electrónica",
+  "fuente": {
+    "archivo": "Git/09.txt",
+    "formato_detectado": "JSON",
+    "tipo": "comunitaria_no_oficial",
+    "ultima_actualizacion": "2020",
+    "registros_origen": 13
+  },
+  "advertencia": "Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse con el Anexo 8 oficial de SUNAT antes de producción.",
+  "campo_ubl": [
+    {
+      "xpath": "/CreditNote/cac:DiscrepancyResponse/cbc:ResponseCode",
+      "referencia": "Anexo 9-A, RS 117-2017, pág. 19"
+    }
+  ],
+  "contraste_anexo_9a": {
+    "estado": "PARCIAL",
+    "observaciones": [
+      "ResponseCode n2 (pág. 19): todos los códigos tienen 2 dígitos.",
+      "El código 13 (corrección de cuotas o fechas de pago) no tiene respaldo en el Anexo 9-A (2017). PENDIENTE (ENT-04)."
+    ]
+  },
+  "duplicados_detectados": [],
+  "items": [
+    {
+      "codigo": "01",
+      "descripcion": "Anulación de la operación"
+    },
+    {
+      "codigo": "02",
+      "descripcion": "Anulación por error en el RUC"
+    },
+    {
+      "codigo": "03",
+      "descripcion": "Corrección por error en la descripción"
+    },
+    {
+      "codigo": "04",
+      "descripcion": "Descuento global"
+    },
+    {
+      "codigo": "05",
+      "descripcion": "Descuento por ítem"
+    },
+    {
+      "codigo": "06",
+      "descripcion": "Devolución total"
+    },
+    {
+      "codigo": "07",
+      "descripcion": "Devolución por ítem"
+    },
+    {
+      "codigo": "08",
+      "descripcion": "Bonificación"
+    },
+    {
+      "codigo": "09",
+      "descripcion": "Disminución en el valor"
+    },
+    {
+      "codigo": "10",
+      "descripcion": "Otros Conceptos"
+    },
+    {
+      "codigo": "11",
+      "descripcion": "Ajustes de operaciones de exportación"
+    },
+    {
+      "codigo": "12",
+      "descripcion": "Ajustes afectos al IVAP"
+    },
+    {
+      "codigo": "13",
+      "descripcion": "Corrección del monto neto pendiente de pago y/o la(s) fechas(s) de vencimiento del pago único o de las cuotas y/o los montos correspondientes a cada cuota, de ser el caso."
+    }
+  ]
+}

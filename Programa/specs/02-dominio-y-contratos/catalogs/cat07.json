@@ -1,0 +1,164 @@
+{
+  "$schema": "../schemas/catalogo.schema.yaml",
+  "numero": "07",
+  "nombre": "Código de tipo de afectación del IGV",
+  "fuente": {
+    "archivo": "Git/07.txt",
+    "formato_detectado": "JSON",
+    "tipo": "comunitaria_no_oficial",
+    "ultima_actualizacion": "2020",
+    "registros_origen": 19
+  },
+  "advertencia": "Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse con el Anexo 8 oficial de SUNAT antes de producción.",
+  "campo_ubl": [
+    {
+      "xpath": "/Invoice/cac:InvoiceLine/cac:TaxTotal/cac:TaxSubtotal/cac:TaxCategory/cbc:TaxExemptionReasonCode",
+      "referencia": "Anexo 9-A, RS 117-2017, pág. 10"
+    }
+  ],
+  "contraste_anexo_9a": {
+    "estado": "COHERENTE",
+    "observaciones": [
+      "TaxExemptionReasonCode an2 (pág. 10): todos los códigos tienen 2 dígitos.",
+      "La columna 'codigo_de_tributo' (relación con el catálogo 05) no figura en el Anexo 9-A: solo tiene respaldo en la fuente comunitaria. Valores como '1016 o 9996' se normalizan a lista."
+    ]
+  },
+  "duplicados_detectados": [],
+  "items": [
+    {
+      "codigo": "10",
+      "descripcion": "Gravado - Operación Onerosa",
+      "codigo_de_tributo": [
+        "1000"
+      ]
+    },
+    {
+      "codigo": "11",
+      "descripcion": "Gravado – Retiro por premio",
+      "codigo_de_tributo": [
+        "9996"
+      ]
+    },
+    {
+      "codigo": "12",
+      "descripcion": "Gravado – Retiro por donación",
+      "codigo_de_tributo": [
+        "9996"
+      ]
+    },
+    {
+      "codigo": "13",
+      "descripcion": "Gravado – Retiro",
+      "codigo_de_tributo": [
+        "9996"
+      ]
+    },
+    {
+      "codigo": "14",
+      "descripcion": "Gravado – Retiro por publicidad",
+      "codigo_de_tributo": [
+        "9996"
+      ]
+    },
+    {
+      "codigo": "15",
+      "descripcion": "Gravado – Bonificaciones",
+      "codigo_de_tributo": [
+        "9996"
+      ]
+    },
+    {
+      "codigo": "16",
+      "descripcion": "Gravado – Retiro por entrega a trabajadores",
+      "codigo_de_tributo": [
+        "9996"
+      ]
+    },
+    {
+      "codigo": "17",
+      "descripcion": "Gravado - IVAP",
+      "codigo_de_tributo": [
+        "1016",
+        "9996"
+      ]
+    },
+    {
+      "codigo": "20",
+      "descripcion": "Exonerado - Operación Onerosa",
+      "codigo_de_tributo": [
+        "9997"
+      ]
+    },
+    {
+      "codigo": "21",
+      "descripcion": "Exonerado - Transferencia gratuita",
+      "codigo_de_tributo": [
+        "9996"
+      ]
+    },
+    {
+      "codigo": "30",
+      "descripcion": "Inafecto - Operación Onerosa",
+      "codigo_de_tributo": [
+        "9998"
+      ]
+    },
+    {
+      "codigo": "31",
+      "descripcion": "Inafecto – Retiro por Bonificación",
+      "codigo_de_tributo": [
+        "9996"
+      ]
+    },
+    {
+      "codigo": "32",
+      "descripcion": "Inafecto – Retiro",
+      "codigo_de_tributo": [
+        "9996"
+      ]
+    },
+    {
+      "codigo": "33",
+      "descripcion": "Inafecto – Retiro por Muestras Médicas",
+      "codigo_de_tributo": [
+        "9996"
+      ]
+    },
+    {
+      "codigo": "34",
+      "descripcion": "Inafecto - Retiro por Convenio Colectivo",
+      "codigo_de_tributo": [
+        "9996"
+      ]
+    },
+    {
+      "codigo": "35",
+      "descripcion": "Inafecto – Retiro por premio",
+      "codigo_de_tributo": [
+        "9996"
+      ]
+    },
+    {
+      "codigo": "36",
+      "descripcion": "Inafecto - Retiro por publicidad",
+      "codigo_de_tributo": [
+        "9996"
+      ]
+    },
+    {
+      "codigo": "37",
+      "descripcion": "Inafecto - Transferencia gratuita",
+      "codigo_de_tributo": [
+        "9996"
+      ]
+    },
+    {
+      "codigo": "40",
+      "descripcion": "Exportación de Bienes o Servicios",
+      "codigo_de_tributo": [
+        "9995",
+        "9996"
+      ]
+    }
+  ]
+}

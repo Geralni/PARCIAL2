@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Generador de XML UBL 2.1 (Invoice) para comprobantes SUNAT - ABC Software Corp.
+  2.º parcial: implementación en Kotlin, a partir de UBL-Invoice-2.1.xsd (ADR-007: clases generadas con xjc).
+  Uso:  mvn test                    (genera las clases del XSD, compila y ejecuta las pruebas unitarias)
+        mvn -q process-classes exec:java (escribe una factura y una boleta de ejemplo en ./ejemplos-generados/)
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>pe.abc.fe</groupId>
+  <artifactId>generador-ubl</artifactId>
+  <version>0.1.0</version>
+  <packaging>jar</packaging>
+  <name>ABC FE - Generador UBL 2.1 Invoice</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <kotlin.version>2.3.0</kotlin.version>
+    <kotlin.compiler.jvmTarget>21</kotlin.compiler.jvmTarget>
+    <!-- Compilación reproducible: sin daemon de Kotlin (evita estados incrementales entre builds). -->
+    <kotlin.compiler.daemon>false</kotlin.compiler.daemon>
+    <maven.compiler.release>21</maven.compiler.release>
+    <jaxb.version>4.0.5</jaxb.version>
+    <junit.version>5.11.4</junit.version>
+  </properties>
+
+  <!-- Alinea todos los módulos de JUnit (kotlin-test-junit5 trae una versión anterior). -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>${junit.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <version>${kotlin.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.xml.bind</groupId>
+      <artifactId>jakarta.xml.bind-api</artifactId>
+      <version>4.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <version>${jaxb.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-test-junit5</artifactId>
+      <version>${kotlin.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <sourceDirectory>src/main/kotlin</sourceDirectory>
+    <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+    <plugins>
+      <!-- 1. Clases Java desde el XSD UBL 2.1 (ADR-007). Se generan en cada build: no se versionan. -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jaxb2-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>xjc-ubl-invoice</id>
+            <goals><goal>xjc</goal></goals>
+          </execution>
+        </executions>
+        <configuration>
+          <sources>
+            <source>src/main/resources/xsd/ubl-2.1/maindoc/UBL-Invoice-2.1.xsd</source>
+          </sources>
+          <noPackageLevelAnnotations>false</noPackageLevelAnnotations>
+          <addGeneratedAnnotation>false</addGeneratedAnnotation>
+          <extension>true</extension>
+        </configuration>
+      </plugin>
+
+      <!-- 2. javac compila primero las clases generadas del XSD (fase compile). -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+      </plugin>
+
+      <!-- 3. Kotlin compila después (fase process-classes) y ve las clases UBL como .class ya compiladas.
+              Así no analiza las 1243 fuentes Java generadas, lo que hacía inestable al compilador en JDK 25. -->
+      <plugin>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-plugin</artifactId>
+        <version>${kotlin.version}</version>
+        <executions>
+          <execution>
+            <id>compile</id>
+            <phase>process-classes</phase>
+            <goals><goal>compile</goal></goals>
+            <configuration>
+              <sourceDirs>
+                <sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
+              </sourceDirs>
+            </configuration>
+          </execution>
+          <execution>
+            <id>test-compile</id>
+            <phase>test-compile</phase>
+            <goals><goal>test-compile</goal></goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.5.0</version>
+        <configuration>
+          <mainClass>pe.abc.fe.demo.GenerarEjemplosKt</mainClass>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.5.2</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>

@@ -1,0 +1,15 @@
+{
+  "fechaReferencia": "2026-10-27",
+  "items": [
+    {
+      "tipoComprobante": "03",
+      "serieNumero": "B001-1",
+      "adquirente": { "tipoDocumento": "1", "numeroDocumento": "00000001" },
+      "estadoItem": "1",
+      "moneda": "PEN",
+      "importeTotal": "9.44",
+      "totalesPorTipo": [ { "codigo": "01", "monto": "8.00" } ],
+      "tributos": [ { "codigoTributo": "1000", "monto": "1.44" } ]
+    }
+  ]
+}

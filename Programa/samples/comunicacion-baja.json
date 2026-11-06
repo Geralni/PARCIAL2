@@ -1,0 +1,6 @@
+{
+  "fechaReferencia": "2026-10-27",
+  "items": [
+    { "tipoComprobante": "01", "serie": "F001", "correlativo": 2, "motivo": "ERROR EN LA DIGITACION DEL CLIENTE" }
+  ]
+}

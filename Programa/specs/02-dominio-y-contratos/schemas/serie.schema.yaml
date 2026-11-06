@@ -1,0 +1,62 @@
+# Serie y correlativo
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/serie.schema.yaml
+title: Serie y correlativo
+description: Agregado Serie por establecimiento y tipo de comprobante (ENT-06 §6). Fuente única del siguiente correlativo
+  (REG-034, REG-035).
+type: object
+additionalProperties: false
+required:
+- establecimientoCodigo
+- tiposComprobante
+- serie
+x-reglas:
+- REG-030
+- REG-031
+- REG-033
+- REG-037
+properties:
+  id:
+    $ref: common.schema.yaml#/$defs/Uuid
+    readOnly: true
+    x-trazabilidad: interno
+  establecimientoCodigo:
+    $ref: common.schema.yaml#/$defs/CodigoEstablecimiento
+    x-trazabilidad: MT-076
+  tiposComprobante:
+    type: array
+    minItems: 1
+    uniqueItems: true
+    items:
+      enum:
+      - '01'
+      - '03'
+      - '07'
+      - '08'
+    x-trazabilidad: MT-010
+    description: P. ej. F001 sirve a 01, 07 y 08 (ENT-06 §6).
+  serie:
+    $ref: common.schema.yaml#/$defs/Serie
+    x-trazabilidad: MT-006
+  ultimoCorrelativo:
+    type: integer
+    minimum: 0
+    maximum: 99999999
+    readOnly: true
+    x-trazabilidad: MT-006
+  contingencia:
+    type: boolean
+    default: false
+    x-trazabilidad: interno
+    x-reglas:
+    - REG-033
+    - REG-170
+  dispositivoId:
+    type: string
+    x-trazabilidad: interno
+    description: Solo series de contingencia asignadas a un dispositivo Android (ADR-006).
+  activa:
+    type: boolean
+    default: true
+    x-trazabilidad: interno

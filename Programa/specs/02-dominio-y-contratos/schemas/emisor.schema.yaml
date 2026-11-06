@@ -1,0 +1,42 @@
+# Contribuyente emisor
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/emisor.schema.yaml
+title: Contribuyente emisor
+description: 'Agregado Contribuyente (ABC Software Corp). No contiene secretos: el certificado se referencia por alias (REG-093).'
+type: object
+additionalProperties: false
+required:
+- ruc
+- razonSocial
+- domicilioFiscal
+properties:
+  ruc:
+    $ref: common.schema.yaml#/$defs/Ruc
+    x-trazabilidad: MT-073
+  razonSocial:
+    $ref: common.schema.yaml#/$defs/Texto100
+    x-trazabilidad: MT-075
+  nombreComercial:
+    $ref: common.schema.yaml#/$defs/Texto100
+    x-trazabilidad: MT-021
+  domicilioFiscal:
+    $ref: common.schema.yaml#/$defs/Direccion
+    x-trazabilidad: interno
+  establecimientos:
+    type: array
+    items:
+      $ref: establecimiento.schema.yaml
+    x-trazabilidad: MT-076
+  certificadoAlias:
+    description: Alias del certificado en el almacén seguro del SO. Nunca la clave.
+    type: string
+    x-trazabilidad: interno
+    x-reglas:
+    - REG-093
+  canalEnvio:
+    enum:
+    - OSE
+    - SUNAT
+    x-trazabilidad: interno
+    description: ADR-004.

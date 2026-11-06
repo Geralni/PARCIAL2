@@ -1,0 +1,136 @@
+# Nota de crédito o débito electrónica
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/nota.schema.yaml
+title: Nota de crédito o débito electrónica
+description: Comparte la estructura del comprobante y agrega el documento afectado y el motivo (REG-007, REG-070..REG-074).
+type: object
+additionalProperties: false
+required:
+- tipoComprobante
+- serie
+- fechaEmision
+- moneda
+- establecimientoCodigo
+- adquirente
+- lineas
+- documentoAfectado
+- motivo
+x-reglas:
+- REG-007
+- REG-032
+- REG-073
+properties:
+  id:
+    $ref: common.schema.yaml#/$defs/Uuid
+    readOnly: true
+    x-trazabilidad: interno
+  tipoComprobante:
+    enum:
+    - '07'
+    - '08'
+    x-trazabilidad: MT-010
+  serie:
+    $ref: common.schema.yaml#/$defs/Serie
+    x-trazabilidad: MT-093
+  correlativo:
+    $ref: common.schema.yaml#/$defs/Correlativo
+    readOnly: true
+    x-trazabilidad: MT-093
+  fechaEmision:
+    $ref: common.schema.yaml#/$defs/Fecha
+    x-trazabilidad: MT-094
+  horaEmision:
+    $ref: common.schema.yaml#/$defs/Hora
+    x-trazabilidad: MT-008
+  tipoOperacion:
+    $ref: catalogos.schema.yaml#/$defs/Cat51
+    x-trazabilidad: MT-122
+  moneda:
+    $ref: catalogos.schema.yaml#/$defs/Cat02
+    x-trazabilidad: MT-095
+  establecimientoCodigo:
+    $ref: common.schema.yaml#/$defs/CodigoEstablecimiento
+    x-trazabilidad: MT-076
+  emisorRuc:
+    $ref: common.schema.yaml#/$defs/Ruc
+    readOnly: true
+    x-trazabilidad: MT-101
+  adquirente:
+    $ref: adquirente.schema.yaml
+    x-trazabilidad: MT-102
+  documentoAfectado:
+    $ref: common.schema.yaml#/$defs/ReferenciaDocumento
+    x-trazabilidad: MT-096
+    x-reglas:
+    - REG-070
+    - REG-071
+    - REG-072
+  motivo:
+    type: object
+    additionalProperties: false
+    required:
+    - codigo
+    - descripcion
+    x-trazabilidad: MT-097
+    properties:
+      codigo:
+        type: string
+        pattern: ^\d{2}$
+        x-trazabilidad: MT-097
+        x-reglas:
+        - REG-018
+        - REG-019
+        description: 'Catálogo 09 (NC) o 10 (ND): ver allOf.'
+      descripcion:
+        $ref: common.schema.yaml#/$defs/Texto250
+        x-trazabilidad: MT-098
+        x-reglas:
+        - REG-074
+  leyendas:
+    $ref: comprobante.schema.yaml#/properties/leyendas
+    x-trazabilidad: MT-011
+  lineas:
+    $ref: comprobante.schema.yaml#/properties/lineas
+    x-trazabilidad: MT-105
+  tributos:
+    $ref: comprobante.schema.yaml#/properties/tributos
+    readOnly: true
+    x-trazabilidad: MT-103
+  totales:
+    $ref: totales.schema.yaml
+    readOnly: true
+    x-trazabilidad: MT-104
+  estado:
+    $ref: comprobante.schema.yaml#/properties/estado
+    readOnly: true
+    x-trazabilidad: interno
+  firma:
+    $ref: firma-digital.schema.yaml
+    readOnly: true
+    x-trazabilidad: MT-090
+  respuestaSunat:
+    $ref: respuesta-sunat.schema.yaml
+    readOnly: true
+    x-trazabilidad: interno
+allOf:
+- if:
+    properties:
+      tipoComprobante:
+        const: '07'
+  then:
+    properties:
+      motivo:
+        properties:
+          codigo:
+            $ref: catalogos.schema.yaml#/$defs/Cat09
+- if:
+    properties:
+      tipoComprobante:
+        const: '08'
+  then:
+    properties:
+      motivo:
+        properties:
+          codigo:
+            $ref: catalogos.schema.yaml#/$defs/Cat10

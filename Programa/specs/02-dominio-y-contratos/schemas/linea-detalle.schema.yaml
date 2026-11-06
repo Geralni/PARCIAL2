@@ -1,0 +1,174 @@
+# Línea de detalle
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/linea-detalle.schema.yaml
+title: Línea de detalle
+description: 'InvoiceLine / CreditNoteLine / DebitNoteLine. El cliente envía cantidad, valor unitario, afectación y (si aplica)
+  el sistema de ISC y la cantidad de bolsas. Los montos CALCULADOS (valorVenta, tributos, totalTributos, montos de ISC e ICBPER)
+  son readOnly: los calcula el núcleo con ParametrosTributariosPort y el cliente NO los envía (REG-060, REG-068, REG-059).
+  Todos los montos son decimales en texto, nunca double/float.'
+type: object
+additionalProperties: false
+required:
+- numeroOrden
+- cantidad
+- unidadMedida
+- descripcion
+- valorUnitario
+- afectacionIgv
+properties:
+  numeroOrden:
+    type: integer
+    minimum: 1
+    maximum: 999
+    x-trazabilidad: MT-048
+    x-reglas:
+    - REG-005
+  productoId:
+    $ref: common.schema.yaml#/$defs/Uuid
+    x-trazabilidad: interno
+  codigoProducto:
+    type: string
+    maxLength: 30
+    x-trazabilidad: MT-070
+  codigoProductoSunat:
+    type: string
+    pattern: ^\d{8}$
+    x-trazabilidad: MT-071
+    x-reglas:
+    - REG-027
+  descripcion:
+    $ref: common.schema.yaml#/$defs/Texto250
+    x-trazabilidad: MT-069
+  cantidad:
+    $ref: common.schema.yaml#/$defs/Cantidad
+    x-trazabilidad: MT-049
+  unidadMedida:
+    $ref: catalogos.schema.yaml#/$defs/Cat03
+    x-trazabilidad: MT-050
+  valorUnitario:
+    $ref: common.schema.yaml#/$defs/PrecioUnitario
+    x-trazabilidad: MT-072
+    description: Sin impuestos.
+  precioUnitario:
+    type: object
+    additionalProperties: false
+    required:
+    - monto
+    - tipoPrecio
+    x-trazabilidad: MT-052
+    x-reglas:
+    - REG-055
+    properties:
+      monto:
+        $ref: common.schema.yaml#/$defs/PrecioUnitario
+        x-trazabilidad: MT-052
+      tipoPrecio:
+        $ref: catalogos.schema.yaml#/$defs/Cat16
+        x-trazabilidad: MT-053
+  valorVenta:
+    readOnly: true
+    $ref: common.schema.yaml#/$defs/Monto
+    x-trazabilidad: MT-051
+    x-reglas:
+    - REG-060
+  cargosDescuentos:
+    type: array
+    items:
+      $ref: common.schema.yaml#/$defs/CargoDescuento
+    x-trazabilidad: MT-054
+    description: Nivel ítem (MT-054..MT-058).
+  afectacionIgv:
+    $ref: catalogos.schema.yaml#/$defs/Cat07
+    x-trazabilidad: MT-064
+    x-reglas:
+    - REG-016
+    - REG-022
+  isc:
+    type: object
+    additionalProperties: false
+    required:
+    - sistemaCalculo
+    x-trazabilidad: MT-065
+    x-reglas:
+    - REG-017
+    - REG-052
+    - REG-053
+    properties:
+      sistemaCalculo:
+        $ref: catalogos.schema.yaml#/$defs/Cat08
+        x-trazabilidad: MT-065
+      base:
+        readOnly: true
+        $ref: common.schema.yaml#/$defs/Monto
+        x-trazabilidad: MT-060
+      tasa:
+        readOnly: true
+        $ref: common.schema.yaml#/$defs/Porcentaje
+        x-trazabilidad: MT-063
+      monto:
+        readOnly: true
+        $ref: common.schema.yaml#/$defs/Monto
+        x-trazabilidad: MT-061
+  icbper:
+    type: object
+    additionalProperties: false
+    required:
+    - cantidadBolsas
+    x-trazabilidad: MT-190
+    x-reglas:
+    - REG-054
+    description: PENDIENTE de norma (DISC-14).
+    properties:
+      cantidadBolsas:
+        type: integer
+        minimum: 1
+        x-trazabilidad: MT-191
+      montoUnitario:
+        readOnly: true
+        $ref: common.schema.yaml#/$defs/Monto
+        x-trazabilidad: MT-192
+      monto:
+        readOnly: true
+        $ref: common.schema.yaml#/$defs/Monto
+        x-trazabilidad: MT-190
+  tributos:
+    readOnly: true
+    type: array
+    items:
+      $ref: tributo.schema.yaml
+    x-trazabilidad: MT-060
+    x-reglas:
+    - REG-058
+  totalTributos:
+    readOnly: true
+    $ref: common.schema.yaml#/$defs/Monto
+    x-trazabilidad: MT-059
+allOf:
+- description: 'REG-055: si la afectación es gratuita, el precio va como valor referencial (tipoPrecio 02).'
+  if:
+    properties:
+      afectacionIgv:
+        enum:
+        - '11'
+        - '12'
+        - '13'
+        - '14'
+        - '15'
+        - '16'
+        - '21'
+        - '31'
+        - '32'
+        - '33'
+        - '34'
+        - '35'
+        - '36'
+        - '37'
+    required:
+    - afectacionIgv
+  then:
+    properties:
+      precioUnitario:
+        properties:
+          tipoPrecio:
+            const: '02'

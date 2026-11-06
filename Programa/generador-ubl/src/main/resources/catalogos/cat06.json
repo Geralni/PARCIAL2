@@ -1,0 +1,72 @@
+{
+  "$schema": "../schemas/catalogo.schema.yaml",
+  "numero": "06",
+  "nombre": "Código de tipo de documento de identidad",
+  "fuente": {
+    "archivo": "Git/06.txt",
+    "formato_detectado": "JSON",
+    "tipo": "comunitaria_no_oficial",
+    "ultima_actualizacion": "2020",
+    "registros_origen": 10
+  },
+  "advertencia": "Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse con el Anexo 8 oficial de SUNAT antes de producción.",
+  "campo_ubl": [
+    {
+      "xpath": "/Invoice/cac:AccountingSupplierParty/cac:Party/cac:PartyTaxScheme/cbc:CompanyID/@schemeID",
+      "referencia": "Anexo 9-A, RS 117-2017, pág. 3"
+    },
+    {
+      "xpath": "/Invoice/cac:AccountingCustomerParty/cac:Party/cac:PartyTaxScheme/cbc:CompanyID/@schemeID",
+      "referencia": "Anexo 9-A, RS 117-2017, pág. 3"
+    }
+  ],
+  "contraste_anexo_9a": {
+    "estado": "COHERENTE",
+    "observaciones": [
+      "@schemeID an1 (pág. 3): todos los códigos del catálogo tienen 1 carácter."
+    ]
+  },
+  "duplicados_detectados": [],
+  "items": [
+    {
+      "codigo": "0",
+      "descripcion": "DOC.TRIB.NO.DOM.SIN.RUC"
+    },
+    {
+      "codigo": "1",
+      "descripcion": "Documento Nacional de Identidad"
+    },
+    {
+      "codigo": "4",
+      "descripcion": "Carnet de extranjería"
+    },
+    {
+      "codigo": "6",
+      "descripcion": "Registro Unico de Contributentes"
+    },
+    {
+      "codigo": "7",
+      "descripcion": "Pasaporte"
+    },
+    {
+      "codigo": "A",
+      "descripcion": "Cédula Diplomática de identidad"
+    },
+    {
+      "codigo": "B",
+      "descripcion": "DOC.IDENT.PAIS.RESIDENCIA-NO.D"
+    },
+    {
+      "codigo": "C",
+      "descripcion": "Tax Identification Number - TIN – Doc Trib PP.NN"
+    },
+    {
+      "codigo": "D",
+      "descripcion": "Identification Number - IN – Doc Trib PP. JJ"
+    },
+    {
+      "codigo": "E",
+      "descripcion": "TAM- Tarjeta Andina de Migración"
+    }
+  ]
+}

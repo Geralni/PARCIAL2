@@ -1,0 +1,44 @@
+# Adquirente o usuario
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/adquirente.schema.yaml
+title: Adquirente o usuario
+type: object
+additionalProperties: false
+required:
+- tipoDocumento
+- numeroDocumento
+- razonSocial
+x-reglas:
+- REG-042
+- REG-043
+- REG-044
+- REG-045
+properties:
+  tipoDocumento:
+    $ref: catalogos.schema.yaml#/$defs/Cat06
+    x-trazabilidad: MT-079
+  numeroDocumento:
+    type: string
+    minLength: 1
+    maxLength: 20
+    x-trazabilidad: MT-078
+  razonSocial:
+    $ref: common.schema.yaml#/$defs/Texto100
+    x-trazabilidad: MT-088
+  direccion:
+    $ref: common.schema.yaml#/$defs/Direccion
+    x-trazabilidad: interno
+  email:
+    type: string
+    format: email
+    x-trazabilidad: interno
+allOf:
+- if:
+    properties:
+      tipoDocumento:
+        const: '6'
+  then:
+    properties:
+      numeroDocumento:
+        pattern: ^\d{11}$

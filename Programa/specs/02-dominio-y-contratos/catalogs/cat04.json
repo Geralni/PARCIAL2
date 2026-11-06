@@ -1,0 +1,1468 @@
+{
+  "$schema": "../schemas/catalogo.schema.yaml",
+  "numero": "04",
+  "nombre": "Código de país",
+  "fuente": {
+    "archivo": "Git/04.txt",
+    "formato_detectado": "JSON",
+    "tipo": "comunitaria_no_oficial",
+    "ultima_actualizacion": "2020",
+    "registros_origen": 240
+  },
+  "advertencia": "Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse con el Anexo 8 oficial de SUNAT antes de producción.",
+  "campo_ubl": [
+    {
+      "xpath": "/Invoice/cac:DeliveryTerms/cac:DeliveryLocation/cac:Address/cac:Country/cbc:IdentificationCode",
+      "referencia": "Anexo 9-A, RS 117-2017, pág. 6"
+    }
+  ],
+  "contraste_anexo_9a": {
+    "estado": "NO_APLICA",
+    "observaciones": [
+      "El anexo remite a ISO 3166-1 (@listID, pág. 6); se usa el código alfa-2 (A2) como 'codigo'."
+    ]
+  },
+  "duplicados_detectados": [],
+  "items": [
+    {
+      "codigo": "AX",
+      "descripcion": "AALAND ISLANDS",
+      "alfa3": "ALA",
+      "numero_iso": 248
+    },
+    {
+      "codigo": "AF",
+      "descripcion": "AFGHANISTAN",
+      "alfa3": "AFG",
+      "numero_iso": 4
+    },
+    {
+      "codigo": "AL",
+      "descripcion": "ALBANIA",
+      "alfa3": "ALB",
+      "numero_iso": 8
+    },
+    {
+      "codigo": "DZ",
+      "descripcion": "ALGERIA",
+      "alfa3": "DZA",
+      "numero_iso": 12
+    },
+    {
+      "codigo": "AS",
+      "descripcion": "AMERICAN SAMOA",
+      "alfa3": "ASM",
+      "numero_iso": 16
+    },
+    {
+      "codigo": "AD",
+      "descripcion": "ANDORRA",
+      "alfa3": "AND",
+      "numero_iso": 20
+    },
+    {
+      "codigo": "AO",
+      "descripcion": "ANGOLA",
+      "alfa3": "AGO",
+      "numero_iso": 24
+    },
+    {
+      "codigo": "AI",
+      "descripcion": "ANGUILLA",
+      "alfa3": "AIA",
+      "numero_iso": 660
+    },
+    {
+      "codigo": "AQ",
+      "descripcion": "ANTARCTICA",
+      "alfa3": "ATA",
+      "numero_iso": 10
+    },
+    {
+      "codigo": "AG",
+      "descripcion": "ANTIGUA AND BARBUDA",
+      "alfa3": "ATG",
+      "numero_iso": 28
+    },
+    {
+      "codigo": "AR",
+      "descripcion": "ARGENTINA",
+      "alfa3": "ARG",
+      "numero_iso": 32
+    },
+    {
+      "codigo": "AM",
+      "descripcion": "ARMENIA",
+      "alfa3": "ARM",
+      "numero_iso": 51
+    },
+    {
+      "codigo": "AW",
+      "descripcion": "ARUBA",
+      "alfa3": "ABW",
+      "numero_iso": 533
+    },
+    {
+      "codigo": "AU",
+      "descripcion": "AUSTRALIA",
+      "alfa3": "AUS",
+      "numero_iso": 36
+    },
+    {
+      "codigo": "AT",
+      "descripcion": "AUSTRIA",
+      "alfa3": "AUT",
+      "numero_iso": 40
+    },
+    {
+      "codigo": "AZ",
+      "descripcion": "AZERBAIJAN",
+      "alfa3": "AZE",
+      "numero_iso": 31
+    },
+    {
+      "codigo": "BS",
+      "descripcion": "BAHAMAS",
+      "alfa3": "BHS",
+      "numero_iso": 44
+    },
+    {
+      "codigo": "BH",
+      "descripcion": "BAHRAIN",
+      "alfa3": "BHR",
+      "numero_iso": 48
+    },
+    {
+      "codigo": "BD",
+      "descripcion": "BANGLADESH",
+      "alfa3": "BGD",
+      "numero_iso": 50
+    },
+    {
+      "codigo": "BB",
+      "descripcion": "BARBADOS",
+      "alfa3": "BRB",
+      "numero_iso": 52
+    },
+    {
+      "codigo": "BY",
+      "descripcion": "BELARUS",
+      "alfa3": "BLR",
+      "numero_iso": 112
+    },
+    {
+      "codigo": "BE",
+      "descripcion": "BELGIUM",
+      "alfa3": "BEL",
+      "numero_iso": 56
+    },
+    {
+      "codigo": "BZ",
+      "descripcion": "BELIZE",
+      "alfa3": "BLZ",
+      "numero_iso": 84
+    },
+    {
+      "codigo": "BJ",
+      "descripcion": "BENIN",
+      "alfa3": "BEN",
+      "numero_iso": 204
+    },
+    {
+      "codigo": "BM",
+      "descripcion": "BERMUDA",
+      "alfa3": "BMU",
+      "numero_iso": 60
+    },
+    {
+      "codigo": "BT",
+      "descripcion": "BHUTAN",
+      "alfa3": "BTN",
+      "numero_iso": 64
+    },
+    {
+      "codigo": "BO",
+      "descripcion": "BOLIVIA",
+      "alfa3": "BOL",
+      "numero_iso": 68
+    },
+    {
+      "codigo": "BA",
+      "descripcion": "BOSNIA AND HERZEGOWINA",
+      "alfa3": "BIH",
+      "numero_iso": 70
+    },
+    {
+      "codigo": "BW",
+      "descripcion": "BOTSWANA",
+      "alfa3": "BWA",
+      "numero_iso": 72
+    },
+    {
+      "codigo": "BV",
+      "descripcion": "BOUVET ISLAND",
+      "alfa3": "BVT",
+      "numero_iso": 74
+    },
+    {
+      "codigo": "BR",
+      "descripcion": "BRAZIL",
+      "alfa3": "BRA",
+      "numero_iso": 76
+    },
+    {
+      "codigo": "IO",
+      "descripcion": "BRITISH INDIAN OCEAN TERRITORY",
+      "alfa3": "IOT",
+      "numero_iso": 86
+    },
+    {
+      "codigo": "BN",
+      "descripcion": "BRUNEI DARUSSALAM",
+      "alfa3": "BRN",
+      "numero_iso": 96
+    },
+    {
+      "codigo": "BG",
+      "descripcion": "BULGARIA",
+      "alfa3": "BGR",
+      "numero_iso": 100
+    },
+    {
+      "codigo": "BF",
+      "descripcion": "BURKINA FASO",
+      "alfa3": "BFA",
+      "numero_iso": 854
+    },
+    {
+      "codigo": "BI",
+      "descripcion": "BURUNDI",
+      "alfa3": "BDI",
+      "numero_iso": 108
+    },
+    {
+      "codigo": "KH",
+      "descripcion": "CAMBODIA",
+      "alfa3": "KHM",
+      "numero_iso": 116
+    },
+    {
+      "codigo": "CM",
+      "descripcion": "CAMEROON",
+      "alfa3": "CMR",
+      "numero_iso": 120
+    },
+    {
+      "codigo": "CA",
+      "descripcion": "CANADA",
+      "alfa3": "CAN",
+      "numero_iso": 124
+    },
+    {
+      "codigo": "CV",
+      "descripcion": "CAPE VERDE",
+      "alfa3": "CPV",
+      "numero_iso": 132
+    },
+    {
+      "codigo": "KY",
+      "descripcion": "CAYMAN ISLANDS",
+      "alfa3": "CYM",
+      "numero_iso": 136
+    },
+    {
+      "codigo": "CF",
+      "descripcion": "CENTRAL AFRICAN REPUBLIC",
+      "alfa3": "CAF",
+      "numero_iso": 140
+    },
+    {
+      "codigo": "TD",
+      "descripcion": "CHAD",
+      "alfa3": "TCD",
+      "numero_iso": 148
+    },
+    {
+      "codigo": "CL",
+      "descripcion": "CHILE",
+      "alfa3": "CHL",
+      "numero_iso": 152
+    },
+    {
+      "codigo": "CN",
+      "descripcion": "CHINA",
+      "alfa3": "CHN",
+      "numero_iso": 156
+    },
+    {
+      "codigo": "CX",
+      "descripcion": "CHRISTMAS ISLAND",
+      "alfa3": "CXR",
+      "numero_iso": 162
+    },
+    {
+      "codigo": "CC",
+      "descripcion": "COCOS (KEELING) ISLANDS",
+      "alfa3": "CCK",
+      "numero_iso": 166
+    },
+    {
+      "codigo": "CO",
+      "descripcion": "COLOMBIA",
+      "alfa3": "COL",
+      "numero_iso": 170
+    },
+    {
+      "codigo": "KM",
+      "descripcion": "COMOROS",
+      "alfa3": "COM",
+      "numero_iso": 174
+    },
+    {
+      "codigo": "CD",
+      "descripcion": "CONGO, Democratic Republic of (was Zaire)",
+      "alfa3": "COD",
+      "numero_iso": 180
+    },
+    {
+      "codigo": "CG",
+      "descripcion": "CONGO, Republic of",
+      "alfa3": "COG",
+      "numero_iso": 178
+    },
+    {
+      "codigo": "CK",
+      "descripcion": "COOK ISLANDS",
+      "alfa3": "COK",
+      "numero_iso": 184
+    },
+    {
+      "codigo": "CR",
+      "descripcion": "COSTA RICA",
+      "alfa3": "CRI",
+      "numero_iso": 188
+    },
+    {
+      "codigo": "CI",
+      "descripcion": "COTE D'IVOIRE",
+      "alfa3": "CIV",
+      "numero_iso": 384
+    },
+    {
+      "codigo": "HR",
+      "descripcion": "CROATIA (local name: Hrvatska)",
+      "alfa3": "HRV",
+      "numero_iso": 191
+    },
+    {
+      "codigo": "CU",
+      "descripcion": "CUBA",
+      "alfa3": "CUB",
+      "numero_iso": 192
+    },
+    {
+      "codigo": "CY",
+      "descripcion": "CYPRUS",
+      "alfa3": "CYP",
+      "numero_iso": 196
+    },
+    {
+      "codigo": "CZ",
+      "descripcion": "CZECH REPUBLIC",
+      "alfa3": "CZE",
+      "numero_iso": 203
+    },
+    {
+      "codigo": "DK",
+      "descripcion": "DENMARK",
+      "alfa3": "DNK",
+      "numero_iso": 208
+    },
+    {
+      "codigo": "DJ",
+      "descripcion": "DJIBOUTI",
+      "alfa3": "DJI",
+      "numero_iso": 262
+    },
+    {
+      "codigo": "DM",
+      "descripcion": "DOMINICA",
+      "alfa3": "DMA",
+      "numero_iso": 212
+    },
+    {
+      "codigo": "DO",
+      "descripcion": "DOMINICAN REPUBLIC",
+      "alfa3": "DOM",
+      "numero_iso": 214
+    },
+    {
+      "codigo": "EC",
+      "descripcion": "ECUADOR",
+      "alfa3": "ECU",
+      "numero_iso": 218
+    },
+    {
+      "codigo": "EG",
+      "descripcion": "EGYPT",
+      "alfa3": "EGY",
+      "numero_iso": 818
+    },
+    {
+      "codigo": "SV",
+      "descripcion": "EL SALVADOR",
+      "alfa3": "SLV",
+      "numero_iso": 222
+    },
+    {
+      "codigo": "GQ",
+      "descripcion": "EQUATORIAL GUINEA",
+      "alfa3": "GNQ",
+      "numero_iso": 226
+    },
+    {
+      "codigo": "ER",
+      "descripcion": "ERITREA",
+      "alfa3": "ERI",
+      "numero_iso": 232
+    },
+    {
+      "codigo": "EE",
+      "descripcion": "ESTONIA",
+      "alfa3": "EST",
+      "numero_iso": 233
+    },
+    {
+      "codigo": "ET",
+      "descripcion": "ETHIOPIA",
+      "alfa3": "ETH",
+      "numero_iso": 231
+    },
+    {
+      "codigo": "FK",
+      "descripcion": "FALKLAND ISLANDS (MALVINAS)",
+      "alfa3": "FLK",
+      "numero_iso": 238
+    },
+    {
+      "codigo": "FO",
+      "descripcion": "FAROE ISLANDS",
+      "alfa3": "FRO",
+      "numero_iso": 234
+    },
+    {
+      "codigo": "FJ",
+      "descripcion": "FIJI",
+      "alfa3": "FJI",
+      "numero_iso": 242
+    },
+    {
+      "codigo": "FI",
+      "descripcion": "FINLAND",
+      "alfa3": "FIN",
+      "numero_iso": 246
+    },
+    {
+      "codigo": "FR",
+      "descripcion": "FRANCE",
+      "alfa3": "FRA",
+      "numero_iso": 250
+    },
+    {
+      "codigo": "GF",
+      "descripcion": "FRENCH GUIANA",
+      "alfa3": "GUF",
+      "numero_iso": 254
+    },
+    {
+      "codigo": "PF",
+      "descripcion": "FRENCH POLYNESIA",
+      "alfa3": "PYF",
+      "numero_iso": 258
+    },
+    {
+      "codigo": "TF",
+      "descripcion": "FRENCH SOUTHERN TERRITORIES",
+      "alfa3": "ATF",
+      "numero_iso": 260
+    },
+    {
+      "codigo": "GA",
+      "descripcion": "GABON",
+      "alfa3": "GAB",
+      "numero_iso": 266
+    },
+    {
+      "codigo": "GM",
+      "descripcion": "GAMBIA",
+      "alfa3": "GMB",
+      "numero_iso": 270
+    },
+    {
+      "codigo": "GE",
+      "descripcion": "GEORGIA",
+      "alfa3": "GEO",
+      "numero_iso": 268
+    },
+    {
+      "codigo": "DE",
+      "descripcion": "GERMANY",
+      "alfa3": "DEU",
+      "numero_iso": 276
+    },
+    {
+      "codigo": "GH",
+      "descripcion": "GHANA",
+      "alfa3": "GHA",
+      "numero_iso": 288
+    },
+    {
+      "codigo": "GI",
+      "descripcion": "GIBRALTAR",
+      "alfa3": "GIB",
+      "numero_iso": 292
+    },
+    {
+      "codigo": "GR",
+      "descripcion": "GREECE",
+      "alfa3": "GRC",
+      "numero_iso": 300
+    },
+    {
+      "codigo": "GL",
+      "descripcion": "GREENLAND",
+      "alfa3": "GRL",
+      "numero_iso": 304
+    },
+    {
+      "codigo": "GD",
+      "descripcion": "GRENADA",
+      "alfa3": "GRD",
+      "numero_iso": 308
+    },
+    {
+      "codigo": "GP",
+      "descripcion": "GUADELOUPE",
+      "alfa3": "GLP",
+      "numero_iso": 312
+    },
+    {
+      "codigo": "GU",
+      "descripcion": "GUAM",
+      "alfa3": "GUM",
+      "numero_iso": 316
+    },
+    {
+      "codigo": "GT",
+      "descripcion": "GUATEMALA",
+      "alfa3": "GTM",
+      "numero_iso": 320
+    },
+    {
+      "codigo": "GN",
+      "descripcion": "GUINEA",
+      "alfa3": "GIN",
+      "numero_iso": 324
+    },
+    {
+      "codigo": "GW",
+      "descripcion": "GUINEA-BISSAU",
+      "alfa3": "GNB",
+      "numero_iso": 624
+    },
+    {
+      "codigo": "GY",
+      "descripcion": "GUYANA",
+      "alfa3": "GUY",
+      "numero_iso": 328
+    },
+    {
+      "codigo": "HT",
+      "descripcion": "HAITI",
+      "alfa3": "HTI",
+      "numero_iso": 332
+    },
+    {
+      "codigo": "HM",
+      "descripcion": "HEARD AND MC DONALD ISLANDS",
+      "alfa3": "HMD",
+      "numero_iso": 334
+    },
+    {
+      "codigo": "HN",
+      "descripcion": "HONDURAS",
+      "alfa3": "HND",
+      "numero_iso": 340
+    },
+    {
+      "codigo": "HK",
+      "descripcion": "HONG KONG",
+      "alfa3": "HKG",
+      "numero_iso": 344
+    },
+    {
+      "codigo": "HU",
+      "descripcion": "HUNGARY",
+      "alfa3": "HUN",
+      "numero_iso": 348
+    },
+    {
+      "codigo": "IS",
+      "descripcion": "ICELAND",
+      "alfa3": "ISL",
+      "numero_iso": 352
+    },
+    {
+      "codigo": "IN",
+      "descripcion": "INDIA",
+      "alfa3": "IND",
+      "numero_iso": 356
+    },
+    {
+      "codigo": "ID",
+      "descripcion": "INDONESIA",
+      "alfa3": "IDN",
+      "numero_iso": 360
+    },
+    {
+      "codigo": "IR",
+      "descripcion": "IRAN (ISLAMIC REPUBLIC OF)",
+      "alfa3": "IRN",
+      "numero_iso": 364
+    },
+    {
+      "codigo": "IQ",
+      "descripcion": "IRAQ",
+      "alfa3": "IRQ",
+      "numero_iso": 368
+    },
+    {
+      "codigo": "IE",
+      "descripcion": "IRELAND",
+      "alfa3": "IRL",
+      "numero_iso": 372
+    },
+    {
+      "codigo": "IL",
+      "descripcion": "ISRAEL",
+      "alfa3": "ISR",
+      "numero_iso": 376
+    },
+    {
+      "codigo": "IT",
+      "descripcion": "ITALY",
+      "alfa3": "ITA",
+      "numero_iso": 380
+    },
+    {
+      "codigo": "JM",
+      "descripcion": "JAMAICA",
+      "alfa3": "JAM",
+      "numero_iso": 388
+    },
+    {
+      "codigo": "JP",
+      "descripcion": "JAPAN",
+      "alfa3": "JPN",
+      "numero_iso": 392
+    },
+    {
+      "codigo": "JO",
+      "descripcion": "JORDAN",
+      "alfa3": "JOR",
+      "numero_iso": 400
+    },
+    {
+      "codigo": "KZ",
+      "descripcion": "KAZAKHSTAN",
+      "alfa3": "KAZ",
+      "numero_iso": 398
+    },
+    {
+      "codigo": "KE",
+      "descripcion": "KENYA",
+      "alfa3": "KEN",
+      "numero_iso": 404
+    },
+    {
+      "codigo": "KI",
+      "descripcion": "KIRIBATI",
+      "alfa3": "KIR",
+      "numero_iso": 296
+    },
+    {
+      "codigo": "KP",
+      "descripcion": "KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF",
+      "alfa3": "PRK",
+      "numero_iso": 408
+    },
+    {
+      "codigo": "KR",
+      "descripcion": "KOREA, REPUBLIC OF",
+      "alfa3": "KOR",
+      "numero_iso": 410
+    },
+    {
+      "codigo": "KW",
+      "descripcion": "KUWAIT",
+      "alfa3": "KWT",
+      "numero_iso": 414
+    },
+    {
+      "codigo": "KG",
+      "descripcion": "KYRGYZSTAN",
+      "alfa3": "KGZ",
+      "numero_iso": 417
+    },
+    {
+      "codigo": "LA",
+      "descripcion": "LAO PEOPLE'S DEMOCRATIC REPUBLIC",
+      "alfa3": "LAO",
+      "numero_iso": 418
+    },
+    {
+      "codigo": "LV",
+      "descripcion": "LATVIA",
+      "alfa3": "LVA",
+      "numero_iso": 428
+    },
+    {
+      "codigo": "LB",
+      "descripcion": "LEBANON",
+      "alfa3": "LBN",
+      "numero_iso": 422
+    },
+    {
+      "codigo": "LS",
+      "descripcion": "LESOTHO",
+      "alfa3": "LSO",
+      "numero_iso": 426
+    },
+    {
+      "codigo": "LR",
+      "descripcion": "LIBERIA",
+      "alfa3": "LBR",
+      "numero_iso": 430
+    },
+    {
+      "codigo": "LY",
+      "descripcion": "LIBYAN ARAB JAMAHIRIYA",
+      "alfa3": "LBY",
+      "numero_iso": 434
+    },
+    {
+      "codigo": "LI",
+      "descripcion": "LIECHTENSTEIN",
+      "alfa3": "LIE",
+      "numero_iso": 438
+    },
+    {
+      "codigo": "LT",
+      "descripcion": "LITHUANIA",
+      "alfa3": "LTU",
+      "numero_iso": 440
+    },
+    {
+      "codigo": "LU",
+      "descripcion": "LUXEMBOURG",
+      "alfa3": "LUX",
+      "numero_iso": 442
+    },
+    {
+      "codigo": "MO",
+      "descripcion": "MACAU",
+      "alfa3": "MAC",
+      "numero_iso": 446
+    },
+    {
+      "codigo": "MK",
+      "descripcion": "MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF",
+      "alfa3": "MKD",
+      "numero_iso": 807
+    },
+    {
+      "codigo": "MG",
+      "descripcion": "MADAGASCAR",
+      "alfa3": "MDG",
+      "numero_iso": 450
+    },
+    {
+      "codigo": "MW",
+      "descripcion": "MALAWI",
+      "alfa3": "MWI",
+      "numero_iso": 454
+    },
+    {
+      "codigo": "MY",
+      "descripcion": "MALAYSIA",
+      "alfa3": "MYS",
+      "numero_iso": 458
+    },
+    {
+      "codigo": "MV",
+      "descripcion": "MALDIVES",
+      "alfa3": "MDV",
+      "numero_iso": 462
+    },
+    {
+      "codigo": "ML",
+      "descripcion": "MALI",
+      "alfa3": "MLI",
+      "numero_iso": 466
+    },
+    {
+      "codigo": "MT",
+      "descripcion": "MALTA",
+      "alfa3": "MLT",
+      "numero_iso": 470
+    },
+    {
+      "codigo": "MH",
+      "descripcion": "MARSHALL ISLANDS",
+      "alfa3": "MHL",
+      "numero_iso": 584
+    },
+    {
+      "codigo": "MQ",
+      "descripcion": "MARTINIQUE",
+      "alfa3": "MTQ",
+      "numero_iso": 474
+    },
+    {
+      "codigo": "MR",
+      "descripcion": "MAURITANIA",
+      "alfa3": "MRT",
+      "numero_iso": 478
+    },
+    {
+      "codigo": "MU",
+      "descripcion": "MAURITIUS",
+      "alfa3": "MUS",
+      "numero_iso": 480
+    },
+    {
+      "codigo": "YT",
+      "descripcion": "MAYOTTE",
+      "alfa3": "MYT",
+      "numero_iso": 175
+    },
+    {
+      "codigo": "MX",
+      "descripcion": "MEXICO",
+      "alfa3": "MEX",
+      "numero_iso": 484
+    },
+    {
+      "codigo": "FM",
+      "descripcion": "MICRONESIA, FEDERATED STATES OF",
+      "alfa3": "FSM",
+      "numero_iso": 583
+    },
+    {
+      "codigo": "MD",
+      "descripcion": "MOLDOVA, REPUBLIC OF",
+      "alfa3": "MDA",
+      "numero_iso": 498
+    },
+    {
+      "codigo": "MC",
+      "descripcion": "MONACO",
+      "alfa3": "MCO",
+      "numero_iso": 492
+    },
+    {
+      "codigo": "MN",
+      "descripcion": "MONGOLIA",
+      "alfa3": "MNG",
+      "numero_iso": 496
+    },
+    {
+      "codigo": "MS",
+      "descripcion": "MONTSERRAT",
+      "alfa3": "MSR",
+      "numero_iso": 500
+    },
+    {
+      "codigo": "MA",
+      "descripcion": "MOROCCO",
+      "alfa3": "MAR",
+      "numero_iso": 504
+    },
+    {
+      "codigo": "MZ",
+      "descripcion": "MOZAMBIQUE",
+      "alfa3": "MOZ",
+      "numero_iso": 508
+    },
+    {
+      "codigo": "MM",
+      "descripcion": "MYANMAR",
+      "alfa3": "MMR",
+      "numero_iso": 104
+    },
+    {
+      "codigo": "NA",
+      "descripcion": "NAMIBIA",
+      "alfa3": "NAM",
+      "numero_iso": 516
+    },
+    {
+      "codigo": "NR",
+      "descripcion": "NAURU",
+      "alfa3": "NRU",
+      "numero_iso": 520
+    },
+    {
+      "codigo": "NP",
+      "descripcion": "NEPAL",
+      "alfa3": "NPL",
+      "numero_iso": 524
+    },
+    {
+      "codigo": "NL",
+      "descripcion": "NETHERLANDS",
+      "alfa3": "NLD",
+      "numero_iso": 528
+    },
+    {
+      "codigo": "AN",
+      "descripcion": "NETHERLANDS ANTILLES",
+      "alfa3": "ANT",
+      "numero_iso": 530
+    },
+    {
+      "codigo": "NC",
+      "descripcion": "NEW CALEDONIA",
+      "alfa3": "NCL",
+      "numero_iso": 540
+    },
+    {
+      "codigo": "NZ",
+      "descripcion": "NEW ZEALAND",
+      "alfa3": "NZL",
+      "numero_iso": 554
+    },
+    {
+      "codigo": "NI",
+      "descripcion": "NICARAGUA",
+      "alfa3": "NIC",
+      "numero_iso": 558
+    },
+    {
+      "codigo": "NE",
+      "descripcion": "NIGER",
+      "alfa3": "NER",
+      "numero_iso": 562
+    },
+    {
+      "codigo": "NG",
+      "descripcion": "NIGERIA",
+      "alfa3": "NGA",
+      "numero_iso": 566
+    },
+    {
+      "codigo": "NU",
+      "descripcion": "NIUE",
+      "alfa3": "NIU",
+      "numero_iso": 570
+    },
+    {
+      "codigo": "NF",
+      "descripcion": "NORFOLK ISLAND",
+      "alfa3": "NFK",
+      "numero_iso": 574
+    },
+    {
+      "codigo": "MP",
+      "descripcion": "NORTHERN MARIANA ISLANDS",
+      "alfa3": "MNP",
+      "numero_iso": 580
+    },
+    {
+      "codigo": "NO",
+      "descripcion": "NORWAY",
+      "alfa3": "NOR",
+      "numero_iso": 578
+    },
+    {
+      "codigo": "OM",
+      "descripcion": "OMAN",
+      "alfa3": "OMN",
+      "numero_iso": 512
+    },
+    {
+      "codigo": "PK",
+      "descripcion": "PAKISTAN",
+      "alfa3": "PAK",
+      "numero_iso": 586
+    },
+    {
+      "codigo": "PW",
+      "descripcion": "PALAU",
+      "alfa3": "PLW",
+      "numero_iso": 585
+    },
+    {
+      "codigo": "PS",
+      "descripcion": "PALESTINIAN TERRITORY, Occupied",
+      "alfa3": "PSE",
+      "numero_iso": 275
+    },
+    {
+      "codigo": "PA",
+      "descripcion": "PANAMA",
+      "alfa3": "PAN",
+      "numero_iso": 591
+    },
+    {
+      "codigo": "PG",
+      "descripcion": "PAPUA NEW GUINEA",
+      "alfa3": "PNG",
+      "numero_iso": 598
+    },
+    {
+      "codigo": "PY",
+      "descripcion": "PARAGUAY",
+      "alfa3": "PRY",
+      "numero_iso": 600
+    },
+    {
+      "codigo": "PE",
+      "descripcion": "PERU",
+      "alfa3": "PER",
+      "numero_iso": 604
+    },
+    {
+      "codigo": "PH",
+      "descripcion": "PHILIPPINES",
+      "alfa3": "PHL",
+      "numero_iso": 608
+    },
+    {
+      "codigo": "PN",
+      "descripcion": "PITCAIRN",
+      "alfa3": "PCN",
+      "numero_iso": 612
+    },
+    {
+      "codigo": "PL",
+      "descripcion": "POLAND",
+      "alfa3": "POL",
+      "numero_iso": 616
+    },
+    {
+      "codigo": "PT",
+      "descripcion": "PORTUGAL",
+      "alfa3": "PRT",
+      "numero_iso": 620
+    },
+    {
+      "codigo": "PR",
+      "descripcion": "PUERTO RICO",
+      "alfa3": "PRI",
+      "numero_iso": 630
+    },
+    {
+      "codigo": "QA",
+      "descripcion": "QATAR",
+      "alfa3": "QAT",
+      "numero_iso": 634
+    },
+    {
+      "codigo": "RE",
+      "descripcion": "REUNION",
+      "alfa3": "REU",
+      "numero_iso": 638
+    },
+    {
+      "codigo": "RO",
+      "descripcion": "ROMANIA",
+      "alfa3": "ROU",
+      "numero_iso": 642
+    },
+    {
+      "codigo": "RU",
+      "descripcion": "RUSSIAN FEDERATION",
+      "alfa3": "RUS",
+      "numero_iso": 643
+    },
+    {
+      "codigo": "RW",
+      "descripcion": "RWANDA",
+      "alfa3": "RWA",
+      "numero_iso": 646
+    },
+    {
+      "codigo": "SH",
+      "descripcion": "SAINT HELENA",
+      "alfa3": "SHN",
+      "numero_iso": 654
+    },
+    {
+      "codigo": "KN",
+      "descripcion": "SAINT KITTS AND NEVIS",
+      "alfa3": "KNA",
+      "numero_iso": 659
+    },
+    {
+      "codigo": "LC",
+      "descripcion": "SAINT LUCIA",
+      "alfa3": "LCA",
+      "numero_iso": 662
+    },
+    {
+      "codigo": "PM",
+      "descripcion": "SAINT PIERRE AND MIQUELON",
+      "alfa3": "SPM",
+      "numero_iso": 666
+    },
+    {
+      "codigo": "VC",
+      "descripcion": "SAINT VINCENT AND THE GRENADINES",
+      "alfa3": "VCT",
+      "numero_iso": 670
+    },
+    {
+      "codigo": "WS",
+      "descripcion": "SAMOA",
+      "alfa3": "WSM",
+      "numero_iso": 882
+    },
+    {
+      "codigo": "SM",
+      "descripcion": "SAN MARINO",
+      "alfa3": "SMR",
+      "numero_iso": 674
+    },
+    {
+      "codigo": "ST",
+      "descripcion": "SAO TOME AND PRINCIPE",
+      "alfa3": "STP",
+      "numero_iso": 678
+    },
+    {
+      "codigo": "SA",
+      "descripcion": "SAUDI ARABIA",
+      "alfa3": "SAU",
+      "numero_iso": 682
+    },
+    {
+      "codigo": "SN",
+      "descripcion": "SENEGAL",
+      "alfa3": "SEN",
+      "numero_iso": 686
+    },
+    {
+      "codigo": "CS",
+      "descripcion": "SERBIA AND MONTENEGRO",
+      "alfa3": "SCG",
+      "numero_iso": 891
+    },
+    {
+      "codigo": "SC",
+      "descripcion": "SEYCHELLES",
+      "alfa3": "SYC",
+      "numero_iso": 690
+    },
+    {
+      "codigo": "SL",
+      "descripcion": "SIERRA LEONE",
+      "alfa3": "SLE",
+      "numero_iso": 694
+    },
+    {
+      "codigo": "SG",
+      "descripcion": "SINGAPORE",
+      "alfa3": "SGP",
+      "numero_iso": 702
+    },
+    {
+      "codigo": "SK",
+      "descripcion": "SLOVAKIA",
+      "alfa3": "SVK",
+      "numero_iso": 703
+    },
+    {
+      "codigo": "SI",
+      "descripcion": "SLOVENIA",
+      "alfa3": "SVN",
+      "numero_iso": 705
+    },
+    {
+      "codigo": "SB",
+      "descripcion": "SOLOMON ISLANDS",
+      "alfa3": "SLB",
+      "numero_iso": 90
+    },
+    {
+      "codigo": "SO",
+      "descripcion": "SOMALIA",
+      "alfa3": "SOM",
+      "numero_iso": 706
+    },
+    {
+      "codigo": "ZA",
+      "descripcion": "SOUTH AFRICA",
+      "alfa3": "ZAF",
+      "numero_iso": 710
+    },
+    {
+      "codigo": "GS",
+      "descripcion": "SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS",
+      "alfa3": "SGS",
+      "numero_iso": 239
+    },
+    {
+      "codigo": "ES",
+      "descripcion": "SPAIN",
+      "alfa3": "ESP",
+      "numero_iso": 724
+    },
+    {
+      "codigo": "LK",
+      "descripcion": "SRI LANKA",
+      "alfa3": "LKA",
+      "numero_iso": 144
+    },
+    {
+      "codigo": "SD",
+      "descripcion": "SUDAN",
+      "alfa3": "SDN",
+      "numero_iso": 736
+    },
+    {
+      "codigo": "SR",
+      "descripcion": "SURINAME",
+      "alfa3": "SUR",
+      "numero_iso": 740
+    },
+    {
+      "codigo": "SJ",
+      "descripcion": "SVALBARD AND JAN MAYEN ISLANDS",
+      "alfa3": "SJM",
+      "numero_iso": 744
+    },
+    {
+      "codigo": "SZ",
+      "descripcion": "SWAZILAND",
+      "alfa3": "SWZ",
+      "numero_iso": 748
+    },
+    {
+      "codigo": "SE",
+      "descripcion": "SWEDEN",
+      "alfa3": "SWE",
+      "numero_iso": 752
+    },
+    {
+      "codigo": "CH",
+      "descripcion": "SWITZERLAND",
+      "alfa3": "CHE",
+      "numero_iso": 756
+    },
+    {
+      "codigo": "SY",
+      "descripcion": "SYRIAN ARAB REPUBLIC",
+      "alfa3": "SYR",
+      "numero_iso": 760
+    },
+    {
+      "codigo": "TW",
+      "descripcion": "TAIWAN",
+      "alfa3": "TWN",
+      "numero_iso": 158
+    },
+    {
+      "codigo": "TJ",
+      "descripcion": "TAJIKISTAN",
+      "alfa3": "TJK",
+      "numero_iso": 762
+    },
+    {
+      "codigo": "TZ",
+      "descripcion": "TANZANIA, UNITED REPUBLIC OF",
+      "alfa3": "TZA",
+      "numero_iso": 834
+    },
+    {
+      "codigo": "TH",
+      "descripcion": "THAILAND",
+      "alfa3": "THA",
+      "numero_iso": 764
+    },
+    {
+      "codigo": "TL",
+      "descripcion": "TIMOR-LESTE",
+      "alfa3": "TLS",
+      "numero_iso": 626
+    },
+    {
+      "codigo": "TG",
+      "descripcion": "TOGO",
+      "alfa3": "TGO",
+      "numero_iso": 768
+    },
+    {
+      "codigo": "TK",
+      "descripcion": "TOKELAU",
+      "alfa3": "TKL",
+      "numero_iso": 772
+    },
+    {
+      "codigo": "TO",
+      "descripcion": "TONGA",
+      "alfa3": "TON",
+      "numero_iso": 776
+    },
+    {
+      "codigo": "TT",
+      "descripcion": "TRINIDAD AND TOBAGO",
+      "alfa3": "TTO",
+      "numero_iso": 780
+    },
+    {
+      "codigo": "TN",
+      "descripcion": "TUNISIA",
+      "alfa3": "TUN",
+      "numero_iso": 788
+    },
+    {
+      "codigo": "TR",
+      "descripcion": "TURKEY",
+      "alfa3": "TUR",
+      "numero_iso": 792
+    },
+    {
+      "codigo": "TM",
+      "descripcion": "TURKMENISTAN",
+      "alfa3": "TKM",
+      "numero_iso": 795
+    },
+    {
+      "codigo": "TC",
+      "descripcion": "TURKS AND CAICOS ISLANDS",
+      "alfa3": "TCA",
+      "numero_iso": 796
+    },
+    {
+      "codigo": "TV",
+      "descripcion": "TUVALU",
+      "alfa3": "TUV",
+      "numero_iso": 798
+    },
+    {
+      "codigo": "UG",
+      "descripcion": "UGANDA",
+      "alfa3": "UGA",
+      "numero_iso": 800
+    },
+    {
+      "codigo": "UA",
+      "descripcion": "UKRAINE",
+      "alfa3": "UKR",
+      "numero_iso": 804
+    },
+    {
+      "codigo": "AE",
+      "descripcion": "UNITED ARAB EMIRATES",
+      "alfa3": "ARE",
+      "numero_iso": 784
+    },
+    {
+      "codigo": "GB",
+      "descripcion": "UNITED KINGDOM",
+      "alfa3": "GBR",
+      "numero_iso": 826
+    },
+    {
+      "codigo": "US",
+      "descripcion": "UNITED STATES",
+      "alfa3": "USA",
+      "numero_iso": 840
+    },
+    {
+      "codigo": "UM",
+      "descripcion": "UNITED STATES MINOR OUTLYING ISLANDS",
+      "alfa3": "UMI",
+      "numero_iso": 581
+    },
+    {
+      "codigo": "UY",
+      "descripcion": "URUGUAY",
+      "alfa3": "URY",
+      "numero_iso": 858
+    },
+    {
+      "codigo": "UZ",
+      "descripcion": "UZBEKISTAN",
+      "alfa3": "UZB",
+      "numero_iso": 860
+    },
+    {
+      "codigo": "VU",
+      "descripcion": "VANUATU",
+      "alfa3": "VUT",
+      "numero_iso": 548
+    },
+    {
+      "codigo": "VA",
+      "descripcion": "VATICAN CITY STATE (HOLY SEE)",
+      "alfa3": "VAT",
+      "numero_iso": 336
+    },
+    {
+      "codigo": "VE",
+      "descripcion": "VENEZUELA",
+      "alfa3": "VEN",
+      "numero_iso": 862
+    },
+    {
+      "codigo": "VN",
+      "descripcion": "VIET NAM",
+      "alfa3": "VNM",
+      "numero_iso": 704
+    },
+    {
+      "codigo": "VG",
+      "descripcion": "VIRGIN ISLANDS (BRITISH)",
+      "alfa3": "VGB",
+      "numero_iso": 92
+    },
+    {
+      "codigo": "VI",
+      "descripcion": "VIRGIN ISLANDS (U.S.)",
+      "alfa3": "VIR",
+      "numero_iso": 850
+    },
+    {
+      "codigo": "WF",
+      "descripcion": "WALLIS AND FUTUNA ISLANDS",
+      "alfa3": "WLF",
+      "numero_iso": 876
+    },
+    {
+      "codigo": "EH",
+      "descripcion": "WESTERN SAHARA",
+      "alfa3": "ESH",
+      "numero_iso": 732
+    },
+    {
+      "codigo": "YE",
+      "descripcion": "YEMEN",
+      "alfa3": "YEM",
+      "numero_iso": 887
+    },
+    {
+      "codigo": "ZM",
+      "descripcion": "ZAMBIA",
+      "alfa3": "ZMB",
+      "numero_iso": 894
+    },
+    {
+      "codigo": "ZW",
+      "descripcion": "ZIMBABWE",
+      "alfa3": "ZWE",
+      "numero_iso": 716
+    }
+  ]
+}

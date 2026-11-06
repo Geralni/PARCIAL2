@@ -1,0 +1,38 @@
+﻿campo,longitud,obligatorio,llave_unica,descripcion,formato,observaciones
+1,8,Si,Si,Periodo,Numérico,"1. Obligatorio 2. Validar formato AAAAMM00 3. 01 <= MM <= 12 4. Menor o igual al periodo informado 5. Si periodo es menor a periodo informado, entonces campo 36 es igual a '9' 6. Si el periodo es igual a periodo informado, campo 36 es diferente a '9'"
+2,Hasta 40,Si,Si,"1. Contribuyentes del Régimen General: Número correlativo del mes o Código Único de la Operación (CUO), que es la llave única o clave única o clave primaria del software contable que identifica de manera unívoca el asiento contable en el Libro Diario o del Libro Diario de Formato Simplificado en que se registró la operación. 2. Contribuyentes del Régimen Especial de Renta - RER: Número correlativo del mes.",Texto,"1. Obligatorio 2. Si el campo 36 es igual a '0', consignar el Código Único de la Operación (CUO) o número correlativo de la operación que se está informando 3. Si el campo 36 es igual a '9', consignar el Código Único de la Operación (CUO) o número correlativo de la operación original que se modifica 4. No acepta el caracter ""&"" 5. Si el CUO proviene de un asiento contable consolidado se debe adicionar un número secuencial separado de un guión ""-""."
+3,De 2 hasta 10,Si,Si,"Número correlativo del asiento contable identificado en el campo 2, cuando se utilice el Código Único de la Operación (CUO). El primer dígito debe ser: ""A"" para el asiento de apertura del ejercicio, ""M"" para los asientos de movimientos o ajustes del mes o ""C"" para el asiento de cierre del ejercicio.",Alfanumérico,"1. Obligatorio 2. El primer dígito debe ser: A, M o C 3. En los casos de Contribuyentes del RER: Consignar M-RER 4. No acepta el caracter ""&"""
+4,10,Si,No,Fecha de emisión del comprobante de pago o documento,DD/MM/AAAA,1. Obligatorio 2. Menor o igual al periodo informado
+5,2,Si,Si,Tipo de Comprobante de Pago o Documento del sujeto no domiciliado,Alfanumérico,"1. Obligatorio 2. Sólo permite los tipos de documentos ""00"", ""91"", ""97"" y ""98""de la tabla 10 3. Aplicar Regla General (por tipo de comprobante)"
+6,Hasta 20,No,No,Serie del comprobante de pago o documento.,Alfanumérico,1. Opcional. 2. No aplica Regla General ( por tipo de comprobante)
+7,Hasta 20,Si,Si,Número del comprobante de pago o documento.,Alfanumérico,1. Obligatorio. 2. Aplica Regla General ( por tipo de comprobante)
+8,"Hasta 12 enteros y hasta 2 decimales, sin comas de miles",No,No,Valor de las adquisiciones,Numérico,
+9,"Hasta 12 enteros y hasta 2 decimales, sin comas de miles",No,No,Otros conceptos adicionales,Numérico,
+10,"Hasta 12 enteros y hasta 2 decimales, sin comas de miles",Si,No,Importe total de las adquisiciones registradas según comprobante de pago o documento,Numérico,1. Obligatorio
+11,2,No,No,Tipo de Comprobante de Pago o Documento que sustenta el crédito fiscal,Numérico,"1. Sólo permite los tipos de documentos ""00"", ""46"", ""50"", ""51"", ""52"" y ""53"" de la tabla 10 2. Aplicar Regla General (por tipo de doc.)"
+12,Hasta 20,No,No,Serie del comprobante de pago o documento que sustenta el crédito fiscal. En los casos de la Declaración Única de Aduanas (DUA) o de la Declaración Simplificada de Importación (DSI) se consignará el código de la dependencia Aduanera.,Alfanumérico,1. Aplicar Regla General (tipo y nro. doc.)
+13,4,No,No,Año de emisión de la DUA o DSI que sustenta el crédito fiscal,Numérico,"1. Si campo 11= '50' , '52' registrar número mayor a 1981 y menor o igual al año del periodo informado o al año del periodo señalado en el campo 1."
+14,Hasta 20,No,No,"Número del comprobante de pago o documento o número de orden del formulario físico o virtual donde conste el pago del impuesto, tratándose de la utilización de servicios prestados por no domiciliados u otros, número de la DUA o de la DSI, que sustente el crédito fiscal.",Alfanumérico,1. Aplicar Regla General (por tipo de doc.)
+15,"Hasta 12 enteros y hasta 2 decimales, sin comas de miles",No,No,Monto de retención del IGV,Numérico,
+16,3,Si,No,Código de la Moneda (Tabla 4),Alfanumérico,1. Obligatorio 2. Validar con parámetro tabla 4
+17,1 entero y 3 decimales,No,No,Tipo de cambio,Numérico,"1. Obligatorio si campo 16 <> ""PEN"" 2. #.### 3. Positivo"
+18,4,Si,No,Pais de la residencia del sujeto no domiciliado,Alfanumérico,1. Validar con parámetro tabla 35
+19,Hasta 100,Si,No,"Apellidos y nombres, denominación o razón social del sujeto no domiciliado. En caso de personas naturales se debe consignar los datos en el siguiente orden: apellido paterno, apellido materno y nombre completo.",Texto,
+20,Hasta 100,No,No,Domicilio en el extranjero del sujeto no domiciliado,Texto,
+21,Hasta 15,Si,No,Número de identificación del sujeto no domiciliado,Texto,
+22,Hasta 15,No,No,Número de identificación fiscal del beneficiario efectivo de los pagos,Texto,
+23,Hasta 100,No,No,"Apellidos y nombres, denominación o razón social del beneficiario efectivo de los pagos. En caso de personas naturales se debe consignar los datos en el siguiente orden: apellido paterno, apellido materno y nombre completo.",Texto,
+24,4,No,No,Pais de la residencia del beneficiario efectivo de los pagos,Alfanumérico,1. Validar con parámetro tabla 35
+25,2,No,No,Vínculo entre el contribuyente y el residente en el extranjero,Alfanumérico,1. Validar con parámetro tabla 27
+26,"Hasta 12 enteros y hasta 2 decimales, sin comas de miles",No,No,Renta Bruta,Numérico,
+27,"Hasta 12 enteros y hasta 2 decimales, sin comas de miles",No,No,Deducción / Costo de Enajenación de bienes de capital,Numérico,1. Acepta negativos
+28,"Hasta 12 enteros y hasta 2 decimales, sin comas de miles",No,No,Renta Neta,Numérico,
+29,Hasta 3 enteros y 2 decimales,No,No,Tasa de retención,Numérico,
+30,"Hasta 12 enteros y hasta 2 decimales, sin comas de miles",No,No,Impuesto retenido,Numérico,
+31,2,Si,No,Convenios para evitar la doble imposición,Numérico,1. Obligatorio 2. Validar con parámetro tabla 25
+32,1,No,No,Exoneración aplicada,Numérico,1. Validar con parámetro tabla 33
+33,2,Si,No,Tipo de Renta,Numérico,1. Obligatorio 2. Validar con parámetro tabla 31
+34,1,No,No,Modalidad del servicio prestado por el no domiciliado,Numérico,1. Validar con parámetro tabla 32
+35,1,No,No,Aplicación del penultimo parrafo del Art. 76° de la Ley del Impuesto a la Renta,Numérico,1. Consignar 1 si aplica
+36,1,Si,No,Estado que identifica la oportunidad de la anotación o indicación si ésta corresponde a un ajuste.,Numérico,1. Obligatorio 2. Registrar '0' cuando la operación (anotación optativa sin efecto en el IGV) corresponde al periodo. 3. Registrar '9' cuando se realice un ajuste o rectificación en la anotación de la información de una operación registrada en un periodo anterior.
+37 al 72,Hasta 200,No,No,Campos de libre utilización.,Texto,"1. En caso de no tener la necesidad de utilizarlos, no incluya ni la información ni los palotes."

@@ -1,0 +1,51 @@
+# Firma digital (metadatos)
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/firma-digital.schema.yaml
+title: Firma digital (metadatos)
+description: Metadatos de la firma XMLDSig aplicada. NUNCA contiene la clave privada ni la contraseña del certificado (REG-093).
+type: object
+additionalProperties: false
+required:
+- firmanteRuc
+- certificadoHuella
+- fechaFirma
+properties:
+  firmanteRuc:
+    $ref: common.schema.yaml#/$defs/Ruc
+    x-trazabilidad: MT-020
+    x-reglas:
+    - REG-092
+  certificadoHuella:
+    type: string
+    pattern: ^[A-F0-9]{40,64}$
+    x-trazabilidad: MT-001
+    x-reglas:
+    - REG-091
+  certificadoVigenteDesde:
+    $ref: common.schema.yaml#/$defs/Fecha
+    x-trazabilidad: interno
+  certificadoVigenteHasta:
+    $ref: common.schema.yaml#/$defs/Fecha
+    x-trazabilidad: interno
+  algoritmo:
+    type: string
+    examples:
+    - http://www.w3.org/2000/09/xmldsig#rsa-sha1
+    x-trazabilidad: MT-001
+    description: 'Algoritmo exigido: PENDIENTE de norma.'
+  digestValue:
+    type: string
+    x-trazabilidad: MT-001
+    description: Hash del documento firmado (código hash de la representación impresa).
+  fechaFirma:
+    type: string
+    format: date-time
+    x-trazabilidad: interno
+  firmadoPor:
+    enum:
+    - LOCAL_WINDOWS
+    - LOCAL_ANDROID
+    - PROVEEDOR_OSE
+    x-trazabilidad: interno
+    description: ADR-004, ADR-006.

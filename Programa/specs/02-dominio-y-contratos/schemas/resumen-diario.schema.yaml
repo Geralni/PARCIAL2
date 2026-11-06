@@ -1,0 +1,140 @@
+# Resumen diario de boletas y notas
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/resumen-diario.schema.yaml
+title: Resumen diario de boletas y notas
+description: 'SummaryDocuments (Anexo 9-A lit. E, págs. 28-30). Asíncrono (ticket). Sin XSD SUNAT en el workspace. Percepción:
+  fuera de alcance (MT-203).'
+type: object
+additionalProperties: false
+required:
+- fechaReferencia
+- items
+x-reglas:
+- REG-120
+- REG-122
+- REG-111
+properties:
+  id:
+    $ref: common.schema.yaml#/$defs/Uuid
+    readOnly: true
+    x-trazabilidad: interno
+  identificador:
+    type: string
+    pattern: ^RC-\d{8}-\d{1,5}$
+    readOnly: true
+    x-trazabilidad: MT-142
+  fechaGeneracion:
+    $ref: common.schema.yaml#/$defs/Fecha
+    readOnly: true
+    x-trazabilidad: MT-143
+  fechaReferencia:
+    $ref: common.schema.yaml#/$defs/Fecha
+    x-trazabilidad: MT-144
+  items:
+    type: array
+    minItems: 1
+    x-trazabilidad: MT-149
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - tipoComprobante
+      - serieNumero
+      - estadoItem
+      - importeTotal
+      - moneda
+      properties:
+        linea:
+          type: integer
+          minimum: 1
+          maximum: 99999
+          readOnly: true
+          x-trazabilidad: MT-149
+        tipoComprobante:
+          enum:
+          - '03'
+          - '07'
+          - '08'
+          x-trazabilidad: MT-151
+        serieNumero:
+          type: string
+          pattern: ^[A-Z0-9]{4}-\d{1,8}$
+          maxLength: 13
+          x-trazabilidad: MT-150
+        adquirente:
+          type: object
+          additionalProperties: false
+          x-trazabilidad: MT-152
+          properties:
+            tipoDocumento:
+              $ref: catalogos.schema.yaml#/$defs/Cat06
+              x-trazabilidad: MT-153
+            numeroDocumento:
+              type: string
+              maxLength: 20
+              x-trazabilidad: MT-152
+        documentoModificado:
+          $ref: common.schema.yaml#/$defs/ReferenciaDocumento
+          x-trazabilidad: MT-154
+        estadoItem:
+          type: string
+          pattern: ^\d$
+          x-trazabilidad: MT-156
+          x-reglas:
+          - REG-123
+          description: Catálogo 19 (PENDIENTE).
+        moneda:
+          $ref: catalogos.schema.yaml#/$defs/Cat02
+          x-trazabilidad: MT-157
+        importeTotal:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: MT-157
+        totalesPorTipo:
+          type: array
+          x-trazabilidad: MT-158
+          x-reglas:
+          - REG-124
+          items:
+            type: object
+            additionalProperties: false
+            required:
+            - codigo
+            - monto
+            properties:
+              codigo:
+                type: string
+                pattern: ^\d{2}$
+                x-trazabilidad: MT-159
+                description: Catálogo 11 (PENDIENTE, DISC-09).
+              monto:
+                $ref: common.schema.yaml#/$defs/Monto
+                x-trazabilidad: MT-158
+        otrosCargos:
+          $ref: common.schema.yaml#/$defs/Monto
+          x-trazabilidad: MT-160
+        tributos:
+          type: array
+          items:
+            $ref: tributo.schema.yaml
+          x-trazabilidad: MT-161
+  estado:
+    enum:
+    - PENDIENTE_ENVIO
+    - EN_PROCESO
+    - ACEPTADO
+    - RECHAZADO
+    readOnly: true
+    x-trazabilidad: interno
+  ticket:
+    type: string
+    readOnly: true
+    x-trazabilidad: interno
+  firma:
+    $ref: firma-digital.schema.yaml
+    readOnly: true
+    x-trazabilidad: MT-145
+  respuestaSunat:
+    $ref: respuesta-sunat.schema.yaml
+    readOnly: true
+    x-trazabilidad: interno

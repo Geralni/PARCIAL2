@@ -1,0 +1,102 @@
+{
+  "$schema": "../schemas/catalogo.schema.yaml",
+  "numero": "05",
+  "nombre": "Códigos de tipos de tributos",
+  "fuente": {
+    "archivo": "Git/05.txt",
+    "formato_detectado": "JSON",
+    "tipo": "comunitaria_no_oficial",
+    "ultima_actualizacion": "2020",
+    "registros_origen": 10
+  },
+  "advertencia": "Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse con el Anexo 8 oficial de SUNAT antes de producción.",
+  "campo_ubl": [
+    {
+      "xpath": "/Invoice/cac:TaxTotal/cac:TaxSubtotal/cac:TaxCategory/cac:TaxScheme/cbc:ID",
+      "referencia": "Anexo 9-A, RS 117-2017, pág. 7"
+    },
+    {
+      "xpath": "/Invoice/cac:TaxTotal/cac:TaxSubtotal/cac:TaxCategory/cac:TaxScheme/cbc:Name",
+      "referencia": "Anexo 9-A, RS 117-2017, pág. 7"
+    },
+    {
+      "xpath": "/Invoice/cac:TaxTotal/cac:TaxSubtotal/cac:TaxCategory/cac:TaxScheme/cbc:TaxTypeCode",
+      "referencia": "Anexo 9-A, RS 117-2017, pág. 7"
+    },
+    {
+      "xpath": "/Invoice/cac:InvoiceLine/cac:TaxTotal/cac:TaxSubtotal/cac:TaxCategory/cac:TaxScheme/cbc:ID",
+      "referencia": "Anexo 9-A, RS 117-2017, pág. 10"
+    }
+  ],
+  "contraste_anexo_9a": {
+    "estado": "DISCREPANCIA",
+    "observaciones": [
+      "Factura (págs. 7 y 10): TaxScheme/cbc:ID figura como an..3 y TaxTypeCode como an4. Nota de crédito (pág. 20) y resumen diario (pág. 29): cbc:ID an4 y TaxTypeCode an3. Los códigos del catálogo son de 4 dígitos (1000, 2000...) y los internacionales de 3 letras (VAT, EXC...), lo que coincide con la NC y el RC. Registrado como DISC-05.",
+      "El código 7152 (ICBPER) no tiene respaldo en el Anexo 9-A (2017). PENDIENTE: anexos posteriores (ENT-04).",
+      "cbc:Name an..6: todos los nombres del catálogo caben (máx. 'ICBPER' = 6)."
+    ]
+  },
+  "duplicados_detectados": [],
+  "items": [
+    {
+      "codigo": "1000",
+      "descripcion": "IGV Impuesto General a las Ventas",
+      "codigo_internacional": "VAT",
+      "nombre": "IGV"
+    },
+    {
+      "codigo": "1016",
+      "descripcion": "Impuesto a la Venta Arroz Pilado",
+      "codigo_internacional": "VAT",
+      "nombre": "IVAP"
+    },
+    {
+      "codigo": "2000",
+      "descripcion": "ISC Impuesto Selectivo al Consumo",
+      "codigo_internacional": "EXC",
+      "nombre": "ISC"
+    },
+    {
+      "codigo": "3000",
+      "descripcion": "Impuesto a la Renta",
+      "codigo_internacional": "TOX",
+      "nombre": "IR"
+    },
+    {
+      "codigo": "7152",
+      "descripcion": "Impuesto a la bolsa plastica",
+      "codigo_internacional": "OTH",
+      "nombre": "ICBPER"
+    },
+    {
+      "codigo": "9995",
+      "descripcion": "Exportación",
+      "codigo_internacional": "FRE",
+      "nombre": "EXP"
+    },
+    {
+      "codigo": "9996",
+      "descripcion": "Gratuito",
+      "codigo_internacional": "FRE",
+      "nombre": "GRA"
+    },
+    {
+      "codigo": "9997",
+      "descripcion": "Exonerado",
+      "codigo_internacional": "VAT",
+      "nombre": "EXO"
+    },
+    {
+      "codigo": "9998",
+      "descripcion": "Inafecto",
+      "codigo_internacional": "FRE",
+      "nombre": "INA"
+    },
+    {
+      "codigo": "9999",
+      "descripcion": "Otros tributos",
+      "codigo_internacional": "OTH",
+      "nombre": "OTROS"
+    }
+  ]
+}

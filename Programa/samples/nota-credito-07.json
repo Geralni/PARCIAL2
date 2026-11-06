@@ -1,0 +1,30 @@
+{
+  "tipoComprobante": "07",
+  "serie": "F001",
+  "fechaEmision": "2026-10-28",
+  "moneda": "PEN",
+  "establecimientoCodigo": "0000",
+  "adquirente": {
+    "tipoDocumento": "6",
+    "numeroDocumento": "20000000002",
+    "razonSocial": "BODEGA FICTICIA LOS ANDES S.A.C."
+  },
+  "documentoAfectado": { "tipo": "01", "serie": "F001", "correlativo": 1 },
+  "motivo": { "codigo": "07", "descripcion": "DEVOLUCION DE 2 SACOS DE ARROZ" },
+  "lineas": [
+    {
+      "numeroOrden": 1,
+      "codigoProducto": "ARR-050",
+      "descripcion": "ARROZ SUPERIOR SACO 50 KG",
+      "cantidad": "2",
+      "unidadMedida": "BG",
+      "valorUnitario": "100.00",
+      "precioUnitario": { "monto": "118.00", "tipoPrecio": "01" },
+      "valorVenta": "200.00",
+      "afectacionIgv": "10",
+      "tributos": [ { "codigoTributo": "1000", "base": "200.00", "tasa": "18.00", "monto": "36.00" } ],
+      "totalTributos": "36.00"
+    }
+  ],
+  "totales": { "totalGravado": "200.00", "totalIgv": "36.00", "importeTotal": "236.00" }
+}

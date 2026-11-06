@@ -1,0 +1,87 @@
+# Comunicación de baja
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/comunicacion-baja.schema.yaml
+title: Comunicación de baja
+description: 'VoidedDocuments (Anexo 9-A lit. F, pág. 31). Proceso asíncrono: envío -> ticket -> consulta de estado (ENT-06
+  §8). Sin XSD SUNAT en el workspace.'
+type: object
+additionalProperties: false
+required:
+- fechaReferencia
+- items
+x-reglas:
+- REG-121
+- REG-122
+- REG-124
+- REG-111
+properties:
+  id:
+    $ref: common.schema.yaml#/$defs/Uuid
+    readOnly: true
+    x-trazabilidad: interno
+  identificador:
+    type: string
+    pattern: ^RA-\d{8}-\d{1,5}$
+    readOnly: true
+    x-trazabilidad: MT-172
+  fechaGeneracion:
+    $ref: common.schema.yaml#/$defs/Fecha
+    readOnly: true
+    x-trazabilidad: MT-173
+  fechaReferencia:
+    $ref: common.schema.yaml#/$defs/Fecha
+    x-trazabilidad: MT-174
+  items:
+    type: array
+    minItems: 1
+    x-trazabilidad: MT-179
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - tipoComprobante
+      - serie
+      - correlativo
+      - motivo
+      properties:
+        linea:
+          type: integer
+          minimum: 1
+          maximum: 99999
+          readOnly: true
+          x-trazabilidad: MT-179
+        tipoComprobante:
+          $ref: catalogos.schema.yaml#/$defs/Cat01
+          x-trazabilidad: MT-180
+        serie:
+          type: string
+          pattern: ^[A-Z0-9]{4}$
+          x-trazabilidad: MT-181
+        correlativo:
+          $ref: common.schema.yaml#/$defs/Correlativo
+          x-trazabilidad: MT-182
+        motivo:
+          $ref: common.schema.yaml#/$defs/Texto100
+          x-trazabilidad: MT-183
+  estado:
+    enum:
+    - PENDIENTE_ENVIO
+    - EN_PROCESO
+    - ACEPTADA
+    - RECHAZADA
+    readOnly: true
+    x-trazabilidad: interno
+    description: 'Estados vistos en ENT-06 §8: Aceptadas, Pendientes, Rechazadas.'
+  ticket:
+    type: string
+    readOnly: true
+    x-trazabilidad: interno
+  firma:
+    $ref: firma-digital.schema.yaml
+    readOnly: true
+    x-trazabilidad: MT-175
+  respuestaSunat:
+    $ref: respuesta-sunat.schema.yaml
+    readOnly: true
+    x-trazabilidad: interno

@@ -1,0 +1,25 @@
+{
+  "denominacion": "REGISTRO DEL INVENTARIO PERMANENTE EN UNIDADES FÍSICAS - DETALLE DEL INVENTARIO PERMANENTE EN UNIDADES FÍSICAS",
+  "periodo": "202401",
+  "ruc": "20000000001",
+  "razonSocial": "ABC SOFTWARE CORP S.A.C. (FICTICIO)",
+  "establecimientoCodigo": "0000",
+  "establecimientoDescripcion": "ALMACEN PRINCIPAL (FICTICIO)",
+  "existencias": [
+    {
+      "codigoExistencia": "ARR-050",
+      "descripcion": "ARROZ SUPERIOR SACO 50KG",
+      "unidadMedida": "BG",
+      "movimientos": [
+        { "fecha": "2024-01-01", "tipoDocumento": "00", "serie": "SI", "numero": "0", "tipoOperacion": "PENDIENTE", "entradas": "0", "saldoFinal": "0" },
+        { "fecha": "2024-01-02", "tipoDocumento": "00", "serie": "NI", "numero": "0001", "tipoOperacion": "PENDIENTE", "entradas": "100", "saldoFinal": "100",
+          "origen": { "fuente": "LEGADO", "archivo": "fichas-ejemplo.csv", "fila": 1 } },
+        { "fecha": "2024-01-02", "tipoDocumento": "00", "serie": "VS", "numero": "0001", "tipoOperacion": "PENDIENTE", "salidas": "10", "saldoFinal": "90",
+          "origen": { "fuente": "LEGADO", "archivo": "fichas-ejemplo.csv", "fila": 2 } },
+        { "fecha": "2024-01-05", "tipoDocumento": "00", "serie": "VS", "numero": "0004", "tipoOperacion": "PENDIENTE", "salidas": "3", "saldoFinal": "87",
+          "origen": { "fuente": "LEGADO", "archivo": "fichas-ejemplo.csv", "fila": 8 } }
+      ],
+      "totales": { "entradas": "100", "salidas": "13", "saldoFinal": "87" }
+    }
+  ]
+}

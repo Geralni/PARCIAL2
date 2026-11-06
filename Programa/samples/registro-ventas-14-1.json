@@ -1,0 +1,45 @@
+{
+  "periodo": "202610",
+  "rucEmisor": "20000000001",
+  "razonSocial": "ABC SOFTWARE CORP S.A.C. (FICTICIO)",
+  "filas": [
+    {
+      "cuo": "202610-000001",
+      "correlativoAsiento": "M0001",
+      "fechaEmision": "2026-10-27",
+      "fechaVencimiento": "2026-12-26",
+      "tipoComprobante": "01",
+      "serie": "F001",
+      "numero": "1",
+      "clienteTipoDocumento": "6",
+      "clienteNumeroDocumento": "20000000002",
+      "clienteRazonSocial": "BODEGA FICTICIA LOS ANDES S.A.C.",
+      "baseImponibleGravada": "1066.00",
+      "igvIpm": "191.88",
+      "isc": "6.00",
+      "icbper": "0.00",
+      "importeTotal": "1257.88",
+      "estadoAnotacion": "1"
+    },
+    {
+      "cuo": "202610-000002",
+      "correlativoAsiento": "M0002",
+      "fechaEmision": "2026-10-28",
+      "tipoComprobante": "07",
+      "serie": "F001",
+      "numero": "3",
+      "clienteTipoDocumento": "6",
+      "clienteNumeroDocumento": "20000000002",
+      "clienteRazonSocial": "BODEGA FICTICIA LOS ANDES S.A.C.",
+      "baseImponibleGravada": "-200.00",
+      "igvIpm": "-36.00",
+      "icbper": "0.00",
+      "importeTotal": "-236.00",
+      "documentoModificadoFecha": "2026-10-27",
+      "documentoModificadoTipo": "01",
+      "documentoModificadoSerie": "F001",
+      "documentoModificadoNumero": "1",
+      "estadoAnotacion": "1"
+    }
+  ]
+}

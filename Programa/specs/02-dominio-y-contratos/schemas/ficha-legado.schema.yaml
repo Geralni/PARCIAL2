@@ -1,0 +1,48 @@
+# Ficha de almacén del sistema legado (tal como viene)
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/ficha-legado.schema.yaml
+title: Ficha de almacén del sistema legado (tal como viene)
+description: 'Representa UNA fila del legado SIN limpiar: todos los campos son texto y pueden venir vacíos o inválidos. La
+  validación y la cuarentena son reglas REG-130..REG-135 del importador, no del schema. Ver 06-migracion/mapeo-legado.md.'
+type: object
+additionalProperties: false
+required:
+- fecha
+- ingreso
+- salida
+- producto
+- nro_documento
+properties:
+  fecha:
+    type: string
+    x-trazabilidad: interno
+    x-reglas:
+    - REG-130
+    description: 'Destino: MovimientoAlmacen.fecha; 12.1 fecha.'
+  ingreso:
+    type: string
+    x-trazabilidad: interno
+    x-reglas:
+    - REG-131
+    - REG-135
+    description: Cantidad que entra (puede ir vacío).
+  salida:
+    type: string
+    x-trazabilidad: interno
+    x-reglas:
+    - REG-131
+    - REG-135
+    description: Cantidad que sale (puede ir vacío).
+  producto:
+    type: string
+    x-trazabilidad: interno
+    x-reglas:
+    - REG-132
+    description: Texto libre; puede o no traer código.
+  nro_documento:
+    type: string
+    x-trazabilidad: interno
+    x-reglas:
+    - REG-133
+    description: Documento interno informal (SUP-07).

@@ -1,0 +1,54 @@
+# Parámetro tributario con vigencia
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/parametro-tributario.schema.yaml
+title: Parámetro tributario con vigencia
+description: 'RNF-06: tasas y montos (IGV, ISC por producto, ICBPER, UIT...) NO se fijan en código. Cada valor cita su norma.
+  Mientras no se verifique en fuente oficial, estadoVerificacion = PENDIENTE y la emisión productiva debe bloquearse.'
+type: object
+additionalProperties: false
+required:
+- codigo
+- vigenteDesde
+- estadoVerificacion
+properties:
+  codigo:
+    enum:
+    - IGV_TASA
+    - IPM_TASA
+    - ISC_TASA
+    - ISC_MONTO_FIJO
+    - ISC_FACTOR_PVP
+    - ICBPER_MONTO_UNITARIO
+    - UMBRAL_BOLETA_SIN_DOCUMENTO
+    - PLAZO_ENVIO_DIAS
+    - PLAZO_BAJA_DIAS
+    - TOLERANCIA_REDONDEO
+    x-trazabilidad: interno
+  tributo:
+    $ref: catalogos.schema.yaml#/$defs/Cat05
+    x-trazabilidad: MT-066
+  productoCodigo:
+    type: string
+    x-trazabilidad: interno
+    description: Solo para parámetros ISC por producto.
+  valor:
+    type:
+    - string
+    - 'null'
+    pattern: ^\d+(\.\d+)?$
+    x-trazabilidad: MT-063
+  vigenteDesde:
+    $ref: common.schema.yaml#/$defs/Fecha
+    x-trazabilidad: interno
+  vigenteHasta:
+    $ref: common.schema.yaml#/$defs/Fecha
+    x-trazabilidad: interno
+  fuenteNormativa:
+    type: string
+    x-trazabilidad: interno
+  estadoVerificacion:
+    enum:
+    - VERIFICADO
+    - PENDIENTE
+    x-trazabilidad: interno

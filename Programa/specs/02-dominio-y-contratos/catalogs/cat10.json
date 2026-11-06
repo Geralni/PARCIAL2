@@ -1,0 +1,48 @@
+{
+  "$schema": "../schemas/catalogo.schema.yaml",
+  "numero": "10",
+  "nombre": "Códigos de tipo de nota de débito electrónica",
+  "fuente": {
+    "archivo": "Git/10.txt",
+    "formato_detectado": "JSON",
+    "tipo": "comunitaria_no_oficial",
+    "ultima_actualizacion": "2020",
+    "registros_origen": 5
+  },
+  "advertencia": "Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse con el Anexo 8 oficial de SUNAT antes de producción.",
+  "campo_ubl": [
+    {
+      "xpath": "/DebitNote/cac:DiscrepancyResponse/cbc:ResponseCode",
+      "referencia": "Anexo 9-A, RS 117-2017, pág. 23"
+    }
+  ],
+  "contraste_anexo_9a": {
+    "estado": "COHERENTE",
+    "observaciones": [
+      "ResponseCode n2 (pág. 23)."
+    ]
+  },
+  "duplicados_detectados": [],
+  "items": [
+    {
+      "codigo": "01",
+      "descripcion": "Intereses por mora"
+    },
+    {
+      "codigo": "02",
+      "descripcion": "Aumento en el valor"
+    },
+    {
+      "codigo": "03",
+      "descripcion": "Penalidades/ otros conceptos"
+    },
+    {
+      "codigo": "11",
+      "descripcion": "Ajustes de operaciones de exportación"
+    },
+    {
+      "codigo": "12",
+      "descripcion": "Ajustes afectos al IVAP"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+# Producto o servicio
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/producto.schema.yaml
+title: Producto o servicio
+description: Catálogo de productos (ENT-06 §4). Fuente de los valores por defecto de la línea y de la existencia del registro
+  12.1.
+type: object
+additionalProperties: false
+required:
+- codigoInterno
+- nombre
+- tipo
+- unidadMedida
+properties:
+  id:
+    $ref: common.schema.yaml#/$defs/Uuid
+    readOnly: true
+    x-trazabilidad: interno
+  codigoInterno:
+    type: string
+    maxLength: 30
+    x-trazabilidad: MT-070
+  nombre:
+    $ref: common.schema.yaml#/$defs/Texto250
+    x-trazabilidad: MT-069
+  tipo:
+    enum:
+    - BIEN
+    - SERVICIO
+    x-trazabilidad: interno
+  codigoProductoSunat:
+    type: string
+    pattern: ^\d{8}$
+    x-trazabilidad: MT-071
+    x-reglas:
+    - REG-027
+  unidadMedida:
+    $ref: catalogos.schema.yaml#/$defs/Cat03
+    x-trazabilidad: MT-050
+  afectacionIgvDefecto:
+    $ref: catalogos.schema.yaml#/$defs/Cat07
+    x-trazabilidad: MT-064
+  sistemaIsc:
+    $ref: catalogos.schema.yaml#/$defs/Cat08
+    x-trazabilidad: MT-065
+    description: Solo productos sujetos a ISC; parámetros en ParametrosTributariosPort (REG-052).
+  sujetoIcbper:
+    type: boolean
+    default: false
+    x-trazabilidad: MT-190
+  valorUnitarioVenta:
+    $ref: common.schema.yaml#/$defs/PrecioUnitario
+    x-trazabilidad: MT-072
+  codigoExistencia:
+    type: string
+    x-trazabilidad: interno
+    description: 'Código de existencia del formato 12.1 (PENDIENTE: tabla oficial no disponible).'
+  requiereHomologacion:
+    type: boolean
+    default: false
+    x-trazabilidad: interno
+    x-reglas:
+    - REG-132
+  origen:
+    $ref: common.schema.yaml#/$defs/Origen
+    readOnly: true
+    x-trazabilidad: interno

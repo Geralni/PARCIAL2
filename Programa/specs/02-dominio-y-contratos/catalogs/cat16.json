@@ -1,0 +1,40 @@
+{
+  "$schema": "../schemas/catalogo.schema.yaml",
+  "numero": "16",
+  "nombre": "Código de tipo de precio de venta unitario",
+  "fuente": {
+    "archivo": "Git/16.txt",
+    "formato_detectado": "JSON",
+    "tipo": "comunitaria_no_oficial",
+    "ultima_actualizacion": "2020",
+    "registros_origen": 3
+  },
+  "advertencia": "Fuente comunitaria NO oficial (última actualización 2020). Debe contrastarse con el Anexo 8 oficial de SUNAT antes de producción.",
+  "campo_ubl": [
+    {
+      "xpath": "/Invoice/cac:InvoiceLine/cac:PricingReference/cac:AlternativeConditionPrice/cbc:PriceTypeCode",
+      "referencia": "Anexo 9-A, RS 117-2017, pág. 8"
+    }
+  ],
+  "contraste_anexo_9a": {
+    "estado": "COHERENTE",
+    "observaciones": [
+      "PriceTypeCode an2 Catálogo 16 (pág. 8)."
+    ]
+  },
+  "duplicados_detectados": [],
+  "items": [
+    {
+      "codigo": "01",
+      "descripcion": "Precio unitario (incluye el IGV)"
+    },
+    {
+      "codigo": "02",
+      "descripcion": "Valor referencial unitario en operaciones no onerosas (Gratuitas)"
+    },
+    {
+      "codigo": "03",
+      "descripcion": "Tarifas reguladas"
+    }
+  ]
+}

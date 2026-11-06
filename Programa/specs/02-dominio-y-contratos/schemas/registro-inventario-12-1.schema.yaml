@@ -1,0 +1,160 @@
+# Formato 12.1 - Registro del inventario permanente en unidades físicas (detalle)
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/registro-inventario-12-1.schema.yaml
+title: Formato 12.1 - Registro del inventario permanente en unidades físicas (detalle)
+description: 'Fuente: Git/FORMATO_12_1.pdf (texto del formato 12.1: cabecera ítems a-g e ''información mínima'' ítems a-i;
+  procedencia no indicada en el documento, presumiblemente RS 234-2006). x-item-121 = ítem del PDF (cab-x = cabecera, det-x
+  = detalle). Las tablas 5, 6 y 12 que cita NO están en el workspace: sus códigos quedan PENDIENTE. Se deriva de MovimientoAlmacen,
+  incluidos los migrados del legado (mapeo-legado.md).'
+type: object
+additionalProperties: false
+required:
+- periodo
+- ruc
+- razonSocial
+- establecimientoCodigo
+- existencias
+x-reglas:
+- REG-142
+- REG-148
+x-estado: CITADA (FORMATO_12_1.pdf) / PENDIENTE (tablas 5, 6 y 12)
+properties:
+  denominacion:
+    const: REGISTRO DEL INVENTARIO PERMANENTE EN UNIDADES FÍSICAS - DETALLE DEL INVENTARIO PERMANENTE EN UNIDADES FÍSICAS
+    x-trazabilidad: interno
+    x-item-121: cab-a
+  periodo:
+    $ref: common.schema.yaml#/$defs/Periodo
+    x-trazabilidad: interno
+    x-item-121: cab-b
+  ruc:
+    $ref: common.schema.yaml#/$defs/Ruc
+    x-trazabilidad: MT-073
+    x-item-121: cab-c
+  razonSocial:
+    type: string
+    maxLength: 100
+    x-trazabilidad: MT-075
+    x-item-121: cab-c
+  establecimientoCodigo:
+    $ref: common.schema.yaml#/$defs/CodigoEstablecimiento
+    x-trazabilidad: MT-076
+    x-item-121: cab-d
+  establecimientoDescripcion:
+    type: string
+    maxLength: 200
+    x-trazabilidad: interno
+    x-item-121: cab-d
+  existencias:
+    type: array
+    x-trazabilidad: interno
+    items:
+      type: object
+      additionalProperties: false
+      required:
+      - codigoExistencia
+      - descripcion
+      - unidadMedida
+      - movimientos
+      - totales
+      properties:
+        codigoExistencia:
+          type: string
+          maxLength: 30
+          x-trazabilidad: MT-070
+          x-item-121: cab-e
+          description: '''Código de la existencia (según Tabla 5)''. Tabla 5 PENDIENTE (DISC-23).'
+        descripcion:
+          type: string
+          maxLength: 250
+          x-trazabilidad: MT-069
+          x-item-121: cab-f
+        unidadMedida:
+          type: string
+          maxLength: 3
+          x-trazabilidad: MT-050
+          x-item-121: cab-g
+          description: Tabla 6 PENDIENTE. Se usa el código del catálogo 03 hasta tener la Tabla 6 (SUPUESTO).
+        movimientos:
+          type: array
+          x-trazabilidad: interno
+          items:
+            type: object
+            additionalProperties: false
+            required:
+            - fecha
+            - tipoOperacion
+            properties:
+              fecha:
+                $ref: common.schema.yaml#/$defs/Fecha
+                x-trazabilidad: interno
+                x-item-121: det-a
+              tipoDocumento:
+                type: string
+                pattern: ^\d{2}$
+                x-trazabilidad: interno
+                x-item-121: det-b
+                description: Tabla 10 PLE (referencias/formatos/tablas-ple.json). Documento interno del legado -> '00' Otros
+                  (SUPUESTO).
+              serie:
+                type: string
+                maxLength: 20
+                x-trazabilidad: interno
+                x-item-121: det-c
+              numero:
+                type: string
+                maxLength: 20
+                x-trazabilidad: interno
+                x-item-121: det-d
+              tipoOperacion:
+                type: string
+                pattern: ^(\d{2}|PENDIENTE)$
+                x-trazabilidad: interno
+                x-item-121: det-e
+                description: Tabla 12 (no está en el workspace). Mientras no se cargue, el valor es 'PENDIENTE' y GeneradorRegistrosPort
+                  NO exporta el registro oficial (BR-06).
+              entradas:
+                $ref: common.schema.yaml#/$defs/Cantidad
+                x-trazabilidad: interno
+                x-item-121: det-f
+                x-reglas:
+                - REG-148
+                description: Incluye el saldo inicial (ítem f del PDF).
+              salidas:
+                $ref: common.schema.yaml#/$defs/Cantidad
+                x-trazabilidad: interno
+                x-item-121: det-g
+              saldoFinal:
+                type: string
+                pattern: ^-?\d{1,12}(\.\d{1,10})?$
+                x-trazabilidad: interno
+                x-item-121: det-h
+              origen:
+                $ref: common.schema.yaml#/$defs/Origen
+                x-trazabilidad: interno
+        totales:
+          type: object
+          additionalProperties: false
+          required:
+          - entradas
+          - salidas
+          - saldoFinal
+          x-trazabilidad: interno
+          x-item-121: det-i
+          x-reglas:
+          - REG-148
+          properties:
+            entradas:
+              $ref: common.schema.yaml#/$defs/Cantidad
+              x-trazabilidad: interno
+              x-item-121: det-i
+            salidas:
+              $ref: common.schema.yaml#/$defs/Cantidad
+              x-trazabilidad: interno
+              x-item-121: det-i
+            saldoFinal:
+              type: string
+              pattern: ^-?\d{1,12}(\.\d{1,10})?$
+              x-trazabilidad: interno
+              x-item-121: det-i

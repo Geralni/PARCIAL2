@@ -1,0 +1,30 @@
+# Tributo (subtotal por tributo)
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/tributo.schema.yaml
+title: Tributo (subtotal por tributo)
+description: TaxSubtotal de línea o de cabecera. Name y TaxTypeCode se derivan del catálogo 05 (REG-014).
+type: object
+additionalProperties: false
+required:
+- codigoTributo
+- monto
+properties:
+  codigoTributo:
+    $ref: catalogos.schema.yaml#/$defs/Cat05
+    x-trazabilidad: MT-066
+  base:
+    $ref: common.schema.yaml#/$defs/Monto
+    x-trazabilidad: MT-060
+  tasa:
+    $ref: common.schema.yaml#/$defs/Porcentaje
+    x-trazabilidad: MT-063
+    x-reglas:
+    - REG-051
+  monto:
+    $ref: common.schema.yaml#/$defs/Monto
+    x-trazabilidad: MT-061
+    x-reglas:
+    - REG-050
+    - REG-052
+    - REG-054

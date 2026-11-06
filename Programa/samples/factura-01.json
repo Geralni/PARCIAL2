@@ -1,0 +1,75 @@
+{
+  "tipoComprobante": "01",
+  "serie": "F001",
+  "fechaEmision": "2026-10-27",
+  "horaEmision": "10:15:00",
+  "fechaVencimiento": "2026-12-26",
+  "tipoOperacion": "0101",
+  "moneda": "PEN",
+  "establecimientoCodigo": "0000",
+  "adquirente": {
+    "tipoDocumento": "6",
+    "numeroDocumento": "20000000002",
+    "razonSocial": "BODEGA FICTICIA LOS ANDES S.A.C."
+  },
+  "leyendas": [
+    { "codigo": "1000", "texto": "MIL DOSCIENTOS CINCUENTA Y SIETE CON 88/100 SOLES" }
+  ],
+  "ordenCompra": "OC-0001",
+  "formaPago": {
+    "tipo": "CREDITO",
+    "montoPendiente": "1257.88",
+    "cuotas": [
+      { "numero": 1, "monto": "628.94", "fechaVencimiento": "2026-11-26" },
+      { "numero": 2, "monto": "628.94", "fechaVencimiento": "2026-12-26" }
+    ]
+  },
+  "lineas": [
+    {
+      "numeroOrden": 1,
+      "codigoProducto": "ARR-050",
+      "codigoProductoSunat": "50221101",
+      "descripcion": "ARROZ SUPERIOR SACO 50 KG",
+      "cantidad": "10",
+      "unidadMedida": "BG",
+      "valorUnitario": "100.00",
+      "precioUnitario": { "monto": "118.00", "tipoPrecio": "01" },
+      "valorVenta": "1000.00",
+      "afectacionIgv": "10",
+      "tributos": [
+        { "codigoTributo": "1000", "base": "1000.00", "tasa": "18.00", "monto": "180.00" }
+      ],
+      "totalTributos": "180.00"
+    },
+    {
+      "numeroOrden": 2,
+      "codigoProducto": "BEB-355",
+      "descripcion": "BEBIDA FICTICIA SUJETA A ISC LATA 355 ML",
+      "cantidad": "24",
+      "unidadMedida": "NIU",
+      "valorUnitario": "2.50",
+      "precioUnitario": { "monto": "3.245", "tipoPrecio": "01" },
+      "valorVenta": "60.00",
+      "afectacionIgv": "10",
+      "isc": { "sistemaCalculo": "01", "base": "60.00", "tasa": "10.00", "monto": "6.00" },
+      "tributos": [
+        { "codigoTributo": "2000", "base": "60.00", "tasa": "10.00", "monto": "6.00" },
+        { "codigoTributo": "1000", "base": "66.00", "tasa": "18.00", "monto": "11.88" }
+      ],
+      "totalTributos": "17.88"
+    }
+  ],
+  "tributos": [
+    { "codigoTributo": "1000", "base": "1066.00", "monto": "191.88" },
+    { "codigoTributo": "2000", "base": "60.00", "monto": "6.00" }
+  ],
+  "totales": {
+    "totalGravado": "1066.00",
+    "totalIgv": "191.88",
+    "totalIsc": "6.00",
+    "totalTributos": "197.88",
+    "valorVenta": "1060.00",
+    "precioVenta": "1257.88",
+    "importeTotal": "1257.88"
+  }
+}

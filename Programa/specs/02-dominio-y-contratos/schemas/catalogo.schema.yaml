@@ -1,0 +1,95 @@
+# Archivo de catálogo SUNAT (catalogs/catNN.json)
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/catalogo.schema.yaml
+title: Archivo de catálogo SUNAT (catalogs/catNN.json)
+type: object
+additionalProperties: false
+required:
+- numero
+- nombre
+- fuente
+- advertencia
+- campo_ubl
+- contraste_anexo_9a
+- items
+properties:
+  $schema:
+    type: string
+  numero:
+    type: string
+    pattern: ^\d{2}$
+  nombre:
+    type: string
+  fuente:
+    type: object
+    required:
+    - archivo
+    - formato_detectado
+    - tipo
+    properties:
+      archivo:
+        type: string
+      formato_detectado:
+        enum:
+        - JSON
+        - CSV
+      tipo:
+        enum:
+        - comunitaria_no_oficial
+        - oficial
+      ultima_actualizacion:
+        type: string
+      registros_origen:
+        type: integer
+  advertencia:
+    type: string
+  campo_ubl:
+    type: array
+    items:
+      type: object
+      required:
+      - xpath
+      - referencia
+      properties:
+        xpath:
+          type: string
+          pattern: ^/
+        referencia:
+          type: string
+  contraste_anexo_9a:
+    type: object
+    required:
+    - estado
+    - observaciones
+    properties:
+      estado:
+        enum:
+        - COHERENTE
+        - DISCREPANCIA
+        - PARCIAL
+        - NO_APLICA
+        - PENDIENTE
+      observaciones:
+        type: array
+        items:
+          type: string
+  duplicados_detectados:
+    type: array
+    items:
+      type: string
+    maxItems: 0
+  items:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      required:
+      - codigo
+      - descripcion
+      properties:
+        codigo:
+          type: string
+          minLength: 1
+        descripcion:
+          type: string

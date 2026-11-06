@@ -1,0 +1,69 @@
+# Totales del comprobante
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/totales.schema.yaml
+title: Totales del comprobante
+description: 'LegalMonetaryTotal (RequestedMonetaryTotal en ND) más los totales por tipo de afectación. Coherencia: REG-057
+  y REG-060..REG-068.'
+type: object
+additionalProperties: false
+required:
+- importeTotal
+properties:
+  totalGravado:
+    $ref: common.schema.yaml#/$defs/Monto
+    x-trazabilidad: MT-035
+  totalExonerado:
+    $ref: common.schema.yaml#/$defs/Monto
+    x-trazabilidad: MT-035
+  totalInafecto:
+    $ref: common.schema.yaml#/$defs/Monto
+    x-trazabilidad: MT-035
+  totalGratuito:
+    $ref: common.schema.yaml#/$defs/Monto
+    x-trazabilidad: MT-035
+  totalIgv:
+    $ref: common.schema.yaml#/$defs/Monto
+    x-trazabilidad: MT-036
+  totalIsc:
+    $ref: common.schema.yaml#/$defs/Monto
+    x-trazabilidad: MT-036
+  totalIcbper:
+    $ref: common.schema.yaml#/$defs/Monto
+    x-trazabilidad: MT-190
+  totalTributos:
+    $ref: common.schema.yaml#/$defs/Monto
+    x-trazabilidad: MT-034
+    x-reglas:
+    - REG-057
+  valorVenta:
+    $ref: common.schema.yaml#/$defs/Monto
+    x-trazabilidad: MT-041
+    x-reglas:
+    - REG-061
+  precioVenta:
+    $ref: common.schema.yaml#/$defs/Monto
+    x-trazabilidad: MT-042
+    x-reglas:
+    - REG-062
+  descuentosGlobales:
+    $ref: common.schema.yaml#/$defs/Monto
+    x-trazabilidad: MT-043
+    x-reglas:
+    - REG-063
+  otrosCargos:
+    $ref: common.schema.yaml#/$defs/Monto
+    x-trazabilidad: MT-044
+    x-reglas:
+    - REG-064
+  anticipos:
+    $ref: common.schema.yaml#/$defs/MontoAnticipo
+    x-trazabilidad: MT-045
+    x-reglas:
+    - REG-065
+  importeTotal:
+    $ref: common.schema.yaml#/$defs/Monto
+    x-trazabilidad: MT-046
+    x-reglas:
+    - REG-066
+    - REG-068

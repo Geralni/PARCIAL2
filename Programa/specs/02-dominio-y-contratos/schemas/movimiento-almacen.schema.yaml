@@ -1,0 +1,57 @@
+# Movimiento de almacén
+# JSON Schema 2020-12 escrito en YAML. Convenciones: x-trazabilidad (fila MT-xxx o 'interno'), x-reglas (REG-xxx).
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://specs.abc-software-corp.local/schemas/movimiento-almacen.schema.yaml
+title: Movimiento de almacén
+description: Continuación limpia de la ficha legado (RF-18). Fuente del registro 12.1. Un movimiento migrado conserva su origen
+  (REG-134).
+type: object
+additionalProperties: false
+required:
+- fecha
+- tipo
+- productoCodigo
+- cantidad
+- establecimientoCodigo
+- origen
+properties:
+  id:
+    $ref: common.schema.yaml#/$defs/Uuid
+    readOnly: true
+    x-trazabilidad: interno
+  fecha:
+    $ref: common.schema.yaml#/$defs/Fecha
+    x-trazabilidad: interno
+  tipo:
+    enum:
+    - INGRESO
+    - SALIDA
+    x-trazabilidad: interno
+  productoCodigo:
+    type: string
+    maxLength: 30
+    x-trazabilidad: MT-070
+  cantidad:
+    $ref: common.schema.yaml#/$defs/Cantidad
+    x-trazabilidad: MT-049
+  unidadMedida:
+    $ref: catalogos.schema.yaml#/$defs/Cat03
+    x-trazabilidad: MT-050
+  establecimientoCodigo:
+    $ref: common.schema.yaml#/$defs/CodigoEstablecimiento
+    x-trazabilidad: MT-076
+  comprobante:
+    $ref: common.schema.yaml#/$defs/ReferenciaDocumento
+    x-trazabilidad: interno
+    description: Si el movimiento nace de un comprobante emitido.
+  documentoInternoLegado:
+    type: string
+    x-trazabilidad: MT-018
+    description: nro_documento original (SUP-07).
+  tipoOperacion12_1:
+    type: string
+    x-trazabilidad: interno
+    description: 'Tabla de tipo de operación del 12.1: PENDIENTE (ENT-07).'
+  origen:
+    $ref: common.schema.yaml#/$defs/Origen
+    x-trazabilidad: interno
